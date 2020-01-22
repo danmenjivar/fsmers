@@ -1,0 +1,11 @@
+HTTrack3.49-2 launched on Fri, 17 Jan 2020 12:53:16 at https://dfadiagram.herokuapp.com/
+(httrack https://dfadiagram.herokuapp.com/ -O /Users/danielmenjivar/Documents/fsmFork )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.49-2 mirror complete in 16 seconds : 16 links scanned, 15 files written (1365190 bytes overall) [1370602 bytes received at 85662 bytes/sec], 5.3 requests per connection
+(No errors, 0 warnings, 0 messages)
