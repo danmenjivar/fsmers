@@ -5,9 +5,10 @@
   <!-- Required Meta Tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <!-- END of Required Meta Tags -->
   
   <!-- Style Sheet TODO: move this to css style sheet, not sure why OG dev left this here -->
-  <style>
+  <!-- <style>
     body {
       padding: 0;
       margin: 0;
@@ -24,7 +25,8 @@
       width:1200px;
       height:600px;
     }
-    </style>
+    </style> -->
+    <!-- END of moving to CSS sheet-->
 
 <!-- CSS Style Sheets -->
 <link rel="stylesheet" href="assets/main.css"> <!-- move top style stuff to inside this file -->
@@ -37,7 +39,8 @@
 <body>
   <div class="" style="height:50px;"></div> <!--This adds space between the menu bar and the canvas-->
 
-  <div class="modal fade " id="modal-1">
+  <!-- BEGIN Modal for settingsButton -->
+  <div class="modal fade " id="settingsButtonModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -87,17 +90,13 @@
           <button type="button" class="btn btn-primary" id="save">Save changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+      </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+  </div> <!-- /.modal -->
+<!-- END Modal for settingsButton -->
 
-
-
-
-  <div class="modal fade" id="modal-2">
+<!-- BEGIN Modal for inputButton -->
+  <div class="modal fade" id="inputButtonModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -106,10 +105,8 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-
-        
-
         </div>
+
         <div class="modal-body">
           <div class="container">
             <h6>Please Enter an input to test the DFA</h6>
@@ -129,15 +126,28 @@
           <button type="button" class="btn btn-success" id="check">Check</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
+      </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+  </div> <!-- /.modal -->
+<!-- END Modal for inputButton -->
+
+<!-- BEGIN Modal for addStateButton -->
+<div class="modal fade" id="addStateButtonModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Input </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        </div>
       </div>
-      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+</div>
+<!-- END Modal for addStateButton -->
 
-
-
+<!-- BEGIN Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">DFA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navCollapseBut">
@@ -145,24 +155,15 @@
   </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <button class="btn   btn-outline-primary" data-toggle="modal" data-target="#modal-1" id="modalBut">DFA Settings</button>
-        <button class="btn  btn-outline-success" type="button" data-toggle="modal" data-target="#modal-2" id="inputBut">Input</button>
-        <!-- <button class="btn  btn-outline-success" type="button" data-toggle="modal" data-target="#modal-2" id="inputBut">+State</button> -->
+        <button class="btn   btn-outline-primary" data-toggle="modal" data-target="#settingsButtonModal" id="modalBut">DFA Settings</button>
+        <button class="btn  btn-outline-success" type="button" data-toggle="modal" data-target="#inputButtonModal" id="inputBut">Input</button>
+        <button class="btn  btn-outline-success" type="button" data-toggle="modal" data-target="#addStateButtonModal" id="inputBut">+State</button>
       </ul>
     </div>
-
   </nav>
+<!-- END NavBar -->
 
-
-
-
-
-
-
-
-
-
-
+<!-- BEGIN Pass/Fail Footer Notification -->
   <div id="parent"></div>
   <!--  Alert`-->
   <div class="alert alert-danger  fixed-bottom" style="display:none;" role="alert" id="reject">
@@ -178,6 +179,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
   </div>
+<!-- END Pass/Fail Footer Notification -->
 
   <!-- JavaScript Files-->>
   <!-- Bootstrap JS, first jQuery, then Popper.js, finally Bootstrap JS-->
