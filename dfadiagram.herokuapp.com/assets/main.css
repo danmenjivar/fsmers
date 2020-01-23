@@ -1,3 +1,24 @@
+/* Write our CSS Styling here */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link:hover {
+  background: rgb(186, 186, 186);
+  
+  color: red;
+}
+
+#parent {
+  overflow: auto;
+  width:1200px;
+  height:600px;
+}
+
+/* Everything above this line was imported from index.html for better organization
+   Note that something above here controls the scroll bars*/
+
 canvas{
   overflow: scroll;rgb(143, 143, 143)
   color: rgb(93, 223, 77)
