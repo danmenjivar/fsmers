@@ -8,7 +8,6 @@ let drawer = new DFADrawer(subesh);
 function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
-
   graphicsItem.item.push(drawer);
   noLoop();
 }
@@ -19,8 +18,6 @@ function draw() {
   scale(zoom);
   //scale(0.5,0.5);
   graphicsItem.draw();
-
-
 }
 
 

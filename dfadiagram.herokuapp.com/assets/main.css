@@ -6,7 +6,6 @@ body {
 
 .nav-link:hover {
   background: rgb(186, 186, 186);
-  
   color: red;
 }
 
@@ -20,7 +19,6 @@ body {
    Note that something above here controls the scroll bars*/
 
 canvas{
-  overflow: scroll;rgb(143, 143, 143)
+  overflow: scroll;
   color: rgb(93, 223, 77)
-
 }

@@ -24,7 +24,7 @@ class DFADrawer {
     this.states = [];
     this.links = [];
     this.children = [];
-    //cathes error if dfa not defined
+    //catches error if dfa not defined
     try {
       this.createDiagram();
     } catch (e) {

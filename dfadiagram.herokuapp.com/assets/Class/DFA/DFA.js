@@ -1,4 +1,3 @@
-
 class DFA {
   constructor(obj) {
     this.state  = [];
@@ -22,7 +21,6 @@ class DFA {
       let nextState = this.transition[state][input];
       console.log(`${state} -- ${input} --> ${nextState}`);
       state = nextState;
-
     });
     console.log(state);
     return state;
@@ -33,10 +31,9 @@ class DFA {
     if(this.final.find((state) => state === lastState))
       console.log("Accepted");
   }
-
-
 }
 
+// Initial Sample DFA
 let DFATuples = {
   state: ["q0","q1","q2",'q3'],
   alphabet : ['0','1'],
@@ -62,8 +59,6 @@ let DFATuples = {
   }
 }
 
-
 let subesh = new DFA(DFATuples);
-
 
 console.log(subesh);
