@@ -6,7 +6,7 @@
  * @param {DFA} dfa Must be of the @class DFA
  * @member this.dfa - The DFA
  * @member this.states - Array of StateCircle
- * @member this.links - Arrat of StateArcs
+ * @member this.links - Array of StateArcs
  * @member this.children - childrens
  * @author Subesh Bhandari
  * @version 0.1
