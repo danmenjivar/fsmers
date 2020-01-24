@@ -65,7 +65,7 @@ class DFADrawer {
    * @return {null}  No return
    */
   createStateCircle() {
-    //state points to dfa.state (for convinence)
+    //state points to dfa.state (for convenience)
     let states = this.dfa.state;
 
     //Initial state position

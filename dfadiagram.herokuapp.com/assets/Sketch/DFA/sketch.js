@@ -2,7 +2,7 @@ let selectObject;
 var zoom = 1;
 var zMin = 0.01;
 var zMax = 9.00;
-var sensativity = 0.00005;
+var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
 function setup() {
@@ -88,7 +88,7 @@ function touchEnded() {
 function mouseWheel(event) {
   if(event.ctrlKey) {
   //console.log("what");
-  zoom += sensativity * event.delta;
+  zoom += sensitivity * event.delta;
 
   zoom = constrain(zoom, zMin, zMax);
   //console.log(zoom);
