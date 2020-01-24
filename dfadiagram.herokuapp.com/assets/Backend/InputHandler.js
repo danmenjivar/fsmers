@@ -13,7 +13,7 @@ $(document).ready(function() {
       checker.time = 200;
     }
     checker.check($('#dfaInput').val());
-    $('#modal-2').modal('hide');
+    $('inputButtonModal').modal('hide');
     $('#navCollapseBut').trigger('click');
 
 

@@ -4,6 +4,14 @@ body {
   margin: 0;
 }
 
+.btn-margin-left {
+  margin-left: 10px;
+}
+
+.btn-margin-right {
+  margin-right: 10px;
+}
+
 .nav-link:hover {
   background: rgb(186, 186, 186);
   color: red;
