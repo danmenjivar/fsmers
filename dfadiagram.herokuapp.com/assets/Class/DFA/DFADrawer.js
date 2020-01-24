@@ -96,7 +96,7 @@ class DFADrawer {
   createStart() {
     //initial state (initial array length only 1)
     let initial = this.dfa.initial[0];
-
+    console.log("createStart() " + this.dfa.initial);
     //list of StateCircles
     let states = this.states;
 
@@ -190,7 +190,7 @@ class DFADrawer {
             this.children.unshift(link);
           }
 
-          //console.log(`${from.stateName} -- ${input} -- > ${to.stateName}`);
+          console.log(`${from.stateName} -- ${input} -- > ${to.stateName}`);
         }
       }
     } catch (e) {
