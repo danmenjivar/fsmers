@@ -18,9 +18,7 @@ $(document).ready(function() {
 
 
   });
-  $('#accept').on('click',function() {
-    $(this).show('1000');
-  });
+ 
 
   $(document).on('click','.close',function() {
     checker.resetColor();

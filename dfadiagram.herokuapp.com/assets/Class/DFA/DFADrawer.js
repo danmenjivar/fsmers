@@ -59,6 +59,12 @@ class DFADrawer {
     }
   }
 
+  clearCanvas() {
+    this.states = [];
+    this.links = [];
+    this.children = [];
+  }
+
   /**
    * createStateCircle - Make StateCircles of the Dfa states.
    *
@@ -140,6 +146,8 @@ class DFADrawer {
   }
 
 
+
+
   /**
    * createLink - Creates a link among the StateCircle with the help of DFA.transition (this.dfa.transition)
    *
@@ -180,17 +188,16 @@ class DFADrawer {
             from.addLinkTo({
               state: to,
               link: link,
-              input : [input]
+              input: [input]
             });
             to.addLinkFrom({
               state: from,
               link: link,
-              input : [input]
+              input: [input]
             });
             this.children.unshift(link);
           }
-
-          console.log(`${from.stateName} -- ${input} -- > ${to.stateName}`);
+          // console.log(`${from.stateName} -- ${input} -- > ${to.stateName}`);
         }
       }
     } catch (e) {
@@ -200,9 +207,5 @@ class DFADrawer {
       this.children = [];
     }
   }
-  draw() {
-
-  }
-
-
+  draw() {}
 }

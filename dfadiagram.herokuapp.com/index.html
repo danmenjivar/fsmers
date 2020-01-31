@@ -112,6 +112,46 @@
   </div> <!-- /.modal -->
 <!-- END Modal for inputButton -->
 
+<!-- BEGIN Modal for batchStringTesting -->
+<div class="modal fade" id="batchTestModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Batch Input Testing</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container">
+          <h6>Please Enter strings separated by commas to test on your DFA</h6>
+          <div class="form-group row">
+            <label for="dfaInput" class="col-3">Input:</label>
+            <input type="text" id="dfaBatchInput" placeholder="Input" class="form-control col-9">
+
+          </div>
+          <div class="form-group row">
+            <label for="dfaBatchInterval" class="col-3">Traversing speed</label>
+            <input type="number" id="dfaBatchInterval" placeholder="Time in milliseconds <= 2000" class="form-control col-9" min="1" max="2000" >
+          </div>
+          <div class="form-group row">
+            <label for="stringInterval" class="col-3">Processing Delay</label>
+            <input type="number" id="stringInterval" placeholder="Time in milliseconds <= 5000" class="form-control col-9" min="1" max="5000" >
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="batchCheck">Begin Test</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div> <!-- /.modal-content -->
+  </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
+<!-- END Modal for batchStringTesting -->
+
+
 <!-- BEGIN Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">DFA</a>
@@ -123,7 +163,7 @@
         <button class="btn  btn-outline-primary" data-toggle="modal" data-target="#settingsButtonModal" id="modalBut">DFA Settings</button>
         <button class="btn  btn-outline-success btn-margin-left" type="button" data-toggle="modal" data-target="#inputButtonModal" id="inputBut">Input</button>
         <button type="button" class="btn btn-outline-secondary btn-margin-left" id="addState">+State</button>
-        <button class="btn  btn-outline-success btn-margin-left" type="button" data-toggle="modal" data-target="#batchTest" id="batchBut">Batch</button>
+        <button class="btn  btn-outline-success btn-margin-left" type="button" data-toggle="modal" data-target="#batchTestModal" id="batchBut">Batch</button>
         <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>
 
       </ul>
@@ -149,6 +189,7 @@
   </div>
 <!-- END Pass/Fail Footer Notification -->
 
+
   <!-- BEGIN JavaScript Files -->>
   
   <!-- Bootstrap JS, first jQuery, then Popper.js, finally Bootstrap JS -->
@@ -162,7 +203,7 @@
   <script src="assets/addons/p5.dom.min.js"></script>
   <script src="assets/addons/p5.sound.min.js"></script>
   <!-- END p5.js dependencies -->
-
+  <script src="assets/Class/TestResult.js"></script>
   <script src="assets/Class/DFA/DFA.js"></script>
   <script src="assets/Class/Graphics/StateCircle.js"></script>
   <script src="assets/Class/Graphics/GraphicsItem.js"></script>
@@ -170,11 +211,13 @@
   <script src="assets/Class/Graphics/StateArc.js"></script>
   <script src="assets/Class/DFA/DFADrawer.js"></script>
   <script src="assets/Class/DFA/DFAChecker.js"></script>
+  <script src="assets/Class/DFA/BatchDFAChecker.js"></script>
   <script src="assets/Sketch/DFA/sketch.js"></script>
   <script src="assets/Backend/DFASettingsHandler.js"></script>
   <script src="assets/Backend/InputHandler.js"></script>
   <script src="assets/Backend/AddStateHandler.js"></script>
   <script src="assets/Backend/ClearAllHandler.js"></script>
+  <script src="assets/Backend/BatchTestingHandler.js"></script>
   <!-- END of JS files -->
 </body>
 </html>
