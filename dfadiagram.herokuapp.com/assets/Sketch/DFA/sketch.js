@@ -15,6 +15,8 @@ function setup() {
 function draw() {
   // put drawing code here
   background(255);
+  rect(0,0,300,150); //the top left rectangle x=300,y=150
+  rect(500,0,150,150);
   scale(zoom);
   //scale(0.5,0.5);
   graphicsItem.draw();

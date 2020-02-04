@@ -64,7 +64,7 @@ class StateCircle {
     this.drawText();
   }
 
-  drawStart() {
+  drawStart() { //draws starting state
     push();
     stroke(this.color.r,this.color.g,this.color.b);
     fill(100);
@@ -77,7 +77,7 @@ class StateCircle {
     pop();
   }
 
-  drawFinal() {
+  drawFinal() { //draws the final state
     push();
     stroke(this.color.r,this.color.g,this.color.b);
     strokeWeight(1.5);
@@ -98,12 +98,19 @@ class StateCircle {
       this.center.x = mouseX + this.dragedPoint.x;
       this.center.y = mouseY+ this.dragedPoint.y;
       return true;
-    } else
-    return false;
+    }
+    else{
+      return false;
+    } 
   }
   setPos(x,y) {
     this.center.x = x + this.dragedPoint.x;
     this.center.y = y + this.dragedPoint.y;
+    //this is what will probably help deleting the state
+    if(this.center.x < 300 && this.center.y < 150){
+      this.center.x = 575;
+      this.center.y = 75;
+    }
   }
 
   setFinal() {
