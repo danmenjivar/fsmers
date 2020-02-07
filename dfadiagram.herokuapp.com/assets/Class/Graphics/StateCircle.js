@@ -108,9 +108,37 @@ class StateCircle {
     this.center.y = y + this.dragedPoint.y;
     //this is what will probably help deleting the state
     if(this.center.x < 300 && this.center.y < 150){
-      this.center.x = 575;
-      this.center.y = 75;
+      this.deleteState();
+      // this.center.x = 575;
+      // this.center.y = 75;
     }
+  }
+
+  deleteState() {
+    // for(var i = 0; i < subesh.state.length; i++){
+    //   if (DFATuples.state[i] == this.stateName)
+    //   {
+    //     DFATuples.state[i] == null;
+    //     subesh.state[i] == null;
+    //   }
+    // }
+    
+
+
+    drawer.clearCanvas();
+    redraw();
+    DFATuples.state = [];
+    subesh.state = [];
+    DFATuples.initial = [];
+    subesh.initial = [];
+    DFATuples.alphabet = [];
+    subesh.alphabet = [];
+    DFATuples.final = [];
+    subesh.final = [];
+    DFATuples.transition = {};
+    subesh.transition = {};
+    // this.stateName = "q100";
+
   }
 
   setFinal() {
