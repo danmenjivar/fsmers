@@ -94,6 +94,12 @@ class DFADrawer {
     });
   }
 
+  deleteStateCircle(){
+    this.dfa.state = null;
+    
+  }
+
+
   /**
    * createStart - Set the initial state with and arrow
    *

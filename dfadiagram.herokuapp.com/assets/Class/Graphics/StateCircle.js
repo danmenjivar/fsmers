@@ -115,28 +115,43 @@ class StateCircle {
   }
 
   deleteState() {
-    // for(var i = 0; i < subesh.state.length; i++){
-    //   if (DFATuples.state[i] == this.stateName)
-    //   {
-    //     DFATuples.state[i] == null;
-    //     subesh.state[i] == null;
-    //   }
-    // }
+
+    for(var i = 0; i < DFATuples.state.length; i++){
+      if (DFATuples.state[i] == this.stateName)
+      {    //aight this bitch targets the right state
+        console.log(5+2);
+        if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
+        {
+          DFATuples.initial[0] = DFATuples.state[i+1];
+        }
+        else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
+        {
+          DFATuples.final[0] = DFATuples.state[i-1];
+        }
+        DFATuples.state[i] = DFATuples.state[i+1];
+        subesh.state[i] = subesh.state[i+1];
+        console.log(DFATuples.initial[0]);
+
+        this.stateName = "q11";
+        console.log(DFATuples.state[i]);
+        console.log(DFATuples.final[0]);
+        //console.log(subesh.state);
+      }
+    }
     
 
-
-    drawer.clearCanvas();
-    redraw();
-    DFATuples.state = [];
-    subesh.state = [];
-    DFATuples.initial = [];
-    subesh.initial = [];
-    DFATuples.alphabet = [];
-    subesh.alphabet = [];
-    DFATuples.final = [];
-    subesh.final = [];
-    DFATuples.transition = {};
-    subesh.transition = {};
+    //drawer.deleteStateCircle();
+    //drawer.clearCanvas()    redraw();
+    // DFATuples.state = [];
+    // subesh.state = [];
+    // DFATuples.initial = [];
+    // subesh.initial = [];
+    // DFATuples.alphabet = [];
+    // subesh.alphabet = [];
+    // DFATuples.final = [];
+    // subesh.final = [];
+    // DFATuples.transition = {};
+    // subesh.transition = {};
     // this.stateName = "q100";
 
   }
