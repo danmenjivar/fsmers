@@ -1,27 +1,24 @@
-<!-- THIS IS THE INDEX OF THE APPLICATION, IGNORE THE OTHER ONE -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- BEGIN Required Meta Tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-  <!-- END of Required Meta Tags -->
-  
-  <!-- BEGIN CSS Style Sheets -->
-  <link rel="stylesheet" href="assets/main.css">
-  <!-- Bootstrap CSS Import -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!-- END CSS Style Sheets -->
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <link rel="stylesheet" href="assets/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>FSM Simulator</title>
   <!-- TODO: design and add a favicon-->
 </head>
 
 <body>
-  <div class="" style="height:50px;"></div> <!--This adds space between the menu bar and the canvas-->
-
+  <!-- <div class="" style="height:50px;">
+  </div> -->
+  <!--This adds space between the menu bar and the canvas-->
+<div></div>
   <!-- BEGIN Modal for settingsButton -->
-  <div class="modal fade " id="settingsButtonModal">
+  <div class="modal fade" id="settingsButtonModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -31,7 +28,7 @@
             <span class="sr-only">Close</span>
           </button>
         </div>
-        
+
         <div class="modal-body">
           <div class="container">
             <h6>Please separate multiple values by comma</h6>
@@ -62,7 +59,6 @@
                 </tr>
               </thead>
               <tbody>
-
               </tbody>
             </table>
           </div>
@@ -74,18 +70,18 @@
       </div> <!-- /.modal-content -->
     </div> <!-- /.modal-dialog -->
   </div> <!-- /.modal -->
-<!-- END Modal for settingsButton -->
+  <!-- END Modal for settingsButton -->
 
-<!-- BEGIN Modal for inputButton -->
+  <!-- BEGIN Modal for inputButton -->
   <div class="modal fade" id="inputButtonModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Input</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
-        </button>
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
         </div>
 
         <div class="modal-body">
@@ -100,7 +96,7 @@
               <div class="sliderContainer">
                 <input type="range" class="slider" id="travspeed" min="100" max="1500" step="1" value="200">
                 <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="trvspdvalue"></span>ms<br></p>
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -111,99 +107,109 @@
       </div> <!-- /.modal-content -->
     </div> <!-- /.modal-dialog -->
   </div> <!-- /.modal -->
-<!-- END Modal for inputButton -->
+  <!-- END Modal for inputButton -->
 
-<!-- BEGIN Modal for batchStringTesting -->
-<div class="modal fade" id="batchTestModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Batch Input Testing</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only">Close</span>
-      </button>
-      </div>
+  <!-- BEGIN Modal for batchStringTesting -->
+  <div class="modal fade" id="batchTestModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Batch Input Testing</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div>
 
-      <div class="modal-body">
-        <div class="container">
-          <h6>Please Enter strings separated by commas to test on your DFA</h6>
-          <div class="form-group row">
-            <label for="dfaInput" class="col-3">Input:</label>
-            <textarea class="form-control col-9" id="dfabatchInput" rows="3"></textarea>
-          </div>
-          <div class="form-group row">
-            <label for="dfaBatchInterval" class="col-3">Traversing speed</label>
-            <div class="sliderContainer">
-              <input type="range" class="slider" id="travspeedBatch" min="100" max="1500" step="1" value="200">
-              <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="batchTrvVal"></span>ms<br></p>
+        <div class="modal-body">
+          <div class="container">
+            <h6>Please Enter strings separated by commas to test on your DFA</h6>
+            <div class="form-group row">
+              <label for="dfaInput" class="col-3">Input:</label>
+              <textarea class="form-control col-9" id="dfabatchInput" rows="3"></textarea>
+            </div>
+            <div class="form-group row">
+              <label for="dfaBatchInterval" class="col-3">Traversing speed</label>
+              <div class="sliderContainer">
+                <input type="range" class="slider" id="travspeedBatch" min="100" max="1500" step="1" value="200">
+                <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="batchTrvVal"></span>ms<br></p>
               </div>
-          </div>
-          <div class="form-group row">
-            <label for="stringInterval" class="col-3">Processing Delay</label>
-            <div class="sliderContainer">
-              <input type="range" class="slider" id="delayRange" min="1000" max="5000" step="1" value="2000">
-              <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="delayVal"></span>ms<br></p>
+            </div>
+            <div class="form-group row">
+              <label for="stringInterval" class="col-3">Processing Delay</label>
+              <div class="sliderContainer">
+                <input type="range" class="slider" id="delayRange" min="1000" max="5000" step="1" value="2000">
+                <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="delayVal"></span>ms<br></p>
               </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="batchCheck">Begin Test</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div> <!-- /.modal-content -->
-  </div> <!-- /.modal-dialog -->
-</div> <!-- /.modal -->
-<!-- END Modal for batchStringTesting -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="batchCheck">Begin Test</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+  </div> <!-- /.modal -->
+  <!-- END Modal for batchStringTesting -->
 
 
-<!-- BEGIN Navigation Bar -->
+  <!-- BEGIN Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">DFA</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navCollapseBut">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navCollapseBut">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <button class="btn  btn-outline-primary" data-toggle="modal" data-target="#settingsButtonModal" id="modalBut">DFA Settings</button>
-        <button class="btn  btn-outline-success btn-margin-left" type="button" data-toggle="modal" data-target="#inputButtonModal" id="inputBut">Input</button>
+        <button class="btn  btn-outline-primary" data-toggle="modal" data-target="#settingsButtonModal"
+          id="modalBut">DFA Settings</button>
+        <button class="btn  btn-outline-success btn-margin-left" type="button" data-toggle="modal"
+          data-target="#inputButtonModal" id="inputBut">Input</button>
         <button type="button" class="btn btn-outline-secondary btn-margin-left" id="addState">+State</button>
-        <button class="btn  btn-outline-success btn-margin-left" type="button" data-toggle="modal" data-target="#batchTestModal" id="batchBut">Batch</button>
+        <button class="btn  btn-outline-success btn-margin-left" type="button" data-toggle="modal"
+          data-target="#batchTestModal" id="batchBut">Batch</button>
         <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>
 
       </ul>
     </div>
   </nav>
-<!-- END NavBar -->
+  <!-- END NavBar -->
 
-<!-- BEGIN Pass/Fail Footer Notification -->
+  <!-- BEGIN Pass/Fail Footer Notification -->
   <div id="parent"></div>
   <!--  Alert`-->
   <div class="alert alert-danger  fixed-bottom" style="display:none;" role="alert" id="reject">
     <strong>REJECTED!</strong> The string is not accepted by the DFA!
-    <button type="button" class="close"  >
-    <span aria-hidden="true">&times;</span>
-  </button>
+    <button type="button" class="close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
 
   <div class="alert alert-success fixed-bottom" style="display:none;" role="alert" id="accept">
     <strong>ACCEPTED!</strong> The string is accepted by the DFA!
-    <button type="button" class="close"  >
-    <span aria-hidden="true">&times;</span>
-  </button>
+    <button type="button" class="close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-<!-- END Pass/Fail Footer Notification -->
+  <!-- END Pass/Fail Footer Notification -->
 
 
   <!-- BEGIN JavaScript Files -->>
-  
+
   <!-- Bootstrap JS, first jQuery, then Popper.js, finally Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
   <!-- END of Bootstrap JS dependencies -->
-  
+
   <!-- BEGIN p5.js dependencies -->
   <script src="assets/p5.min.js"></script>
   <script src="assets/addons/p5.dom.min.js"></script>
@@ -228,4 +234,5 @@
   <script src="assets/Backend/BatchTestingHandler.js"></script>
   <!-- END of JS files -->
 </body>
+
 </html>
