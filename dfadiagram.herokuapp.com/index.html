@@ -52,13 +52,13 @@
       <!-- Sidebar content-->
       <p class="margin-top: 50px;">Current string testing: "<span id="strID"></span>"</p>
       <h2>String Test Results</h2>
-      <table class="table table-bordered">
+      <table id="tableResults" class="table">
         <thead>
-        <tr>
           <th>Pass</th>
           <th>Fail</th>
-        </tr>
         </thead>
+        <tbody>
+        </tbody>
       </table>
     </div>
   </div>
@@ -101,7 +101,7 @@
               <input type="text" data-name="final" id="final" class="form-control col-9">
             </div>
             <label>Transition: </label>
-            <table class="table table-responsive">
+            <table id="transitionsTable" class="table table-responsive">
               <thead>
                 <tr>
                   <th>Q\&Sigma;</th>
@@ -163,7 +163,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Batch Input Testing</h4>
+          <h4 class="modal-title">Input</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
@@ -172,7 +172,7 @@
 
         <div class="modal-body">
           <div class="container">
-            <h6>Please Enter strings separated by commas to test on your DFA</h6>
+            <h6>Enter string(s) separated by commas</h6>
             <div class="form-group row">
               <label for="dfaInput" class="col-3">Input:</label>
               <textarea class="form-control col-9" id="dfabatchInput" rows="3"></textarea>
