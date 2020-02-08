@@ -15,8 +15,7 @@
 ## Acknowledgements
 * **Suebsh Bhandari** - *Inital Work:* [dfadiagram](https://dfadiagram.herokuapp.com)  
 
-* Capstone Advisor: [Dr. Jason Isaacs](http://isaacs.cs.csuci.edu/index.html)  
-at [*California State University Channel Islands*](https://www.csuci.edu)  
+* Capstone Advisor: [Dr. Jason Isaacs](http://isaacs.cs.csuci.edu/index.html) at [*California State University Channel Islands*](https://www.csuci.edu)  
 
 
 
