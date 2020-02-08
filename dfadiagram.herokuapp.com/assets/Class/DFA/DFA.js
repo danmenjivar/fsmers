@@ -83,5 +83,3 @@ let DFATuples = {
 }
 
 let subesh = new DFA(DFATuples);
-
-console.log(subesh);
