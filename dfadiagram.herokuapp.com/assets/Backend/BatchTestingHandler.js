@@ -15,9 +15,11 @@ $(document).ready(function() {
     //     }
     // } this loop is done with the function now
     var delay = $("#delayRange").val(); //added a delay so you can see it
-    var i = 0
+    var i = 0;
+    var strprnt = document.getElementById("strID");
     function delayLoop() {
         setTimeout(function(){
+          strprnt.innerHTML = strings[i];
             if (checker.check(strings[i]) === "Accepted"){
                 accepted.push(strings[i]);
             } else {
@@ -30,6 +32,7 @@ $(document).ready(function() {
         }, delay);
     }
     delayLoop();
+    strprnt.innerHTML = "-DONE TESTING-";
 
     $('#batchTestModal').modal('hide');
     $('#navCollapseBut').trigger('click');
