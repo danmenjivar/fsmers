@@ -5,25 +5,24 @@ $(document).ready(function() {
   $('#check').on('click',function() {
       $('.alert').hide();
     checker.resetColor();
-    let time = $('#dfaInterval').val();
-    if(time!="") {
-      if(time <=2000)
-        checker.time = time;
-    } else {
-      checker.time = 200;
-    }
+    checker.time = $('#travspeed').val();
     checker.check($('#dfaInput').val());
     $('#inputButtonModal').modal('hide');
     $('#navCollapseBut').trigger('click');
-
-
   });
  
-
   $(document).on('click','.close',function() {
     checker.resetColor();
     redraw();
     $('.alert').hide();
-
   });
 });
+
+
+// Slider handler
+var sldrTrvSpd = document.getElementById("travspeed");
+var outTrvSpd = document.getElementById("trvspdvalue");
+outTrvSpd.innerHTML = sldrTrvSpd.value;
+sldrTrvSpd.oninput = function () {
+  outTrvSpd.innerHTML = this.value;
+}

@@ -5,25 +5,16 @@ $(document).ready(function() {
   $('#batchCheck').on('click',function() {
       $('.alert').hide();
     checker.resetColor();
-    time = $('#dfaBatchInterval').val();
-    if (time != "") {
-      if (time <= 2000)
-        checker.time = time;
-    } else {
-      checker.time = 200;
-    }
-    let strings = $('#dfaBatchInput').val().split(",");
+    checker.time = $('#travspeedBatch').val();
+    let strings = $('#dfabatchInput').val().split(",");
     // for (var i = 0; i < strings.length; i++) { //OG prototype
     //     if (checker.check(strings[i]) === "Accepted"){
     //         accepted.push(strings[i]);
     //     } else {
     //         rejected.push(strings[i]);
     //     }
-    // }
-    var delay = $("#stringInterval").val(); //added a delay so you can see it
-    if (delay == "" || delay > 5000){
-        delay = 2000;
-    }
+    // } this loop is done with the function now
+    var delay = $("#delayRange").val(); //added a delay so you can see it
     var i = 0
     function delayLoop() {
         setTimeout(function(){
@@ -50,3 +41,18 @@ $(document).ready(function() {
     $('.alert').hide();
   });
 });
+
+//Slider Handlers
+var sliderTrvSpd = document.getElementById("travspeedBatch");
+var outputTrvSpd = document.getElementById("batchTrvVal");
+outputTrvSpd.innerHTML = sliderTrvSpd.value;
+sliderTrvSpd.oninput = function () {
+  outputTrvSpd.innerHTML = this.value;
+}
+
+var sliderDelay = document.getElementById("delayRange");
+var outDelay = document.getElementById("delayVal");
+outDelay.innerHTML = sliderDelay.value;
+sliderDelay.oninput = function () {
+  outDelay.innerHTML = this.value;
+}

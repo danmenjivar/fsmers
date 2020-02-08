@@ -10,7 +10,7 @@
   <!-- BEGIN CSS Style Sheets -->
   <link rel="stylesheet" href="assets/main.css">
   <!-- Bootstrap CSS Import -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/addons/rangeslider.css">
   <!-- END CSS Style Sheets -->
 
@@ -95,12 +95,13 @@
             <div class="form-group row">
               <label for="dfaInput" class="col-3">Input:</label>
               <input type="text" id="dfaInput" placeholder="Input" class="form-control col-9">
-
             </div>
             <div class="form-group row">
               <label for="dfaInterval" class="col-3">Traversing speed</label>
-              <input type="number" id="dfaInterval" placeholder="Time in milliseconds < 2000" class="form-control col-9" min="1" max="2000" >
-
+              <div class="sliderContainer">
+                <input type="range" class="slider" id="travspeed" min="100" max="1500" step="1" value="200">
+                <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="trvspdvalue"></span>ms<br></p>
+                </div>
             </div>
           </div>
         </div>
@@ -130,16 +131,21 @@
           <h6>Please Enter strings separated by commas to test on your DFA</h6>
           <div class="form-group row">
             <label for="dfaInput" class="col-3">Input:</label>
-            <input type="text" id="dfaBatchInput" placeholder="Input" class="form-control col-9">
-
+            <textarea class="form-control col-9" id="dfabatchInput" rows="3"></textarea>
           </div>
           <div class="form-group row">
             <label for="dfaBatchInterval" class="col-3">Traversing speed</label>
-            <input type="number" id="dfaBatchInterval" placeholder="Time in milliseconds <= 2000" class="form-control col-9" min="1" max="2000" >
+            <div class="sliderContainer">
+              <input type="range" class="slider" id="travspeedBatch" min="100" max="1500" step="1" value="200">
+              <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="batchTrvVal"></span>ms<br></p>
+              </div>
           </div>
           <div class="form-group row">
             <label for="stringInterval" class="col-3">Processing Delay</label>
-            <input type="number" id="stringInterval" placeholder="Time in milliseconds >= Traversing speed" class="form-control col-9" min="1" max="5000" >
+            <div class="sliderContainer">
+              <input type="range" class="slider" id="delayRange" min="1000" max="5000" step="1" value="2000">
+              <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="delayVal"></span>ms<br></p>
+              </div>
           </div>
         </div>
       </div>
@@ -194,9 +200,9 @@
   <!-- BEGIN JavaScript Files -->>
   
   <!-- Bootstrap JS, first jQuery, then Popper.js, finally Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <!-- END of Bootstrap JS dependencies -->
   
   <!-- BEGIN p5.js dependencies -->
@@ -206,6 +212,11 @@
   <!-- END p5.js dependencies -->
   <!-- BEGIN rangeSlider.js dependencies -->
   <script src="assets/addons/rangeslider.min.js"></script>
+  <script>
+    // Initialize a new plugin instance for all
+    // e.g. $('input[type="range"]') elements.
+    $('input[type="range"]').rangeslider();
+</script>
   <!-- END rangeSlider.js dependencies -->
   <script src="assets/Class/TestResult.js"></script>
   <script src="assets/Class/DFA/DFA.js"></script>
