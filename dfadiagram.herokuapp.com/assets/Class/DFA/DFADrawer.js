@@ -94,7 +94,7 @@ class DFADrawer {
     });
   }
 
-  deleteStateCircle(){
+  deleteStateCircle(){ //doesnt function at all btw
     this.dfa.state = null;
     
   }
