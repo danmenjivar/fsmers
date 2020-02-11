@@ -9,8 +9,9 @@ function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
   graphicsItem.item.push(drawer);
-  let txt = createDiv('This is an HTML string!');
-  txt.position(50, 100);
+  let txt = createDiv('To start testing string(s), click on <b>Input</b>');
+  txt.id("curStr");
+  txt.position(50, 500);
   noLoop();
 }
 

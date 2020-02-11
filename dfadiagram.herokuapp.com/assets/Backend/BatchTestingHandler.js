@@ -9,10 +9,10 @@ $(document).ready(function () {
     let strings = $('#dfabatchInput').val().split(",");
     var delay = $("#delayRange").val(); //added a delay so you can see it
     let i = 0;
-    let strprnt = document.getElementById("strID");
+    let strprn = document.getElementById("curStr");
     function delayLoop() {
       setTimeout(function () {
-        strprnt.innerHTML = strings[i];
+        strprn.innerHTML = `<h1>${strings[i]}<\h1>`;
         if (checker.check(strings[i]) === "Accepted") {
           accepted.push(strings[i]);
         } else {
@@ -21,12 +21,10 @@ $(document).ready(function () {
         i++;
         if (i < strings.length) {
           delayLoop();
-        }
+        } 
       }, delay);
     }
     delayLoop();
-    strprnt.innerHTML = "-DONE TESTING-";
-
     $('#inputModal').modal('hide');
     $('#navCollapseBut').trigger('click');
   });
