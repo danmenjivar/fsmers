@@ -119,31 +119,42 @@ class StateCircle {
     for(let i = 0; i < DFATuples.state.length; i++){
       if (DFATuples.state[i] == this.stateName)
       {    //targets the right state
-        console.log(5+2);
+        //console.log(5+2);
         if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
         {
-          //DFATuples.state.shift();
-          delete DFATuples.state[i]; //dfasettingshandler 
+          DFATuples.state.shift(); 
+          //subesh.state = DFATuples.state;
+          console.table(subesh.state);
+
+
+          //console.log("The thingy: " + DFATuples.state[1]);
+          //delete DFATuples.transition[DFATuples.initial[0]];
+          DFATuples.transition = {};
+          subesh.transition = {};
           
-          delete subesh.state[i];
+          DFATuples.initial[0] = DFATuples.state[i];
+
+
+          /*
+          list of things that i used before
 
           //delete DFADrawer.state[i];
-          delete DFATuples.transition[DFATuples.initial[0]];
-          //subesh.state.shift();
-          DFATuples.initial[0] = DFATuples.state[i+1];
-          //DFATuples.state = $('#state').val().split(',');
           //DFATuples.state[0] = DFATuples.initial[0]; 
+          delete DFATuples.state[i]; //dfasettingshandler 
+          delete subesh.state[i];
+          */
+          
           
         }
         else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
         {
           DFATuples.final[0] = DFATuples.state[i-1];
         }
-        else{
+        else{ //if some middle state
           DFATuples.state[i] = DFATuples.state[i+1];
         }
         
-        redraw();
+        
 
 
         //subesh.state[i] = subesh.state[i+1];
@@ -151,13 +162,12 @@ class StateCircle {
         console.table(DFATuples.state);
         console.table(DFATuples.transition);
 
-        //this.stateName = "q11";
         //console.log("The state in question: " + DFATuples.state[i]);
         console.log("The final: " + DFATuples.final[0]);
         //console.log(subesh.state);
       }
     }
-    
+    redraw();
 
     //drawer.deleteStateCircle();
     //drawer.clearCanvas()    redraw();
