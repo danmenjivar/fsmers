@@ -115,26 +115,45 @@ class StateCircle {
   }
 
   deleteState() {
-
-    for(var i = 0; i < DFATuples.state.length; i++){
+    //console.log(DFATuples);
+    for(let i = 0; i < DFATuples.state.length; i++){
       if (DFATuples.state[i] == this.stateName)
-      {    //aight this bitch targets the right state
+      {    //targets the right state
         console.log(5+2);
         if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
         {
+          //DFATuples.state.shift();
+          delete DFATuples.state[i]; //dfasettingshandler 
+          
+          delete subesh.state[i];
+
+          //delete DFADrawer.state[i];
+          delete DFATuples.transition[DFATuples.initial[0]];
+          //subesh.state.shift();
           DFATuples.initial[0] = DFATuples.state[i+1];
+          //DFATuples.state = $('#state').val().split(',');
+          //DFATuples.state[0] = DFATuples.initial[0]; 
+          
         }
         else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
         {
           DFATuples.final[0] = DFATuples.state[i-1];
         }
-        DFATuples.state[i] = DFATuples.state[i+1];
-        subesh.state[i] = subesh.state[i+1];
-        console.log(DFATuples.initial[0]);
+        else{
+          DFATuples.state[i] = DFATuples.state[i+1];
+        }
+        
+        redraw();
 
-        this.stateName = "q11";
-        console.log(DFATuples.state[i]);
-        console.log(DFATuples.final[0]);
+
+        //subesh.state[i] = subesh.state[i+1];
+        console.table(DFATuples.initial);
+        console.table(DFATuples.state);
+        console.table(DFATuples.transition);
+
+        //this.stateName = "q11";
+        //console.log("The state in question: " + DFATuples.state[i]);
+        console.log("The final: " + DFATuples.final[0]);
         //console.log(subesh.state);
       }
     }
@@ -152,7 +171,6 @@ class StateCircle {
     // subesh.final = [];
     // DFATuples.transition = {};
     // subesh.transition = {};
-    // this.stateName = "q100";
 
   }
 

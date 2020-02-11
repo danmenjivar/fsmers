@@ -42,6 +42,7 @@ class DFADrawer {
     this.states = [];
     this.links = [];
     this.children = [];
+    console.log(DFATuples);
     //Check if dfa defined or not
     if (this.dfa) {
 

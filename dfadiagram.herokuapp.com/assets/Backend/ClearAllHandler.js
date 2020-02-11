@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
     $('#clearButton').on('click', function() {
+        drawer.clearCanvas();
+        redraw();
+
         DFATuples.state = [];
         subesh.state = [];
         DFATuples.initial = [];
@@ -11,10 +14,5 @@ $(document).ready(function() {
         subesh.final = [];
         DFATuples.transition = {};
         subesh.transition = {};
-
-        drawer.clearCanvas();
-        redraw();
-
-
     });
 });
