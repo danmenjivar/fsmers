@@ -20,8 +20,8 @@ $(document).ready(function() {
 
 
 // Slider handler
-var sldrTrvSpd = document.getElementById("travspeed");
-var outTrvSpd = document.getElementById("trvspdvalue");
+let sldrTrvSpd = document.getElementById("travspeed");
+let outTrvSpd = document.getElementById("trvspdvalue");
 outTrvSpd.innerHTML = sldrTrvSpd.value;
 sldrTrvSpd.oninput = function () {
   outTrvSpd.innerHTML = this.value;

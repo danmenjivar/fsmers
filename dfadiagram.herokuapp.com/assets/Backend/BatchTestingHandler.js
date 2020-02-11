@@ -12,7 +12,7 @@ $(document).ready(function () {
     let strprn = document.getElementById("curStr");
     function delayLoop() {
       setTimeout(function () {
-        strprn.innerHTML = `<h1>${strings[i]}<\h1>`;
+        strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
         if (checker.check(strings[i]) === "Accepted") {
           accepted.push(strings[i]);
         } else {
