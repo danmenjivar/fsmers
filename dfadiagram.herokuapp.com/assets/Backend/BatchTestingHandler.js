@@ -8,8 +8,8 @@ $(document).ready(function () {
     checker.time = $('#travspeedBatch').val();
     let strings = $('#dfabatchInput').val().split(",");
     var delay = $("#delayRange").val(); //added a delay so you can see it
-    var i = 0;
-    var strprnt = document.getElementById("strID");
+    let i = 0;
+    let strprnt = document.getElementById("strID");
     function delayLoop() {
       setTimeout(function () {
         strprnt.innerHTML = strings[i];
@@ -27,7 +27,7 @@ $(document).ready(function () {
     delayLoop();
     strprnt.innerHTML = "-DONE TESTING-";
 
-    $('#batchTestModal').modal('hide');
+    $('#inputModal').modal('hide');
     $('#navCollapseBut').trigger('click');
   });
 
@@ -39,8 +39,8 @@ $(document).ready(function () {
 });
 
 //Slider Handlers
-var sliderTrvSpd = document.getElementById("travspeedBatch");
-var outputTrvSpd = document.getElementById("batchTrvVal");
+let sliderTrvSpd = document.getElementById("travspeedBatch");
+let outputTrvSpd = document.getElementById("batchTrvVal");
 outputTrvSpd.innerHTML = sliderTrvSpd.value;
 sliderTrvSpd.oninput = function () {
   outputTrvSpd.innerHTML = this.value;

@@ -9,6 +9,8 @@ function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
   graphicsItem.item.push(drawer);
+  let txt = createDiv('This is an HTML string!');
+  txt.position(50, 100);
   noLoop();
 }
 
