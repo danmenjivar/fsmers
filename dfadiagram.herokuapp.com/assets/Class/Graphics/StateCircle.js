@@ -123,7 +123,8 @@ class StateCircle {
         if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
         {
           DFATuples.state.shift(); //removes the initial
-          console.table(subesh.state);
+
+         // console.table(subesh.state);
           DFATuples.transition = {}; //removes all transitions
           subesh.transition = {}; //need fix where it's only attaching transitions 
           DFATuples.initial[0] = DFATuples.state[i]; //makes new initial array
@@ -147,15 +148,20 @@ class StateCircle {
         }
         
         
-
+        for(let j = 0; j < DFATuples.state.length; j++) //changes the names of the states to q0
+        {
+          DFATuples.state[j] = `q${j}`;
+        }
+        //DFATuples.initial[0] = DFATuples.state[0];
+        DFATuples.final[0] = DFATuples.state[DFATuples.state.length - 1];
 
         //subesh.state[i] = subesh.state[i+1];
-        console.table(DFATuples.initial);
-        console.table(DFATuples.state);
-        console.table(DFATuples.transition);
+        // console.table(DFATuples.initial);
+        // console.table(DFATuples.state);
+        // console.table(DFATuples.transition);
 
         //console.log("The state in question: " + DFATuples.state[i]);
-        console.log("The final: " + DFATuples.final[0]);
+        //console.log("The final: " + DFATuples.final[0]);
         //console.log(subesh.state);
       }
     }
