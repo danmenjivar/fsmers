@@ -122,29 +122,21 @@ class StateCircle {
         //console.log(5+2);
         if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
         {
-          DFATuples.state.shift(); 
-          //subesh.state = DFATuples.state;
+          DFATuples.state.shift(); //removes the initial
           console.table(subesh.state);
-
-
-          //console.log("The thingy: " + DFATuples.state[1]);
-          //delete DFATuples.transition[DFATuples.initial[0]];
-          DFATuples.transition = {};
-          subesh.transition = {};
-          
-          DFATuples.initial[0] = DFATuples.state[i];
-
+          DFATuples.transition = {}; //removes all transitions
+          subesh.transition = {}; //need fix where it's only attaching transitions 
+          DFATuples.initial[0] = DFATuples.state[i]; //makes new initial array
 
           /*
           list of things that i used before
-
+          //console.log("The thingy: " + DFATuples.state[1]);
+          //delete DFATuples.transition[DFATuples.initial[0]];
           //delete DFADrawer.state[i];
           //DFATuples.state[0] = DFATuples.initial[0]; 
           delete DFATuples.state[i]; //dfasettingshandler 
           delete subesh.state[i];
           */
-          
-          
         }
         else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
         {
@@ -167,20 +159,10 @@ class StateCircle {
         //console.log(subesh.state);
       }
     }
-    redraw();
 
-    //drawer.deleteStateCircle();
-    //drawer.clearCanvas()    redraw();
-    // DFATuples.state = [];
-    // subesh.state = [];
-    // DFATuples.initial = [];
-    // subesh.initial = [];
-    // DFATuples.alphabet = [];
-    // subesh.alphabet = [];
-    // DFATuples.final = [];
-    // subesh.final = [];
-    // DFATuples.transition = {};
-    // subesh.transition = {};
+    subesh.map(DFATuples);
+    drawer.createDiagram();
+    redraw();
 
   }
 
