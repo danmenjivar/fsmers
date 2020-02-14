@@ -15,9 +15,9 @@ $(document).ready(function () {
       setTimeout(function () {
         strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
         if (checker.check(strings[i]) === "Accepted") {
-          accepted.push(strings[i]);
+          passedResultsTable(strings[i]);
         } else {
-          rejected.push(strings[i]);
+          failedResultsTable(strings[i]);
         }
         i++;
         if (i < strings.length) {
@@ -57,5 +57,9 @@ function clearResultsTable() {
 }
 
 function passedResultsTable(str) {
+  $('#tableResults tbody tr:first').append(`<td>${str}</td>`);
+}
 
+function failedResultsTable(str) {
+  $('#tableResults tbody tr:nth-child(2)').append(`<td>${str}</td>`);
 }
