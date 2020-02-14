@@ -69,3 +69,48 @@ canvas{
   background: #4CAF50;
   cursor: pointer;
 }
+
+/* Inverted Table Class
+Used to display string test results */
+.invertColandRows table {
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.invertColandRows td, th {
+  padding: 15px;
+  border: 1px solid #CCC;
+  height: 50px;
+  width: 200px;
+}
+
+.invertColandRows th {
+  background: seagreen;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.invertColandRows th:nth-child(even) {
+  background-color: coral;
+}
+
+.invertColandRows td {
+  background: #FAFAFA;
+  text-align: center;
+}
+
+.invertColandRows tbody tr td:nth-child(even) {
+  background: #F2F2F2;
+}
+
+.invertColandRows tbody tr {
+  display: table-cell;
+}
+
+.invertColandRows tbody tr td {
+  display: block;
+}
