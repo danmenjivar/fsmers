@@ -10,6 +10,7 @@ $(document).ready(function () {
     var delay = $("#delayRange").val(); //added a delay so you can see it
     let i = 0;
     let strprn = document.getElementById("curStr");
+    clearResultsTable();
     function delayLoop() {
       setTimeout(function () {
         strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
@@ -49,4 +50,12 @@ var outDelay = document.getElementById("delayVal");
 outDelay.innerHTML = sliderDelay.value;
 sliderDelay.oninput = function () {
   outDelay.innerHTML = this.value;
+}
+
+function clearResultsTable() {
+  $('#tableResults tbody').html("<tr></tr><tr></tr>");
+}
+
+function passedResultsTable(str) {
+
 }
