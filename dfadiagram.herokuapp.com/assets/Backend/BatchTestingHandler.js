@@ -11,6 +11,11 @@ $(document).ready(function () {
     let i = 0;
     let strprn = document.getElementById("curStr");
     clearResultsTable();
+    let precheck = preChecker(strings);
+    if(precheck != true){
+      alert(`String ${precheck} contains characters not in the language`)
+      return;
+    }
     function delayLoop() {
       setTimeout(function () {
         strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
@@ -62,4 +67,15 @@ function passedResultsTable(str) {
 
 function failedResultsTable(str) {
   $('#tableResults tbody tr:nth-child(2)').append(`<td>${str}</td>`);
+}
+
+function preChecker(strings){
+  let alphaRegex = new RegExp(`[^${subesh.alphabet.join("")}]+`);
+  console.log(alphaRegex);
+  for(let i = 0; i < strings.length; i++){
+    if(alphaRegex.test(strings[i])){
+      return strings[i];
+    }
+  }
+  return true;
 }
