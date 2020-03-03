@@ -2,13 +2,16 @@ let selectObject;
 var zoom = 1;
 var zMin = 0.01;
 var zMax = 9.00;
-var sensativity = 0.00005;
+var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
 function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
   graphicsItem.item.push(drawer);
+  let txt = createDiv('To start testing string(s), click on <b>Input</b>');
+  txt.id("curStr");
+  txt.position(50, 500);
   noLoop();
 }
 
@@ -88,7 +91,7 @@ function touchEnded() {
 function mouseWheel(event) {
   if(event.ctrlKey) {
   //console.log("what");
-  zoom += sensativity * event.delta;
+  zoom += sensitivity * event.delta;
 
   zoom = constrain(zoom, zMin, zMax);
   //console.log(zoom);

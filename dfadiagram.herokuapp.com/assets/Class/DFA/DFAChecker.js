@@ -5,7 +5,8 @@
  *
  *
  * @author Suebsh Bhandari
- * @version 0.1
+ * @contributed Dan Menjivar
+ * @version 0.1.1
  */
 class DFAChecker {
 
@@ -28,14 +29,16 @@ class DFAChecker {
 
   /**
    * check - This function is used to check whether a given input is accepted or not
-   * @summary - FIrst it checks the transition and stores in this.list. If it doesn;t throw any exception then it fires start() which triggers the annimationwith setInterval().
+   * @summary - FIrst it checks the transition and stores in this.list.
+   *  If it doesn't throw any exception then it fires start() which triggers 
+   *  the animation with setInterval().
    *
    * @param {String} string The string to check whether it is accepted or not
-   * @callback this.start();
-   * @return {String} Accepted/Regected
+   * @callback this.start()
+   * @return {String} Accepted/Rejected
    */
   check(string) {
-    //stirng length
+    //string length
     let len = string.length;
     this.list = [];
     //Initial State
@@ -67,15 +70,15 @@ class DFAChecker {
 
       }
 
-      //this start helps to trigger the annimation according to the interval
+      //this start helps to trigger the animation according to the interval
         this.start();
     } catch (e) {
-      console.log('No such Symbol');
-      alert("The input string consists of symbols not in the alphabet set");
-      return "REJECED";
+      console.log('Invalid Symbol(s) Error');
+      var alertMsg = "Warning: The input string \'" + string +"\' contains symbols not in the alphabet."
+      alert(alertMsg);
+      return "REJECTED";
     }
-
-    //return state.isFinal?"Accepted":"Rejected";
+    return state.isFinal ? "Accepted" : "Rejected";
   }
 
 
@@ -94,22 +97,20 @@ class DFAChecker {
 
 
   /**
-   * transit - Loops throuch list one by one in each call
+   * transit - Loops through list one by one in each call
    *
-   * @param {DFAChecker} that Requred because setInterval is a window function;
+   * @param {DFAChecker} that Required because setInterval is a window function;
    *
    * @return {none}
    */
   transit(that) {
 
-    if(that.counter < that.list.length) {
-
-
+    if (that.counter < that.list.length) {
       that.list[that.counter].color = {r:227,g:212,b:162};
       that.list[that.counter].fill = {r:255,g:243,b:205};
-      if(that.counter!=0) {
-      that.list[that.counter-1].color = {r:0,g:0,b:0};
-      that.list[that.counter-1].fill = {r:255,g:255,b:255};
+      if (that.counter != 0) {
+        that.list[that.counter-1].color = {r:0,g:0,b:0};
+        that.list[that.counter-1].fill = {r:255,g:255,b:255};
     }
       that.counter++;
       redraw();
@@ -118,8 +119,7 @@ class DFAChecker {
       if(that.list[that.counter-1].isFinal)   {
         that.list[that.counter-1].color = {r:150,g:211,b:165};
         that.list[that.counter-1].fill =  {r:212,g:237,b:218};
-        $('#accept').trigger('click');
-
+        $('#accept').show(200);
       } else  {
         that.list[that.counter-1].color = {r:231,g:173,b:178};
         that.list[that.counter-1].fill  = {r:248,g:215,b:218};
@@ -127,8 +127,6 @@ class DFAChecker {
       }
       redraw();
       clearInterval(that.interval);
-
-
     }
   }
 
