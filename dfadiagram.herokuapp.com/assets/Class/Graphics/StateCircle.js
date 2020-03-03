@@ -128,7 +128,7 @@ class StateCircle {
           DFATuples.transition = {}; //removes all transitions
           subesh.transition = {}; //need fix where it's only attaching transitions 
           DFATuples.initial[0] = DFATuples.state[i]; //makes new initial array
-
+          break;
           /*
           list of things that i used before
           //console.log("The thingy: " + DFATuples.state[1]);
@@ -141,10 +141,20 @@ class StateCircle {
         }
         else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
         {
+          DFATuples.state.pop();
+          DFATuples.transition = {}; //removes all transitions
+          subesh.transition = {}; //need fix where it's only attaching transitions 
+
           DFATuples.final[0] = DFATuples.state[i-1];
+          break;
         }
         else{ //if some middle state
-          DFATuples.state[i] = DFATuples.state[i+1];
+                   
+          DFATuples.state.splice(DFATuples.state.indexOf(DFATuples.state[i]),1);
+          DFATuples.transition = {}; //removes all transitions
+          subesh.transition = {}; //need fix where it's only attaching transitions 
+          break;
+         // DFATuples.state[i] = DFATuples.state[i+1];
         }
         
         
