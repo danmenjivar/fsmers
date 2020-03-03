@@ -71,7 +71,6 @@ function failedResultsTable(str) {
 
 function preChecker(strings){
   let alphaRegex = new RegExp(`[^${subesh.alphabet.join("")}]+`);
-  console.log(alphaRegex);
   for(let i = 0; i < strings.length; i++){
     if(alphaRegex.test(strings[i])){
       return strings[i];
