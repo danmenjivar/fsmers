@@ -42,6 +42,7 @@ class DFADrawer {
     this.states = [];
     this.links = [];
     this.children = [];
+    //console.log(DFATuples);
     //Check if dfa defined or not
     if (this.dfa) {
 
@@ -93,6 +94,12 @@ class DFADrawer {
       posX += 300;
     });
   }
+
+  deleteStateCircle(){ //doesnt function at all btw
+    this.dfa.state = null;
+    
+  }
+
 
   /**
    * createStart - Set the initial state with and arrow
