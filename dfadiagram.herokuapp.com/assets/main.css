@@ -95,7 +95,7 @@ Used to display string test results */
 }
 
 .invertColandRows th:nth-child(even) {
-  background-color: coral;
+  background-color: crimson;
 }
 
 .invertColandRows td {
