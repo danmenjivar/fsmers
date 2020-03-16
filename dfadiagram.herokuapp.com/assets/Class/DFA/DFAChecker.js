@@ -25,6 +25,7 @@ class DFAChecker {
     this.list = [];
     this.time = 200;
     this.counter = 0;
+    this.finalCheck = false;
   }
 
   /**
@@ -68,7 +69,6 @@ class DFAChecker {
         this.list.push(link);
         state = linkTo.state;
         this.list.push(state);
-
       }
 
       //this start helps to trigger the animation according to the interval
@@ -120,7 +120,7 @@ class DFAChecker {
       if(that.list[that.counter-1].isFinal)   {
         that.list[that.counter-1].color = {r:150,g:211,b:165};
         that.list[that.counter-1].fill =  {r:212,g:237,b:218};
-         $('#accept').show(200); //somewhat unnecessary since we build the table
+        //  $('#accept').show(200); //somewhat unnecessary since we build the table
          $('#tableResults tbody tr:first').append(`<td>${this.string}</td>`);
       } else  {
         that.list[that.counter-1].color = {r:231,g:173,b:178};
@@ -130,6 +130,9 @@ class DFAChecker {
 
       }
       redraw();
+      if (this.finalCheck){
+        $('#done').show(200);
+      }
       clearInterval(that.interval);
     }
   }

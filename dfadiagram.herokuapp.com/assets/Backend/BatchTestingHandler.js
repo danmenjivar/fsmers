@@ -6,6 +6,7 @@ $(document).ready(function () {
   $('#batchCheck').on('click', function () {
     $('.alert').hide();
     checker.resetColor(); // removes left over color
+    checker.finalCheck = false;
     checker.time = $('#travspeedBatch').val();
     let strings = $('#dfabatchInput').val().split(",");
     var delay = $("#delayRange").val(); //added a delay so you can see it
@@ -21,6 +22,9 @@ $(document).ready(function () {
     function delayLoop() {
       setTimeout(function () {
         strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
+        if (i + 1 == strings.length){
+          checker.finalCheck = true;
+        }
         checker.check(strings[i]);
         i++;
         if (i < strings.length) {
@@ -32,6 +36,7 @@ $(document).ready(function () {
       }, delay);
     }
     delayLoop();
+   
     $('#inputModal').modal('hide');
     $('#navCollapseBut').trigger('click');
   });
