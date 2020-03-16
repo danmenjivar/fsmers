@@ -20,9 +20,19 @@ function draw() {
   background(255);
   rect(0,0,300,150); //the top left rectangle x=300,y=150
   //rect(500,0,150,150); //the "trash box"
+  drawNewStateBox();
   scale(zoom);
-  //scale(0.5,0.5);
   graphicsItem.draw();
+}
+
+function drawNewStateBox() {
+  let nextQ =  "q" + subesh.state.length;
+  stroke(0,0,0);
+  textAlign(CENTER, CENTER);
+  strokeWeight(1.5); 
+  rect(305,5,100,100); //draw container
+  ellipse(355,55,70); // draw state to be added
+  text(nextQ,355,55);
 }
 
 
@@ -92,14 +102,10 @@ function touchEnded() {
 
 function mouseWheel(event) {
   if(event.ctrlKey) {
-  //console.log("what");
   zoom += sensitivity * event.delta;
-
   zoom = constrain(zoom, zMin, zMax);
   //console.log(zoom);
-  redraw();
-
-  //uncomment to block page scrolling
+  redraw(); //uncomment to block page scrolling
   return false;
 }
 }
