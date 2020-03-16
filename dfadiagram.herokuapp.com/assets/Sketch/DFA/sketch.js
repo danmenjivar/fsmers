@@ -5,11 +5,24 @@ var zMax = 9.00;
 var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
+let img;
+
+function preload() {
+  img = loadImage('assets/img2.png');
+}
+// function setupimg() {
+//   // Top-left corner of the img is at (0, 0)
+//   // Width and height are the img's original width and height
+//   image(img, 500, 500);
+// }
+
 function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
   graphicsItem.item.push(drawer);
   noLoop();
+
+  //preload();
 }
 
 function draw() {
@@ -21,6 +34,7 @@ function draw() {
   //scale(0.5,0.5);
   graphicsItem.draw();
 }
+
 
 
 function touchStarted() {
@@ -109,6 +123,7 @@ let touchCache = [];
 let graphicsItem = {
   item: [],
   draw: function() {
+    image(img, 0, 0); //the trashcan soon to be
     this.item.forEach((my) => {
       if (my.children)
         my.children.forEach(item => item.draw());
