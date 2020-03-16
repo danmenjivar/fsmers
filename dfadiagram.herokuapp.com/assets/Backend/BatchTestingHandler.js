@@ -1,6 +1,7 @@
 checker = new DFAChecker(drawer);
 let accepted = [];
 let rejected = [];
+let TestTimeStamp;
 $(document).ready(function () {
   $('#batchCheck').on('click', function () {
     $('.alert').hide();
@@ -33,6 +34,7 @@ $(document).ready(function () {
     delayLoop();
     $('#inputModal').modal('hide');
     $('#navCollapseBut').trigger('click');
+    updateTimeStamp(Date.now());
   });
 
   $(document).on('click', '.close', function () {
@@ -77,4 +79,10 @@ function preChecker(strings){
     }
   }
   return true;
+}
+
+function updateTimeStamp(timestmp){
+  let dateStamp = new Date();
+  dateStamp.setTime(timestmp);
+  $('#tstTime').text(`Results generated on: ${dateStamp.toLocaleString()}`)
 }
