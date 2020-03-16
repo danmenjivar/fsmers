@@ -5,36 +5,35 @@ let TestTimeStamp;
 $(document).ready(function () {
   $('#batchCheck').on('click', function () {
     $('.alert').hide();
-    checker.resetColor();
+    checker.resetColor(); // removes left over color
     checker.time = $('#travspeedBatch').val();
     let strings = $('#dfabatchInput').val().split(",");
     var delay = $("#delayRange").val(); //added a delay so you can see it
     let i = 0;
     let strprn = document.getElementById("curStr");
-    clearResultsTable();
     let precheck = preChecker(strings);
     if(precheck != true){
-      alert(`String ${precheck} contains characters not in the language`)
+      alert(`The following string(s) contain characters not in the alphabet: \n${precheck}\nPlease either expand the language or remove these strings to begin testing.`)
       return;
     }
+    clearResultsTable();
+
     function delayLoop() {
       setTimeout(function () {
         strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-        if (checker.check(strings[i]) === "Accepted") {
-          passedResultsTable(strings[i]);
-        } else {
-          failedResultsTable(strings[i]);
-        }
+        checker.check(strings[i]);
         i++;
         if (i < strings.length) {
           delayLoop();
-        } 
+        } else {
+          evenOutResults();
+          updateTimeStamp(Date.now());
+        }
       }, delay);
     }
     delayLoop();
     $('#inputModal').modal('hide');
     $('#navCollapseBut').trigger('click');
-    updateTimeStamp(Date.now());
   });
 
   $(document).on('click', '.close', function () {
@@ -72,13 +71,20 @@ function failedResultsTable(str) {
 }
 
 function preChecker(strings){
+  let badStrings = [];
   let alphaRegex = new RegExp(`[^${subesh.alphabet.join("")}]+`);
+
   for(let i = 0; i < strings.length; i++){
     if(alphaRegex.test(strings[i])){
-      return strings[i];
+      badStrings.push(strings[i]);
     }
   }
-  return true;
+
+  if (badStrings.length === 0){
+    return true;
+  } else {
+    return badStrings.join(',');
+  }
 }
 
 function updateTimeStamp(timestmp){
@@ -86,3 +92,22 @@ function updateTimeStamp(timestmp){
   dateStamp.setTime(timestmp);
   $('#tstTime').text(`Results generated on: ${dateStamp.toLocaleString()}`)
 }
+
+function evenOutResults(){
+  //It looks funny when there are more results on the left side than right, or vice versa, so adjusting for that
+}
+
+function stringRunner(index, checker, strings) {
+  strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
+    if (checker.check(strings[i]) === "Accepted") {
+      passedResultsTable(strings[i]);
+    } else {
+      failedResultsTable(strings[i]);
+    }
+    // i++;
+    // if (i < strings.length) {
+    //   clearInterval(interval);
+    // } else {
+    //   evenOutResults();
+    // }
+  }

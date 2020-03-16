@@ -41,6 +41,7 @@ class DFAChecker {
     //string length
     let len = string.length;
     this.list = [];
+    this.string = string;
     //Initial State
     let state = this.drawer.states.find((state) => {
       return state.isStart;
@@ -119,11 +120,14 @@ class DFAChecker {
       if(that.list[that.counter-1].isFinal)   {
         that.list[that.counter-1].color = {r:150,g:211,b:165};
         that.list[that.counter-1].fill =  {r:212,g:237,b:218};
-        $('#accept').show(200);
+         $('#accept').show(200); //somewhat unnecessary since we build the table
+         $('#tableResults tbody tr:first').append(`<td>${this.string}</td>`);
       } else  {
         that.list[that.counter-1].color = {r:231,g:173,b:178};
         that.list[that.counter-1].fill  = {r:248,g:215,b:218};
-        $('#reject').show(200);
+        // $('#reject').show(200);
+        $('#tableResults tbody tr:nth-child(2)').append(`<td>${this.string}</td>`);
+
       }
       redraw();
       clearInterval(that.interval);
