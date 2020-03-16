@@ -1,15 +1,11 @@
 checker = new DFAChecker(drawer);
-let accepted = [];
-let rejected = [];
-let TestTimeStamp;
 $(document).ready(function () {
   $('#batchCheck').on('click', function () {
     $('.alert').hide();
-    checker.resetColor(); // removes left over color
     checker.finalCheck = false;
     checker.time = $('#travspeedBatch').val();
     let strings = $('#dfabatchInput').val().split(",");
-    var delay = $("#delayRange").val(); //added a delay so you can see it
+    var delay = $("#delayRange").val();
     let i = 0;
     let strprn = document.getElementById("curStr");
     let precheck = preChecker(strings);
@@ -18,7 +14,6 @@ $(document).ready(function () {
       return;
     }
     clearResultsTable();
-
     function delayLoop() {
       setTimeout(function () {
         strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
@@ -36,7 +31,6 @@ $(document).ready(function () {
       }, delay);
     }
     delayLoop();
-   
     $('#inputModal').modal('hide');
     $('#navCollapseBut').trigger('click');
   });
@@ -67,14 +61,6 @@ function clearResultsTable() {
   $('#tableResults tbody').html("<tr></tr><tr></tr>");
 }
 
-function passedResultsTable(str) {
-  $('#tableResults tbody tr:first').append(`<td>${str}</td>`);
-}
-
-function failedResultsTable(str) {
-  $('#tableResults tbody tr:nth-child(2)').append(`<td>${str}</td>`);
-}
-
 function preChecker(strings){
   let badStrings = [];
   let alphaRegex = new RegExp(`[^${subesh.alphabet.join("")}]+`);
@@ -101,18 +87,3 @@ function updateTimeStamp(timestmp){
 function evenOutResults(){
   //It looks funny when there are more results on the left side than right, or vice versa, so adjusting for that
 }
-
-function stringRunner(index, checker, strings) {
-  strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-    if (checker.check(strings[i]) === "Accepted") {
-      passedResultsTable(strings[i]);
-    } else {
-      failedResultsTable(strings[i]);
-    }
-    // i++;
-    // if (i < strings.length) {
-    //   clearInterval(interval);
-    // } else {
-    //   evenOutResults();
-    // }
-  }
