@@ -42,6 +42,10 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+
 //Slider Handlers
 let sliderTrvSpd = document.getElementById("travspeedBatch");
 let outputTrvSpd = document.getElementById("batchTrvVal");
