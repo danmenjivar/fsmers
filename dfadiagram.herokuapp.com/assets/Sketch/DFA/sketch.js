@@ -8,27 +8,21 @@ let drawer = new DFADrawer(subesh);
 let img;
 
 function preload() {
-  img = loadImage('assets/img2.png');
+  img = loadImage('assets/tcan2.jpg');
 }
-// function setupimg() {
-//   // Top-left corner of the img is at (0, 0)
-//   // Width and height are the img's original width and height
-//   image(img, 500, 500);
-// }
+
 
 function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
   graphicsItem.item.push(drawer);
   noLoop();
-
-  //preload();
 }
 
 function draw() {
   // put drawing code here
   background(255);
-  rect(0,0,300,150); //the top left rectangle x=300,y=150
+  //rect(0,0,300,150); //the top left rectangle x=300,y=150
   //rect(500,0,150,150); //the "trash box"
   scale(zoom);
   //scale(0.5,0.5);
