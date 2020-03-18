@@ -40,7 +40,7 @@ $(document).ready(function () {
     DFATuples.state = $('#state').val().split(',');
     DFATuples.initial = $('#initial').val().split(',', 1);
     DFATuples.final = $('#final').val().split(',');
-    DFATuples.albhabet = $('#alphabet').val().split(',');
+    DFATuples.alphabet = $('#alphabet').val().split(',');
 
     let start = DFATuples.state.find(item => item == DFATuples.initial);
     let final = DFATuples.final.every((final) => {
