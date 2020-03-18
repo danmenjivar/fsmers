@@ -5,11 +5,15 @@ var zMax = 9.00;
 var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
+<<<<<<< HEAD
 let img;
 
 function preload() {
   img = loadImage('assets/tcan2.jpg');
 }
+=======
+
+>>>>>>> 69a8c3e6198c6cbb5f7540c4ab32454091c28798
 
 
 function setup() {
@@ -25,43 +29,56 @@ function setup() {
 function draw() {
   // put drawing code here
   background(255);
+<<<<<<< HEAD
   //rect(0,0,300,150); //the top left rectangle x=300,y=150
+=======
+  rect(0, 0, 300, 150); //the top left rectangle x=300,y=150
+>>>>>>> 69a8c3e6198c6cbb5f7540c4ab32454091c28798
   //rect(500,0,150,150); //the "trash box"
+  drawNewStateBox();
   scale(zoom);
-  //scale(0.5,0.5);
   graphicsItem.draw();
+}
+
+function drawNewStateBox() {
+  let nextQ = "q" + subesh.state.length;
+  stroke(0, 0, 0);
+  textAlign(CENTER, CENTER);
+  strokeWeight(1.5);
+  rect(305, 5, 100, 100); //draw container
+  ellipse(355, 55, 70); // draw state to be added
+  text(nextQ, 355, 55);
 }
 
 
 
 function touchStarted() {
   if (touches.length) {
-    //console.log(touches);
+    console.log(touches);
     touchCache.push({
       x: touches[touches.length - 1].x,
       y: touches[touches.length - 1].y
     });
-    //console.log(touchCache);
+    console.log(touchCache);
   }
-  //console.log(mouseX + " " + mouseY);
-  //console.log(mouseX * zoom + " " + mouseY * zoom);
-  //console.log(mouseX / zoom + " " +  mouseY / zoom);
+  console.log(mouseX + " " + mouseY);
+  console.log(mouseX * zoom + " " + mouseY * zoom);
+  console.log(mouseX / zoom + " " + mouseY / zoom);
   redraw();
 }
 
 
 function touchMoved(e) {
-
-  if (touchCache.length === 2 ) {
+  if (touchCache.length === 2) {
     //console.log('SDSDS');
     let d1 = dist(touchCache[0].x, touchCache[0].y, touchCache[1].x, touchCache[1].y);
     let d2 = dist(touches[0].x, touches[0].y, touches[1].x, touches[1].y)
-    console.log(d1 + " " +d2);
+    console.log(d1 + " " + d2);
     //console.log(d1 + " " + d2);
-    if (d1 > d2  && Math.abs(d1-d2) > 5) {
+    if (d1 > d2 && Math.abs(d1 - d2) > 5) {
       zoom -= 0.1;
       //console.log("HEREWEW");
-    } else if(d1 < d2 && Math.abs(d1-d2) > 5){
+    } else if (d1 < d2 && Math.abs(d1 - d2) > 5) {
       zoom += 0.1;
     }
     zoom = constrain(zoom, zMin, zMax);
@@ -99,17 +116,13 @@ function touchEnded() {
 }
 
 function mouseWheel(event) {
-  if(event.ctrlKey) {
-  //console.log("what");
-  zoom += sensitivity * event.delta;
-
-  zoom = constrain(zoom, zMin, zMax);
-  //console.log(zoom);
-  redraw();
-
-  //uncomment to block page scrolling
-  return false;
-}
+  if (event.ctrlKey) {
+    zoom += sensitivity * event.delta;
+    zoom = constrain(zoom, zMin, zMax);
+    //console.log(zoom);
+    redraw(); //uncomment to block page scrolling
+    return false;
+  }
 }
 
 
@@ -119,8 +132,12 @@ function mouseWheel(event) {
 let touchCache = [];
 let graphicsItem = {
   item: [],
+<<<<<<< HEAD
   draw: function() {
     image(img, 0, 0); //the trashcan soon to be
+=======
+  draw: function () {
+>>>>>>> 69a8c3e6198c6cbb5f7540c4ab32454091c28798
     this.item.forEach((my) => {
       if (my.children)
         my.children.forEach(item => item.draw());
@@ -130,7 +147,14 @@ let graphicsItem = {
 
 
 
-  handleDrag: function(mouseX, mouseY) {
+  handleDrag: function (mouseX, mouseY) {
+
+    let areAllModalsClosed = !$('#inputModal').is(':visible') && !$('#settingsButtonModal').is(':visible');
+
+    if (!areAllModalsClosed) {
+      return false;
+    }
+
     let index, index2;
     this.item.every((item, ind) => {
       if (item.children) {
