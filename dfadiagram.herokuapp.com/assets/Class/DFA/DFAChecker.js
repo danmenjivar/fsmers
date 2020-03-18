@@ -127,12 +127,12 @@ class DFAChecker {
         that.list[that.counter-1].fill  = {r:248,g:215,b:218};
         // $('#reject').show(200);
         $('#tableResults tbody tr:nth-child(2)').append(`<td>${this.string}</td>`);
-
       }
       redraw();
       if (this.finalCheck){
         $('#done').show(200);
       }
+      setTimeout(() => that.resetColor(), that.time); // solves color getting stuck after a run
       clearInterval(that.interval);
     }
   }
