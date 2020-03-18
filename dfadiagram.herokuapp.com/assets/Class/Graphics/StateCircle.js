@@ -107,7 +107,7 @@ class StateCircle {
     this.center.x = x + this.dragedPoint.x;
     this.center.y = y + this.dragedPoint.y;
     //this is what will probably help deleting the state
-    if(this.center.x < 300 && this.center.y < 150){
+    if(this.center.x < 75 && this.center.y < 85){
       this.deleteState();
       // this.center.x = 575;
       // this.center.y = 75;

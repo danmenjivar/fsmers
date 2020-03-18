@@ -5,6 +5,13 @@ var zMax = 9.00;
 var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
+let img;
+
+function preload() {
+  img = loadImage('assets/tcan2.jpg');
+}
+
+
 function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
@@ -18,12 +25,13 @@ function setup() {
 function draw() {
   // put drawing code here
   background(255);
-  rect(0,0,300,150); //the top left rectangle x=300,y=150
+  //rect(0,0,300,150); //the top left rectangle x=300,y=150
   //rect(500,0,150,150); //the "trash box"
   scale(zoom);
   //scale(0.5,0.5);
   graphicsItem.draw();
 }
+
 
 
 function touchStarted() {
@@ -112,6 +120,7 @@ let touchCache = [];
 let graphicsItem = {
   item: [],
   draw: function() {
+    image(img, 0, 0); //the trashcan soon to be
     this.item.forEach((my) => {
       if (my.children)
         my.children.forEach(item => item.draw());
