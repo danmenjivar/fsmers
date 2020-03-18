@@ -6,6 +6,8 @@ var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
 
+
+
 function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
@@ -39,22 +41,21 @@ function drawNewStateBox() {
 
 function touchStarted() {
   if (touches.length) {
-    //console.log(touches);
+    console.log(touches);
     touchCache.push({
       x: touches[touches.length - 1].x,
       y: touches[touches.length - 1].y
     });
-    //console.log(touchCache);
+    console.log(touchCache);
   }
-  //console.log(mouseX + " " + mouseY);
-  //console.log(mouseX * zoom + " " + mouseY * zoom);
-  //console.log(mouseX / zoom + " " +  mouseY / zoom);
+  console.log(mouseX + " " + mouseY);
+  console.log(mouseX * zoom + " " + mouseY * zoom);
+  console.log(mouseX / zoom + " " + mouseY / zoom);
   redraw();
 }
 
 
 function touchMoved(e) {
-
   if (touchCache.length === 2) {
     //console.log('SDSDS');
     let d1 = dist(touchCache[0].x, touchCache[0].y, touchCache[1].x, touchCache[1].y);
@@ -129,6 +130,13 @@ let graphicsItem = {
 
 
   handleDrag: function (mouseX, mouseY) {
+
+    let areAllModalsClosed = !$('#inputModal').is(':visible') && !$('#settingsButtonModal').is(':visible');
+
+    if (!areAllModalsClosed) {
+      return false;
+    }
+
     let index, index2;
     this.item.every((item, ind) => {
       if (item.children) {
