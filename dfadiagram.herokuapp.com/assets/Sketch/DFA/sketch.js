@@ -5,6 +5,7 @@ var zMax = 9.00;
 var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
+
 function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
@@ -18,7 +19,7 @@ function setup() {
 function draw() {
   // put drawing code here
   background(255);
-  rect(0,0,300,150); //the top left rectangle x=300,y=150
+  rect(0, 0, 300, 150); //the top left rectangle x=300,y=150
   //rect(500,0,150,150); //the "trash box"
   drawNewStateBox();
   scale(zoom);
@@ -26,13 +27,13 @@ function draw() {
 }
 
 function drawNewStateBox() {
-  let nextQ =  "q" + subesh.state.length;
-  stroke(0,0,0);
+  let nextQ = "q" + subesh.state.length;
+  stroke(0, 0, 0);
   textAlign(CENTER, CENTER);
-  strokeWeight(1.5); 
-  rect(305,5,100,100); //draw container
-  ellipse(355,55,70); // draw state to be added
-  text(nextQ,355,55);
+  strokeWeight(1.5);
+  rect(305, 5, 100, 100); //draw container
+  ellipse(355, 55, 70); // draw state to be added
+  text(nextQ, 355, 55);
 }
 
 
@@ -54,16 +55,16 @@ function touchStarted() {
 
 function touchMoved(e) {
 
-  if (touchCache.length === 2 ) {
+  if (touchCache.length === 2) {
     //console.log('SDSDS');
     let d1 = dist(touchCache[0].x, touchCache[0].y, touchCache[1].x, touchCache[1].y);
     let d2 = dist(touches[0].x, touches[0].y, touches[1].x, touches[1].y)
-    console.log(d1 + " " +d2);
+    console.log(d1 + " " + d2);
     //console.log(d1 + " " + d2);
-    if (d1 > d2  && Math.abs(d1-d2) > 5) {
+    if (d1 > d2 && Math.abs(d1 - d2) > 5) {
       zoom -= 0.1;
       //console.log("HEREWEW");
-    } else if(d1 < d2 && Math.abs(d1-d2) > 5){
+    } else if (d1 < d2 && Math.abs(d1 - d2) > 5) {
       zoom += 0.1;
     }
     zoom = constrain(zoom, zMin, zMax);
@@ -101,13 +102,13 @@ function touchEnded() {
 }
 
 function mouseWheel(event) {
-  if(event.ctrlKey) {
-  zoom += sensitivity * event.delta;
-  zoom = constrain(zoom, zMin, zMax);
-  //console.log(zoom);
-  redraw(); //uncomment to block page scrolling
-  return false;
-}
+  if (event.ctrlKey) {
+    zoom += sensitivity * event.delta;
+    zoom = constrain(zoom, zMin, zMax);
+    //console.log(zoom);
+    redraw(); //uncomment to block page scrolling
+    return false;
+  }
 }
 
 
@@ -117,7 +118,7 @@ function mouseWheel(event) {
 let touchCache = [];
 let graphicsItem = {
   item: [],
-  draw: function() {
+  draw: function () {
     this.item.forEach((my) => {
       if (my.children)
         my.children.forEach(item => item.draw());
@@ -127,7 +128,7 @@ let graphicsItem = {
 
 
 
-  handleDrag: function(mouseX, mouseY) {
+  handleDrag: function (mouseX, mouseY) {
     let index, index2;
     this.item.every((item, ind) => {
       if (item.children) {
