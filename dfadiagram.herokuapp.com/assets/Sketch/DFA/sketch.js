@@ -41,16 +41,16 @@ function drawNewStateBox() {
 
 function touchStarted() {
   if (touches.length) {
-    console.log(touches);
+    // console.log(touches);
     touchCache.push({
       x: touches[touches.length - 1].x,
       y: touches[touches.length - 1].y
     });
-    console.log(touchCache);
+    // console.log(touchCache);
   }
-  console.log(mouseX + " " + mouseY);
-  console.log(mouseX * zoom + " " + mouseY * zoom);
-  console.log(mouseX / zoom + " " + mouseY / zoom);
+  // console.log(mouseX + " " + mouseY);
+  // console.log(mouseX * zoom + " " + mouseY * zoom);
+  // console.log(mouseX / zoom + " " + mouseY / zoom);
   redraw();
 }
 
