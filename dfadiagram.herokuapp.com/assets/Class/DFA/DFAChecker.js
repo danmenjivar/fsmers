@@ -1,12 +1,12 @@
 /**
- * DFAChecker - A class for checking Whether the Given input is accepted or not With the help of Diagram.
+ * DFAChecker - A class for checking if a given string input is accepted or not based on the diagram drawn by the user.
  * @summary - This class takes in a parameter(constructor) of @class DFADrawer and with the help of its states[] and their link finds out the transition for each input.
  * @param {DFADrawer} drawer - DFADrawer obj
  *
  *
  * @author Suebsh Bhandari
  * @contributed Dan Menjivar
- * @version 0.1.1
+ * @version 0.1.2
  */
 class DFAChecker {
 
@@ -30,7 +30,7 @@ class DFAChecker {
 
   /**
    * check - This function is used to check whether a given input is accepted or not
-   * @summary - FIrst it checks the transition and stores in this.list.
+   * @summary - First it checks the transition and stores in this.list.
    *  If it doesn't throw any exception then it fires start() which triggers 
    *  the animation with setInterval().
    *
@@ -41,39 +41,24 @@ class DFAChecker {
   check(string) {
     //string length
     let len = string.length;
-    this.list = [];
+    this.list = []; // list of states we will traverse in the animation
     this.string = string;
-    //Initial State
     let state = this.drawer.states.find((state) => {
-      return state.isStart;
+      return state.isStart; // find the initial state in the diagram drawn by the user
     });
-
-    //append to list;
-    this.list.push(state);
-    //throws an error if there are no symbols in the given alphabet sets
+    this.list.push(state);  //append the initial state to the list
     try {
-      //Finding the transition for each input
-      for (let i = 0; i < len; i++) {
-
-       /**
-        * state - Return state after transition from a input
-        *
-        * @param {type} link Description
-        *
-        * @return {type} Description
-        */
-        let linkTo = state.link.to.find((link) => {
-          return link.input.find((item) => item === string[i]);
+      for (let i = 0; i < len; i++) {  //Finding the transition for each character in the input string
+        let linkTo = state.link.to.find((link) => { // for the state we're on, find what state it links to
+          return link.input.find((item) => item === string[i]); // using the char @ i
         });
-        let link = linkTo.link;
+        let link = linkTo.link; // save the link to our traversal list
         this.list.push(link);
-        state = linkTo.state;
-        this.list.push(state);
+        state = linkTo.state; // move on to the next state in the diagram based on that link
+        this.list.push(state); // push that state to our traversal list
       }
-
-      //this start helps to trigger the animation according to the interval
-        this.start();
-    } catch (e) {
+      this.start(); //this start triggers the animation according to the interval
+    } catch (e) { //throws an error if there are no symbols in the given alphabet sets
       console.log('Invalid Symbol(s) Error');
       var alertMsg = "Warning: The input string \'" + string +"\' contains symbols not in the alphabet."
       alert(alertMsg);
@@ -133,7 +118,7 @@ class DFAChecker {
         $('#done').show(200);
       }
       setTimeout(() => that.resetColor(), that.time); // solves color getting stuck after a run
-      clearInterval(that.interval);
+      clearInterval(that.interval); // stops the traversing
     }
   }
 
