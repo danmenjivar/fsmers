@@ -5,79 +5,30 @@ $(document).ready(function () {
     checker.finalCheck = false;
     checker.time = $('#travspeedBatch').val();
     let strings = $('#dfabatchInput').val().split(",");
-    var delay = $("#delayRange").val();
     let strprn = document.getElementById("curStr");
     let precheck = preChecker(strings);
     if (precheck != true) {
       alert(`The following string(s) contain characters not in the alphabet: \n${precheck}\nPlease either expand the language or remove these strings to begin testing.`)
       return;
-    }
-    clearResultsTable();
-    $('#inputModal').modal('hide');
-    $('#navCollapseBut').trigger('click');
-
-    let runLoop = async () => {
-      for(var i = 0; i < strings.length; i++){
-        strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-        console.log("about to await");
-        if (i + 1 == strings.length){
-          checker.finalCheck = true;
+    } else {
+      clearResultsTable();
+      $('#inputModal').modal('hide');
+      $('#navCollapseBut').trigger('click');
+      let runLoop = async () => {
+        for(var i = 0; i < strings.length; i++){
+          strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
+          console.log("about to await");
+          if (i + 1 == strings.length){
+            checker.finalCheck = true;
+          }
+          await new Promise(resolve => checker.check(resolve, strings[i]));
+          if (checker.finalCheck){
+            updateTimeStamp(Date.now());
+          }
         }
-        await new Promise(resolve => checker.check(resolve, strings[i]));
-        console.log("await done");
       }
+      runLoop();
     }
-
-    runLoop();
-
-    // (async function loop(){
-    //   for (let i = 0; i < strings.length; i++) {
-    //     strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-    //     if (i + 1 == strings.length){
-    //       checker.finalCheck = true;
-    //     }
-    //     await new Promise(resolve => checker.check(strings[i]));
-    //   }
-    // })();
-
-    // let testingInterval = setInterval(function () {
-    //   strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-    //   if (i + 1 == strings.length) {
-    //     checker.finalCheck = true;
-    //   }
-    //   checker.check(strings[i]);
-    //   i++;
-    //   if (i >= strings.length) {
-    //     clearInterval(testingInterval);
-    //     evenOutResults();
-    //     updateTimeStamp(Date.now());
-    //   }
-    // }, delay);
-
-
-
-
-
-
-    // function delayLoop(i) {
-    //   setTimeout(function () {
-    //     strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-    //     if (i + 1 == strings.length){
-    //       checker.finalCheck = true;
-    //     }
-    //     checker.check(strings[i]);
-    //     i++;
-    //     if (i < strings.length) {
-    //       delayLoop();
-    //     } else {
-    //       evenOutResults();
-    //       updateTimeStamp(Date.now());
-    //     }
-    //   }, delay);
-    // }
-
-    // delayLoop();
-    
   });
 
   $(document).on('click', '.close', function () {
