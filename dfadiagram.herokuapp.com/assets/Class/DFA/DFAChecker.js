@@ -38,7 +38,8 @@ class DFAChecker {
    * @callback this.start()
    * @return {String} Accepted/Rejected
    */
-  check(string) {
+  check(resolve, string) {
+    this.resolve = resolve;
     //string length
     let len = string.length;
     this.list = []; // list of states we will traverse in the animation
@@ -119,6 +120,7 @@ class DFAChecker {
       }
       setTimeout(() => that.resetColor(), that.time); // solves color getting stuck after a run
       clearInterval(that.interval); // stops the traversing
+      that.resolve("string finished");
     }
   }
 

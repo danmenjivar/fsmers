@@ -6,7 +6,7 @@ $(document).ready(function () {
     checker.time = $('#travspeedBatch').val();
     let strings = $('#dfabatchInput').val().split(",");
     var delay = $("#delayRange").val();
-    let i = 0;
+    // let i = 0;
     let strprn = document.getElementById("curStr");
     let precheck = preChecker(strings);
     if (precheck != true) {
@@ -14,23 +14,49 @@ $(document).ready(function () {
       return;
     }
     clearResultsTable();
+    $('#inputModal').modal('hide');
+    $('#navCollapseBut').trigger('click');
 
-    let testingInterval = setInterval(function () {
-      strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-      if (i + 1 == strings.length) {
-        checker.finalCheck = true;
+    let runLoop = async () => {
+      for(var i = 0; i < strings.length; i++){
+        console.log("about to await");
+        await new Promise(resolve => checker.check(resolve, strings[i]));
+        console.log("await done");
       }
-      checker.check(strings[i]);
-      i++;
-      if (i >= strings.length) {
-        clearInterval(testingInterval);
-        evenOutResults();
-        updateTimeStamp(Date.now());
-      }
-    }, delay);
+    }
+
+    runLoop();
+
+    // (async function loop(){
+    //   for (let i = 0; i < strings.length; i++) {
+    //     strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
+    //     if (i + 1 == strings.length){
+    //       checker.finalCheck = true;
+    //     }
+    //     await new Promise(resolve => checker.check(strings[i]));
+    //   }
+    // })();
+
+    // let testingInterval = setInterval(function () {
+    //   strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
+    //   if (i + 1 == strings.length) {
+    //     checker.finalCheck = true;
+    //   }
+    //   checker.check(strings[i]);
+    //   i++;
+    //   if (i >= strings.length) {
+    //     clearInterval(testingInterval);
+    //     evenOutResults();
+    //     updateTimeStamp(Date.now());
+    //   }
+    // }, delay);
 
 
-    // function delayLoop() {
+
+
+
+
+    // function delayLoop(i) {
     //   setTimeout(function () {
     //     strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
     //     if (i + 1 == strings.length){
@@ -46,9 +72,9 @@ $(document).ready(function () {
     //     }
     //   }, delay);
     // }
+
     // delayLoop();
-    $('#inputModal').modal('hide');
-    $('#navCollapseBut').trigger('click');
+    
   });
 
   $(document).on('click', '.close', function () {
