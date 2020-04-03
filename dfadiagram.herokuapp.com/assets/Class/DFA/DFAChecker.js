@@ -118,9 +118,11 @@ class DFAChecker {
       if (this.finalCheck){
         $('#done').show(200);
       }
-      setTimeout(() => that.resetColor(), that.time); // solves color getting stuck after a run
+      setTimeout(() => { // make a timeout to reset the color for the last state
+        that.resetColor();
+        that.resolve("string finished"); // and tell the await to move to the next string
+      }, that.time); // solves color getting stuck after a run
       clearInterval(that.interval); // stops the traversing
-      that.resolve("string finished");
     }
   }
 
