@@ -6,7 +6,6 @@ $(document).ready(function () {
     checker.time = $('#travspeedBatch').val();
     let strings = $('#dfabatchInput').val().split(",");
     var delay = $("#delayRange").val();
-    // let i = 0;
     let strprn = document.getElementById("curStr");
     let precheck = preChecker(strings);
     if (precheck != true) {
@@ -19,7 +18,11 @@ $(document).ready(function () {
 
     let runLoop = async () => {
       for(var i = 0; i < strings.length; i++){
+        strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
         console.log("about to await");
+        if (i + 1 == strings.length){
+          checker.finalCheck = true;
+        }
         await new Promise(resolve => checker.check(resolve, strings[i]));
         console.log("await done");
       }
