@@ -45,8 +45,8 @@
           <!-- Sidebar content-->
           <h2 style="text-align: center; margin-top: 10px; margin-bottom: 5px;">DFA Testing Environment</h2>
           <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;"><button class="btn btn-success" type="button" data-toggle="modal"
-            data-target="#inputModal" id="inputButtonModal">Run Test</button></div>
-          <p id=tstTime>Click the <b>Run Test</b> button above to run a test, your results will populate the table below.</p>
+            data-target="#inputModal" id="inputButtonModal">Build Test</button></div>
+          <p id=tstTime>Click the <b>Build Test</b> button above to test your DFA, your results will populate the table below.</p>
           <table id="tableResults" class="invertColandRows">
             <thead>
               <tr>
@@ -151,14 +151,6 @@
               <div class="sliderContainer">
                 <input type="range" class="slider" id="travspeedBatch" min="100" max="1500" step="1" value="200">
                 <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="batchTrvVal"></span>ms<br></p>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="stringInterval" class="col-3" data-toggle="tooltip"
-              title="This is how long we should wait between processing strings">Processing Delay</label>
-              <div class="sliderContainer">
-                <input type="range" class="slider" id="delayRange" min="1000" max="5000" step="1" value="2000">
-                <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="delayVal"></span>ms<br></p>
               </div>
             </div>
           </div>

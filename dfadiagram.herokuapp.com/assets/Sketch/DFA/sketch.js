@@ -16,7 +16,7 @@ function setup() {
   let canvas = createCanvas(2000, 900);
   canvas.parent('parent');
   graphicsItem.item.push(drawer);
-  let txt = createDiv('To start testing string(s), click on <b>Input</b>');
+  let txt = createDiv('To test your diagram, scroll to the <b>DFA Testing Environment</b>');
   txt.id("curStr");
   txt.position(50, 500);
   noLoop();
@@ -46,16 +46,16 @@ function drawNewStateBox() {
 
 function touchStarted() {
   if (touches.length) {
-    console.log(touches);
+    // console.log(touches);
     touchCache.push({
       x: touches[touches.length - 1].x,
       y: touches[touches.length - 1].y
     });
-    console.log(touchCache);
+    // console.log(touchCache);
   }
-  console.log(mouseX + " " + mouseY);
-  console.log(mouseX * zoom + " " + mouseY * zoom);
-  console.log(mouseX / zoom + " " + mouseY / zoom);
+  // console.log(mouseX + " " + mouseY);
+  // console.log(mouseX * zoom + " " + mouseY * zoom);
+  // console.log(mouseX / zoom + " " + mouseY / zoom);
   redraw();
 }
 
