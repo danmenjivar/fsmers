@@ -5,16 +5,11 @@ var zMax = 9.00;
 var sensitivity = 0.00005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
-<<<<<<< HEAD
 let img;
 
 function preload() {
   img = loadImage('assets/tcan2.jpg');
 }
-=======
-
->>>>>>> 69a8c3e6198c6cbb5f7540c4ab32454091c28798
-
 
 function setup() {
   let canvas = createCanvas(2000, 900);
@@ -29,11 +24,7 @@ function setup() {
 function draw() {
   // put drawing code here
   background(255);
-<<<<<<< HEAD
   //rect(0,0,300,150); //the top left rectangle x=300,y=150
-=======
-  rect(0, 0, 300, 150); //the top left rectangle x=300,y=150
->>>>>>> 69a8c3e6198c6cbb5f7540c4ab32454091c28798
   //rect(500,0,150,150); //the "trash box"
   drawNewStateBox();
   scale(zoom);
@@ -132,12 +123,8 @@ function mouseWheel(event) {
 let touchCache = [];
 let graphicsItem = {
   item: [],
-<<<<<<< HEAD
   draw: function() {
     image(img, 0, 0); //the trashcan soon to be
-=======
-  draw: function () {
->>>>>>> 69a8c3e6198c6cbb5f7540c4ab32454091c28798
     this.item.forEach((my) => {
       if (my.children)
         my.children.forEach(item => item.draw());
