@@ -11,19 +11,22 @@ $(document).ready(function () {
       alert(`The following string(s) contain characters not in the alphabet: \n${precheck}\nPlease either expand the language or remove these strings to begin testing.`)
       return;
     } else {
+      let count = {"pass" : 0, "fail": 0};
       clearResultsTable();
       $('#inputModal').modal('hide');
       $('#navCollapseBut').trigger('click');
       let runLoop = async () => {
         for(var i = 0; i < strings.length; i++){
           strprn.innerHTML = `<h2>${strings[i]}<\h2>`;
-          console.log("about to await");
           if (i + 1 == strings.length){
             checker.finalCheck = true;
           }
-          await new Promise(resolve => checker.check(resolve, strings[i]));
+          await new Promise(resolve => passOrFail = checker.check(resolve, strings[i]));
+          // console.log(passOrFail);
+          (passOrFail == "Accepted") ? count["pass"]++ : count["fail"]++;
           if (checker.finalCheck){
             updateTimeStamp(Date.now());
+            evenOutResults(count["pass"], count["fail"]);
           }
         }
       }
@@ -48,13 +51,6 @@ let outputTrvSpd = document.getElementById("batchTrvVal");
 outputTrvSpd.innerHTML = sliderTrvSpd.value;
 sliderTrvSpd.oninput = function () {
   outputTrvSpd.innerHTML = this.value;
-}
-
-var sliderDelay = document.getElementById("delayRange");
-var outDelay = document.getElementById("delayVal");
-outDelay.innerHTML = sliderDelay.value;
-sliderDelay.oninput = function () {
-  outDelay.innerHTML = this.value;
 }
 
 function clearResultsTable() {
@@ -84,6 +80,19 @@ function updateTimeStamp(timestmp) {
   $('#tstTime').text(`Results generated on: ${dateStamp.toLocaleString()}`)
 }
 
-function evenOutResults() {
+function evenOutResults(passCount, failCount) {
   //It looks funny when there are more results on the left side than right, or vice versa, so adjusting for that
+  // console.log(`Passed ${passCount}, failed ${failCount}`);
+  while (passCount != failCount){
+    if (passCount < failCount){
+      //add a bunch of empties to pass
+      $('#tableResults tbody tr:first').append(`<td></td>`);
+      passCount++;
+    } else {
+      //add a bunch of empties to fail
+      $('#tableResults tbody tr:nth-child(2)').append(`<td></td>`);
+      failCount++;
+    }
+  }
+
 }
