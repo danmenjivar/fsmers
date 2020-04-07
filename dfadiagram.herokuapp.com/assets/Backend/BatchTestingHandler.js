@@ -1,5 +1,11 @@
 checker = new DFAChecker(drawer);
 $(document).ready(function () {
+
+  $('#inputButtonModal').on('click', function(){ // refresh the alphabet when the user clicks to open the dialog box
+    let alphaprnt = document.getElementById("alphabet-remind"); // this is used in the test
+    alphaprnt.innerHTML = `${subesh.alphabet.join(',')}`; //builder to remind the user of valid input
+  });
+
   $('#batchCheck').on('click', function () {
     $('.alert').hide();
     checker.finalCheck = false;
@@ -47,8 +53,6 @@ $(document).ready(function () {
 
 //Slider Handlers
 let sliderTrvSpd = document.getElementById("travspeedBatch");
-let outputTrvSpd = document.getElementById("batchTrvVal");
-outputTrvSpd.innerHTML = sliderTrvSpd.value;
 sliderTrvSpd.oninput = function () {
   outputTrvSpd.innerHTML = this.value;
 }
