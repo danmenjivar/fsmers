@@ -95,12 +95,6 @@ class DFADrawer {
     });
   }
 
-  deleteStateCircle(){ //doesnt function at all btw
-    this.dfa.state = null;
-    
-  }
-
-
   /**
    * createStart - Set the initial state with and arrow
    *
@@ -209,9 +203,10 @@ class DFADrawer {
       }
     } catch (e) {
       alert('There seems to be an Error in the input.\n Please fill in the inputs properly!');
-      this.states = [];
-      this.links = [];
-      this.children = [];
+      // commented these stuff out, not sure why everything gets removed if error
+      // this.states = [];
+      // this.links = [];
+      // this.children = [];
     }
   }
   draw() {}

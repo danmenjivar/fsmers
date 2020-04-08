@@ -106,80 +106,83 @@ class StateCircle {
   setPos(x,y) {
     this.center.x = x + this.dragedPoint.x;
     this.center.y = y + this.dragedPoint.y;
-    //this is what will probably help deleting the state
-    if(this.center.x < 75 && this.center.y < 85){
-      this.deleteState();
-      // this.center.x = 575;
-      // this.center.y = 75;
-    }
+    
+    // If a state is in this area... delete
+    // if(this.center.x < 75 && this.center.y < 85){
+    //   this.deleteState();
+    // }
+    //this.nameChange();
   }
 
-  deleteState() {
-    //console.log(DFATuples);
-    for(let i = 0; i < DFATuples.state.length; i++){
-      if (DFATuples.state[i] == this.stateName)
-      {    //targets the right state
-        //console.log(5+2);
-        if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
-        {
-          DFATuples.state.shift(); //removes the initial
+  // deleteState() {
+  //   //console.log(DFATuples);
+  //   for(let i = 0; i < DFATuples.state.length; i++){
+  //     if (DFATuples.state[i] == this.stateName)
+  //     {    //targets the right state
+  //       if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
+  //       {
+  //         DFATuples.state.shift(); //removes the initial
 
-         // console.table(subesh.state);
-          DFATuples.transition = {}; //removes all transitions
-          subesh.transition = {}; //need fix where it's only attaching transitions 
-          DFATuples.initial[0] = DFATuples.state[i]; //makes new initial array
-          break;
-          /*
-          list of things that i used before
-          //console.log("The thingy: " + DFATuples.state[1]);
-          //delete DFATuples.transition[DFATuples.initial[0]];
-          //delete DFADrawer.state[i];
-          //DFATuples.state[0] = DFATuples.initial[0]; 
-          delete DFATuples.state[i]; //dfasettingshandler 
-          delete subesh.state[i];
-          */
-        }
-        else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
-        {
-          DFATuples.state.pop();
-          DFATuples.transition = {}; //removes all transitions
-          subesh.transition = {}; //need fix where it's only attaching transitions 
+  //         //console.table(DFATuples.state);
+  //         console.table(DFATuples)
+  //         DFATuples.transition = {}; //removes all transitions
+  //         subesh.transition = {}; //need fix where it's only attaching transitions 
+  //         console.table(DFATuples)
+  //         DFATuples.initial[0] = DFATuples.state[i]; //makes new initial array
+  //         //this.nameChange();
+  //         break;
+  //       }
+  //       else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
+  //       {
+  //         DFATuples.state.pop();
+  //         DFATuples.transition = {}; //removes all transitions
+  //         subesh.transition = {}; //need fix where it's only attaching transitions 
 
-          DFATuples.final[0] = DFATuples.state[i-1];
-          break;
-        }
-        else{ //if some middle state
-                   
-          DFATuples.state.splice(DFATuples.state.indexOf(DFATuples.state[i]),1);
-          DFATuples.transition = {}; //removes all transitions
-          subesh.transition = {}; //need fix where it's only attaching transitions 
-          break;
-         // DFATuples.state[i] = DFATuples.state[i+1];
-        }
+  //         DFATuples.final[0] = DFATuples.state[i-1];
+  //         //this.nameChange()
+  //         break;
+  //       }
+  //       else{ //if some middle state
+  //         console.table(DFATuples)
+  //         DFATuples.state.splice(DFATuples.state.indexOf(DFATuples.state[i]),1);
+  //         //transition[state] = {};
+  //         DFATuples.transition[DFATuples.state[i]] = {}; //removes all transitions
+  //         subesh.transition[DFATuples.state[i]] = {}; //need fix where it's only attaching transitions 
+  //         console.table(DFATuples)
+          
+  //         //this.nameChange()
+  //         break;
+  //       }
         
-        
-        for(let j = 0; j < DFATuples.state.length; j++) //changes the names of the states to q0
-        {
-          DFATuples.state[j] = `q${j}`;
-        }
-        //DFATuples.initial[0] = DFATuples.state[0];
-        DFATuples.final[0] = DFATuples.state[DFATuples.state.length - 1];
+      
+  //       //subesh.state[i] = subesh.state[i+1];
+  //       // console.table(DFATuples.initial);
+  //       // console.table(DFATuples.state);
+  //       // console.table(DFATuples.transition);
 
-        //subesh.state[i] = subesh.state[i+1];
-        // console.table(DFATuples.initial);
-        // console.table(DFATuples.state);
-        // console.table(DFATuples.transition);
+  //       //console.log("The state in question: " + DFATuples.state[i]);
+  //       //console.log("The final: " + DFATuples.final[0]);
+  //       //console.log(subesh.state);
+  //     }
+  //   }
 
-        //console.log("The state in question: " + DFATuples.state[i]);
-        //console.log("The final: " + DFATuples.final[0]);
-        //console.log(subesh.state);
+  //   subesh.map(DFATuples);
+  //   drawer.createDiagram();
+  //   redraw();
+
+  // }
+
+  nameChange(){
+    length = DFATuples.state.length;
+    for(let j = 0; j < length; j++) //changes the names of the states to q0
+    {
+      if (DFATuples.state[j] != `q${j}`){
+        //console.log(DFATUPLES.state[j]);
+        DFATuples.state[j] = `q${j}`;
       }
+      
     }
-
-    subesh.map(DFATuples);
-    drawer.createDiagram();
-    redraw();
-
+    DFATuples.final[0] = DFATuples.state[DFATuples.state.length - 1];
   }
 
   setFinal() {

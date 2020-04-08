@@ -77,7 +77,7 @@ function touchMoved(e) {
     canZoom = false;
 
     //mouseReleased();
-    toucheCache = [];
+    touchCache = [];
     redraw();
     return false;
   }
@@ -90,16 +90,88 @@ function touchMoved(e) {
     selectObject.setPos(mouseX / zoom, mouseY / zoom);
 
   }
+  // if(mouseX < 75 && mouseY < 85 ){ //if the mouse
+  //   console.log(graphicsItem);
+  //   this.deleteState();
+  // }
   redraw();
   if (selectObject) {
     return false;
   }
 }
 
+ var shift = false;
 
+ document.onkeydown = function(e) {
+  var key = crossBrowserKey(e);
+  if (key == 16){
+    shift = true;
+    console.log(shift);
+  }
+}
+document.onkeyup = function(e){
+  var key = crossBrowserKey(e);
+
+  if(key == 16){
+    shift = false;
+    console.log(shift);
+  }
+}
+
+function crossBrowserKey(e){
+  e = e || window.event;
+  console.log(e.keyCode);
+  return e.which || e.keyCode;
+}
+// function deleteState() {
+//   for(let i = 0; i < DFATuples.state.length; i++){
+//     if (DFATuples.state[i] == this.stateName)
+//     {    //targets the right state
+//       if (DFATuples.state[i] == DFATuples.initial[0]) //checks if initial
+//       {
+//         graphicsItem.item[0].dfa.state.shift(); //removes the initial
+
+//         //console.table(DFATuples.state);
+//         console.table(DFATuples);
+//         DFATuples.transition = {}; //removes all transitions
+//         subesh.transition = {}; //need fix where it's only attaching transitions 
+//         console.table(DFATuples)
+//         DFATuples.initial[0] = DFATuples.state[i]; //makes new initial array
+//         //this.nameChange();
+//         break;
+//       }
+//       else if (DFATuples.state[i] == DFATuples.final[0]) //checks if final
+//       {
+//         DFATuples.state.pop();
+//         DFATuples.transition = {}; //removes all transitions
+//         subesh.transition = {}; //need fix where it's only attaching transitions 
+
+//         DFATuples.final[0] = DFATuples.state[i-1];
+//         //this.nameChange()
+//         break;
+//       }
+//       else{ //if some middle state
+//         console.table(DFATuples)
+//         DFATuples.state.splice(DFATuples.state.indexOf(DFATuples.state[i]),1);
+//         //transition[state] = {};
+//         DFATuples.transition[DFATuples.state[i]] = {}; //removes all transitions
+//         subesh.transition[DFATuples.state[i]] = {}; //need fix where it's only attaching transitions 
+//         console.table(DFATuples)
+        
+//         //this.nameChange()
+//         break;
+//       }
+//     }
+//   }
+
+//   subesh.map(DFATuples);
+//   drawer.createDiagram();
+//   redraw();
+
+// }
 
 function touchEnded() {
-  ////console.log('release');
+  //console.log('release');
   touchCache.pop();
   if (selectObject)
     selectObject = undefined;
@@ -125,7 +197,7 @@ let touchCache = [];
 let graphicsItem = {
   item: [],
   draw: function() {
-    image(img, 0, 0); //the trashcan soon to be
+    image(img, 0, 0); //the trashcan 
     this.item.forEach((my) => {
       if (my.children)
         my.children.forEach(item => item.draw());
