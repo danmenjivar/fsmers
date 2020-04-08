@@ -95,9 +95,11 @@ class DFADrawer {
     });
   }
 
+  //TODO: rename states 
+  //TODO: delete transitions associated with state
   deleteStateCircle(state_circle_obj){
-    this.states.remove(this.states.indexOf(state_circle_obj));
-    this.children.remove(this.children.indexOf(state_circle_obj));
+    this.states.splice(this.states.indexOf(state_circle_obj), 1);
+    this.children.splice(this.children.indexOf(state_circle_obj), 1);
   }
 
   addStateCircle(state_circle_obj) {

@@ -95,11 +95,11 @@ function touchMoved(e) {
   //   canZoom = false;
 
   //   //mouseReleased();
-  //   toucheCache = [];
+  //   touchCache = [];
   //   redraw();
   //   return false;
   // }
-  // //console.log('touch');
+  //console.log('touch');
 
   if (!selectObject) {
     // if there is no object selected yet, but we've registered a drag
@@ -116,7 +116,9 @@ function touchEnded() {
   // User let's go of let mouse button
   // console.log('release'); // for debugging
   touchCache.pop();
-  // if (this.center.x < 75 && this.center.y < 85) drawer.deleteStateCircle(selectObject);
+  if (mouseX < 75 && mouseY < 85) {
+    drawer.deleteStateCircle(selectObject);
+  }
   if (selectObject) selectObject = undefined;
   canZoom = true;
   
