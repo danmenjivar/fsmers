@@ -2,15 +2,15 @@ let selectObject;
 var zoom = 1;
 var zMin = 0.01;
 var zMax = 9.00;
-var sensitivity = 0.00005;
+var sensitivity = 0.0005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
-
 let img;
 
 function preload() {
   img = loadImage('assets/tcan2.jpg');
 }
+
 
 function setup() {
   let canvas = createCanvas(2000, 900);
@@ -22,12 +22,10 @@ function setup() {
   noLoop();
 }
 
+
 function draw() {
   // put drawing code here
   background(255);
-  //rect(0,0,300,150); //the top left rectangle x=300,y=150
-  //rect(500,0,150,150); //the "trash box"
-  drawNewStateBox();
   scale(zoom);
   graphicsItem.draw();
 }
@@ -37,90 +35,104 @@ function drawNewStateBox() {
   stroke(0, 0, 0);
   textAlign(CENTER, CENTER);
   strokeWeight(1.5);
-  rect(305, 5, 100, 100); //draw container
   ellipse(355, 55, 70); // draw state to be added
   text(nextQ, 355, 55);
 }
 
+var clicked=false, clickTimeout=300; 
+function mouseClicked(){
+  if(!clicked){
+    clicked=true;
+    setTimeout(function(){
+      if(clicked){
+        console.log("single click");
+        clicked=false;
+        //single ClickStuff
 
-
-function touchStarted() {
-  if (touches.length) {
-    // console.log(touches);
-    touchCache.push({
-      x: touches[touches.length - 1].x,
-      y: touches[touches.length - 1].y
-    });
-    // console.log(touchCache);
+      }
+    },clickTimeout);
+  }else{
+    clicked=false;
+    console.log("double click");
+    //double click Stuff
+    drawNewStateBox();
   }
-  // console.log(mouseX + " " + mouseY);
-  // console.log(mouseX * zoom + " " + mouseY * zoom);
-  // console.log(mouseX / zoom + " " + mouseY / zoom);
-  redraw();
+}
+
+// Dan: this function is really only useful for debugging, it can't do much else.
+//Only uncomment this function and the console.log marked useful to print out
+// when a click is first registered, left the code in case it does something else, but doubt it
+function touchStarted() {
+  // if (touches.length) { //Dan: this if will never be true, so not sure why this is even here
+  //   console.log(touches);
+  //   touchCache.push({
+  //     x: touches[touches.length - 1].x,
+  //     y: touches[touches.length - 1].y
+  //   });
+  //   console.log(touchCache);
+  // }
+  // console.log(mouseX + " " + mouseY); // USEFUL to see where a touch is first initiated
+  // console.log(mouseX * zoom + " " + mouseY * zoom); // not really useful, but tells you the coordinates if they zoomed in
+  // console.log(mouseX / zoom + " " + mouseY / zoom); // not really useful, tells you coordinates if they zoomed out, zooming doesn't involve this func at all
+  // redraw(); //Dan: this redraw is pretty much pointless, it redraws everytime a click is registered
 }
 
 
 function touchMoved(e) {
-  if (touchCache.length === 2) {
-    //console.log('SDSDS');
-    let d1 = dist(touchCache[0].x, touchCache[0].y, touchCache[1].x, touchCache[1].y);
-    let d2 = dist(touches[0].x, touches[0].y, touches[1].x, touches[1].y)
-    console.log(d1 + " " + d2);
-    //console.log(d1 + " " + d2);
-    if (d1 > d2 && Math.abs(d1 - d2) > 5) {
-      zoom -= 0.1;
-      //console.log("HEREWEW");
-    } else if (d1 < d2 && Math.abs(d1 - d2) > 5) {
-      zoom += 0.1;
-    }
-    zoom = constrain(zoom, zMin, zMax);
-    canZoom = false;
+  // if (touchCache.length === 2) {
+  //   console.log('SDSDS');
+  //   let d1 = dist(touchCache[0].x, touchCache[0].y, touchCache[1].x, touchCache[1].y);
+  //   let d2 = dist(touches[0].x, touches[0].y, touches[1].x, touches[1].y)
+  //   console.log(d1 + " " + d2);
+  //   //console.log(d1 + " " + d2);
+  //   if (d1 > d2 && Math.abs(d1 - d2) > 5) {
+  //     zoom -= 0.1;
+  //     //console.log("HEREWEW");
+  //   } else if (d1 < d2 && Math.abs(d1 - d2) > 5) {
+  //     zoom += 0.1;
+  //   }
+  //   zoom = constrain(zoom, zMin, zMax);
+  //   canZoom = false;
 
-    //mouseReleased();
-    toucheCache = [];
-    redraw();
-    return false;
-  }
+  //   //mouseReleased();
+  //   toucheCache = [];
+  //   redraw();
+  //   return false;
+  // }
   // //console.log('touch');
-  if (!selectObject) {
-    selectObject = graphicsItem.handleDrag(mouseX / zoom, mouseY / zoom);
 
+  if (!selectObject) { // if there is no object selected yet, but we've registered a drag
+    selectObject = graphicsItem.handleDrag(mouseX / zoom, mouseY / zoom); // try to select an object
   } else {
-    ////console.log('here');
-    selectObject.setPos(mouseX / zoom, mouseY / zoom);
-
+    selectObject.setPos(mouseX / zoom, mouseY / zoom); // else we've selected an object & we're dragging so move it along the canvas
+    redraw(); // redraw the canvas to show it has moved
   }
-  redraw();
-  if (selectObject) {
-    return false;
-  }
+  // if (selectObject) // wtf, I don't think this does anything
+  //   return false;
+  
 }
 
-
-
-function touchEnded() {
-  ////console.log('release');
+function touchEnded() { // User let's go of let mouse button
+  // console.log('release'); // for debugging
   touchCache.pop();
   if (selectObject)
     selectObject = undefined;
   canZoom = true;
-  redraw();
+  redraw(); // where the magic happens, on the release the new position of the state is drawn
 }
 
-function mouseWheel(event) {
-  if (event.ctrlKey) {
+// Zoom Function, Initiates when the mouse wheel is spun
+function mouseWheel(event) { 
+  if (event.ctrlKey) { // but must also hold down control to zoom, else you just scroll the canvas/page
     zoom += sensitivity * event.delta;
     zoom = constrain(zoom, zMin, zMax);
-    //console.log(zoom);
-    redraw(); //uncomment to block page scrolling
-    return false;
+    //console.log(zoom); // for debugging
+    redraw();
+    return false; // without this return false, it will zoom in/out and scroll the canvas
   }
 }
 
-
-
-//Graphics Holder
-
+// Graphics Holder
 let touchCache = [];
 let graphicsItem = {
   item: [],
@@ -133,13 +145,11 @@ let graphicsItem = {
     });
   },
 
-
-
   handleDrag: function (mouseX, mouseY) {
 
-    let areAllModalsClosed = !$('#inputModal').is(':visible') && !$('#settingsButtonModal').is(':visible');
+    let allModalsAreClosed = !$('#inputModal').is(':visible') && !$('#settingsButtonModal').is(':visible');
 
-    if (!areAllModalsClosed) {
+    if (!allModalsAreClosed) { //disable dragging elements on the canvas if a dialog box (modal) is open
       return false;
     }
 
@@ -184,9 +194,5 @@ let graphicsItem = {
       return this.item[index].children[index2];
     else if (index)
       return this.item[index];
-
   }
-
-
-
 };
