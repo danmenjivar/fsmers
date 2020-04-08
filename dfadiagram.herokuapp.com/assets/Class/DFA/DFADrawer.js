@@ -95,9 +95,14 @@ class DFADrawer {
     });
   }
 
-  deleteStateCircle(){ //doesnt function at all btw
-    this.dfa.state = null;
-    
+  deleteStateCircle(state_circle_obj){
+    this.states.remove(this.states.indexOf(state_circle_obj));
+    this.children.remove(this.children.indexOf(state_circle_obj));
+  }
+
+  addStateCircle(state_circle_obj) {
+    this.states.push(state_circle_obj);
+    this.children.push(state_circle_obj);
   }
 
 

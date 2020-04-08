@@ -33,13 +33,10 @@ function draw() {
   graphicsItem.draw();
 }
 
-function drawNewStateBox() {
-  let nextQ = "q" + subesh.state.length;
-  stroke(0, 0, 0);
-  textAlign(CENTER, CENTER);
-  strokeWeight(1.5);
-  ellipse(355, 55, 70); // draw state to be added
-  text(nextQ, 355, 55);
+function drawNewStateBox(x, y) {
+  let stateCircleToAdd = new StateCircle(`q${drawer.states.length}`, x, y);
+  drawer.addStateCircle(stateCircleToAdd);
+  redraw();
 }
 
 var clicked = false,
@@ -59,7 +56,7 @@ function mouseClicked() {
     clicked = false;
     console.log("double click");
     //double click Stuff
-    drawNewStateBox();
+    drawNewStateBox(mouseX, mouseY);
   }
 }
 
@@ -119,9 +116,13 @@ function touchEnded() {
   // User let's go of let mouse button
   // console.log('release'); // for debugging
   touchCache.pop();
+  // if (this.center.x < 75 && this.center.y < 85) drawer.deleteStateCircle(selectObject);
   if (selectObject) selectObject = undefined;
   canZoom = true;
+  
   redraw(); // where the magic happens, on the release the new position of the state is drawn
+
+
 }
 
 // Zoom Function, Initiates when the mouse wheel is spun
@@ -149,8 +150,7 @@ let graphicsItem = {
   },
 
   handleDrag: function (mouseX, mouseY) {
-    let allModalsAreClosed =
-      !$("#inputModal").is(":visible") &&
+    let allModalsAreClosed = !$("#inputModal").is(":visible") &&
       !$("#settingsButtonModal").is(":visible");
 
     if (!allModalsAreClosed) {
