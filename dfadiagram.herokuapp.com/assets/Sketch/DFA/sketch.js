@@ -1,27 +1,30 @@
 let selectObject;
 var zoom = 1;
 var zMin = 0.01;
-var zMax = 9.00;
+var zMax = 9.0;
 var sensitivity = 0.0005;
 let canZoom = true;
 let drawer = new DFADrawer(subesh);
 let img;
 
 function preload() {
-  img = loadImage('assets/tcan2.jpg');
+  img = loadImage("assets/tcan2.jpg");
 }
-
 
 function setup() {
   let canvas = createCanvas(2000, 900);
-  canvas.parent('parent');
+  canvas.parent("parent");
   graphicsItem.item.push(drawer);
-  let txt = createDiv('To test your diagram, scroll to the <b>DFA Testing Environment</b>');
+  // canvas.mouseClicked(() => {
+
+  // }); //so only the canvas triggers, going to have to rewrite it like this
+  let txt = createDiv(
+    "To add a state to your diagram, double click anywhere</b>"
+  );
   txt.id("curStr");
   txt.position(50, 500);
   noLoop();
 }
-
 
 function draw() {
   // put drawing code here
@@ -39,20 +42,21 @@ function drawNewStateBox() {
   text(nextQ, 355, 55);
 }
 
-var clicked=false, clickTimeout=300; 
-function mouseClicked(){
-  if(!clicked){
-    clicked=true;
-    setTimeout(function(){
-      if(clicked){
-        console.log("single click");
-        clicked=false;
-        //single ClickStuff
+var clicked = false,
+  clickTimeout = 300;
 
+function mouseClicked() {
+  if (!clicked) {
+    clicked = true;
+    setTimeout(function () {
+      if (clicked) {
+        console.log("single click");
+        clicked = false;
+        //single ClickStuff
       }
-    },clickTimeout);
-  }else{
-    clicked=false;
+    }, clickTimeout);
+  } else {
+    clicked = false;
     console.log("double click");
     //double click Stuff
     drawNewStateBox();
@@ -77,7 +81,6 @@ function touchStarted() {
   // redraw(); //Dan: this redraw is pretty much pointless, it redraws everytime a click is registered
 }
 
-
 function touchMoved(e) {
   // if (touchCache.length === 2) {
   //   console.log('SDSDS');
@@ -101,7 +104,8 @@ function touchMoved(e) {
   // }
   // //console.log('touch');
 
-  if (!selectObject) { // if there is no object selected yet, but we've registered a drag
+  if (!selectObject) {
+    // if there is no object selected yet, but we've registered a drag
     selectObject = graphicsItem.handleDrag(mouseX / zoom, mouseY / zoom); // try to select an object
   } else {
     selectObject.setPos(mouseX / zoom, mouseY / zoom); // else we've selected an object & we're dragging so move it along the canvas
@@ -109,21 +113,21 @@ function touchMoved(e) {
   }
   // if (selectObject) // wtf, I don't think this does anything
   //   return false;
-  
 }
 
-function touchEnded() { // User let's go of let mouse button
+function touchEnded() {
+  // User let's go of let mouse button
   // console.log('release'); // for debugging
   touchCache.pop();
-  if (selectObject)
-    selectObject = undefined;
+  if (selectObject) selectObject = undefined;
   canZoom = true;
   redraw(); // where the magic happens, on the release the new position of the state is drawn
 }
 
 // Zoom Function, Initiates when the mouse wheel is spun
-function mouseWheel(event) { 
-  if (event.ctrlKey) { // but must also hold down control to zoom, else you just scroll the canvas/page
+function mouseWheel(event) {
+  if (event.ctrlKey) {
+    // but must also hold down control to zoom, else you just scroll the canvas/page
     zoom += sensitivity * event.delta;
     zoom = constrain(zoom, zMin, zMax);
     //console.log(zoom); // for debugging
@@ -136,63 +140,53 @@ function mouseWheel(event) {
 let touchCache = [];
 let graphicsItem = {
   item: [],
-  draw: function() {
-    image(img, 0, 0); //the trashcan soon to be
+  draw: function () {
+    image(img, 0, 0); // the trashcan
     this.item.forEach((my) => {
-      if (my.children)
-        my.children.forEach(item => item.draw());
+      if (my.children) my.children.forEach((item) => item.draw());
       my.draw();
     });
   },
 
   handleDrag: function (mouseX, mouseY) {
+    let allModalsAreClosed =
+      !$("#inputModal").is(":visible") &&
+      !$("#settingsButtonModal").is(":visible");
 
-    let allModalsAreClosed = !$('#inputModal').is(':visible') && !$('#settingsButtonModal').is(':visible');
-
-    if (!allModalsAreClosed) { //disable dragging elements on the canvas if a dialog box (modal) is open
+    if (!allModalsAreClosed) {
+      //disable dragging elements on the canvas if a dialog box (modal) is open
       return false;
     }
 
     let index, index2;
     this.item.every((item, ind) => {
       if (item.children) {
-
-        if (!item.children.every((item, ind1) => {
-
+        if (
+          !item.children.every((item, ind1) => {
             if (item.handleDrag(mouseX, mouseY)) {
               ////console.log("children");
               index2 = ind1;
-              index = ind
+              index = ind;
               return false;
-
-            } else
-              return true;
-
-          })) {
-
+            } else return true;
+          })
+        ) {
           return false;
         } else {
           ////console.log("how");
         }
-
       }
 
       if (item.handleDrag && item.handleDrag(mouseX, mouseY)) {
         index = ind;
         return false;
-
-      } else
-        return true;
-
+      } else return true;
 
       return true;
-
     });
 
     ////console.log(index2);
-    if (index2 !== undefined)
-      return this.item[index].children[index2];
-    else if (index)
-      return this.item[index];
-  }
+    if (index2 !== undefined) return this.item[index].children[index2];
+    else if (index) return this.item[index];
+  },
 };
