@@ -100,7 +100,38 @@ class DFADrawer {
   deleteStateCircle(state_circle_obj){
     this.states.splice(this.states.indexOf(state_circle_obj), 1);
     this.children.splice(this.children.indexOf(state_circle_obj), 1);
+    this.amendDiagramTransitions(state_circle_obj);
+    this.amendDiagramNames(state_circle_obj);
   }
+
+  amendDiagramTransitions(state_circle_obj) {
+    let element;
+    for (var i = this.children.length - 1; i >= 0; i--){
+      element = this.children[i];
+      if (element instanceof StateArc){
+        if (element["start"] == state_circle_obj || element["end"] == state_circle_obj){
+          this.children.splice(this.children.indexOf(element), 1);
+        }
+      }
+    }
+  }
+
+  amendDiagramNames(state_circle_obj){
+    console.log(state_circle_obj);
+    if (state_circle_obj.final){ // if you delete the last state, you're good
+      // maybe notify the user they've deleted their final state, 
+      //should add a new state as final to test
+      return;
+    } else if (state_circle_obj.start){ // if you delete the first state, just decrement every other state by 1
+
+      
+   
+    } else { // if you delete a middle state,
+
+    }
+
+  }
+
 
   addStateCircle(state_circle_obj) {
     this.states.push(state_circle_obj);
