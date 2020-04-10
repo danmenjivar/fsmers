@@ -95,8 +95,6 @@ class DFADrawer {
     });
   }
 
-<<<<<<< HEAD
-=======
   //TODO: rename states 
   deleteStateCircle(state_circle_obj){
     this.states.splice(this.states.indexOf(state_circle_obj), 1);
@@ -155,7 +153,6 @@ class DFADrawer {
   }
 
 
->>>>>>> Dan
   /**
    * createStart - Set the initial state with and arrow
    *
