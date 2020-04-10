@@ -114,3 +114,7 @@ Used to display string test results */
 .invertColandRows tbody tr td {
   display: block;
 }
+
+.tooltip-inner {
+  white-space: pre-wrap;
+}

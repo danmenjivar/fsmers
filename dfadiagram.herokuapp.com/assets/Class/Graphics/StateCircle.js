@@ -106,6 +106,7 @@ class StateCircle {
   setPos(x,y) {
     this.center.x = x + this.dragedPoint.x;
     this.center.y = y + this.dragedPoint.y;
+<<<<<<< HEAD
     
     // If a state is in this area... delete
     // if(this.center.x < 75 && this.center.y < 85){
@@ -183,6 +184,8 @@ class StateCircle {
       
     }
     DFATuples.final[0] = DFATuples.state[DFATuples.state.length - 1];
+=======
+>>>>>>> Dan
   }
 
   setFinal() {

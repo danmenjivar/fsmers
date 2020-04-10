@@ -13,10 +13,9 @@
 </head>
 
 <body>
-  <header>
-    <!-- Navbar is contained inside the header -->
+  <header> <!-- This is where the navigation bar goes -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">DFA</a>
+      <a class="navbar-brand" href="#">FSM</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navCollapseBut">
         <span class="navbar-toggler-icon"></span>
@@ -25,24 +24,20 @@
         <ul class="navbar-nav">
           <button class="btn  btn-outline-primary" data-toggle="modal" data-target="#settingsButtonModal"
             id="modalBut">DFA Settings</button>
-          <button type="button" class="btn btn-outline-secondary btn-margin-left" id="addState">+State</button>
           <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>
         </ul>
       </div>
     </nav>
   </header>
 
-  <main role="main">
-    <div class="container-fluid">
+  <main>
       <div class="row">
-      </div>
-      <div class="row margin-top:10px;">
         <div class="col">
-          <!-- Canvas content -->
-          <div id="parent"></div>
+          <div id="parent">
+            <!-- This is where canvas goes, the id="parent" links this back in sketch.js -->
+          </div>
         </div>
-        <div class="col">
-          <!-- Sidebar content-->
+        <div class="col"> <!-- This is where the testing environment (the table) goes -->
           <h2 style="text-align: center; margin-top: 10px; margin-bottom: 5px;">DFA Testing Environment</h2>
           <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;"><button class="btn btn-success" type="button" data-toggle="modal"
             data-target="#inputModal" id="inputButtonModal">Build Test</button></div>
@@ -67,11 +62,10 @@
           </table>
         </div>
       </div>
-    </div>
   </main>
+</body>
 
-  <!-- MODALS for NavBar Definitions -->
-  <!-- BEGIN Modal for settingsButton -->
+  <!-- MODALS (dialog boxes) -->
   <div class="modal fade" id="settingsButtonModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -82,7 +76,6 @@
             <span class="sr-only">Close</span>
           </button>
         </div>
-
         <div class="modal-body">
           <div class="container">
             <h6>Please separate multiple values by comma</h6>
@@ -90,17 +83,14 @@
               <label for="state" class="col-3">States: </label>
               <input type="text" data-name="state" id="state" class="form-control col-9">
             </div>
-
             <div class="form-group row">
               <label for="alphabet" class="col-3">Alphabet: </label>
               <input type="text" data-name="alphabet" id="alphabet" class="form-control col-9">
             </div>
-
             <div class="form-group row">
               <label for="initial" class="col-3">Initial State: </label>
               <input type="text" data-name="initial" id="initial" class="form-control col-9">
             </div>
-
             <div class="form-group row">
               <label for="final" class="col-3">Final State: </label>
               <input type="text" data-name="final" id="final" class="form-control col-9">
@@ -121,12 +111,11 @@
           <button type="button" class="btn btn-primary" id="save">Save changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
-      </div> <!-- /.modal-content -->
-    </div> <!-- /.modal-dialog -->
-  </div> <!-- /.modal -->
-  <!-- END Modal for settingsButton -->
+      </div> 
+    </div> 
+  </div> 
 
-  <!-- BEGIN Modal for batchStringTesting -->
+  <!-- Modal for batchStringTesting -->
   <div class="modal fade" id="inputModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -141,16 +130,20 @@
         <div class="modal-body">
           <div class="container">
             <div class="form-group row">
+              <label for="dfaAlphaReminder" class="col-3">Alphabet:</label>
+              <p id="alphabet-remind"></p>
+            </div>
+            <div class="form-group row">
               <label for="dfaInput" class="col-3">Input:</label>
               <textarea class="form-control col-9" id="dfabatchInput" rows="3"
                 placeholder="Enter 1 or more string(s) separated by commas to run on your DFA"></textarea>
             </div>
             <div class="form-group row">
               <label for="dfaBatchInterval" class="col-3" data-toggle="tooltip"
-               title="This is how fast we should travel between states">Traversing Speed</label>
+               title="The lower, the faster &#010;&#013; The higher, the slower">Traversing Speed</label>
               <div class="sliderContainer">
                 <input type="range" class="slider" id="travspeedBatch" min="100" max="1500" step="1" value="200">
-                <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="batchTrvVal"></span>ms<br></p>
+                <p style="margin-top: 5.5%; opacity: 0.7;" opacity>Value: <span id="batchTrvVal"></span>ms per state<br></p>
               </div>
             </div>
           </div>
@@ -159,43 +152,19 @@
           <button type="button" class="btn btn-success" id="batchCheck">Begin Test</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
-      </div> <!-- /.modal-content -->
-    </div> <!-- /.modal-dialog -->
-  </div> <!-- /.modal -->
-  <!-- END Modal for batchStringTesting -->
+      </div> 
+    </div> 
+  </div> 
 
-
-
-
-  <!-- BEGIN Pass/Fail Footer Notification -->
-  <div id="parent"></div>
-  <!--  Alert`-->
-  <div class="alert alert-danger  fixed-bottom" style="display:none;" role="alert" id="reject">
-    <strong>REJECTED!</strong> The string is not accepted by the DFA!
-    <button type="button" class="close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-
-  <div class="alert alert-success fixed-bottom" style="display:none;" role="alert" id="accept">
-    <strong>ACCEPTED!</strong> The string is accepted by the DFA!
-    <button type="button" class="close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-
+  <!-- Test Complete Footer Notification -->
   <div class="alert alert-success fixed-bottom" style="display:none;" role="alert" id="done">
     <strong>Test Complete</strong> Reached last string in your test.
     <button type="button" class="close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <!-- END Pass/Fail Footer Notification -->
 
-
-  <!-- BEGIN JavaScript Files -->>
-
-  <!-- Bootstrap JS, first jQuery, then Popper.js, finally Bootstrap JS -->
+  <!-- JavaScript Dependencies -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
@@ -205,15 +174,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-  <!-- END of Bootstrap JS dependencies -->
-
-  <!-- BEGIN p5.js dependencies -->
   <script src="assets/p5.min.js"></script>
   <script src="assets/addons/p5.dom.min.js"></script>
-  <script src="assets/addons/p5.sound.min.js"></script>
-  <!-- END p5.js dependencies -->
-
-  <!-- END rangeSlider.js dependencies -->
   <script src="assets/Class/DFA/DFA.js"></script>
   <script src="assets/Class/Graphics/StateCircle.js"></script>
   <script src="assets/Class/Graphics/GraphicsItem.js"></script>
@@ -226,7 +188,5 @@
   <script src="assets/Backend/AddStateHandler.js"></script>
   <script src="assets/Backend/ClearAllHandler.js"></script>
   <script src="assets/Backend/BatchTestingHandler.js"></script>
-  <!-- END of JS files -->
-</body>
 
 </html>

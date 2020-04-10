@@ -95,6 +95,67 @@ class DFADrawer {
     });
   }
 
+<<<<<<< HEAD
+=======
+  //TODO: rename states 
+  deleteStateCircle(state_circle_obj){
+    this.states.splice(this.states.indexOf(state_circle_obj), 1);
+    this.children.splice(this.children.indexOf(state_circle_obj), 1);
+    this.amendDiagramTransitions(state_circle_obj);
+    this.amendDiagramNames(state_circle_obj);
+  }
+
+  amendDiagramTransitions(state_circle_obj) {
+    let element;
+    for (var i = this.children.length - 1; i >= 0; i--){
+      element = this.children[i];
+      if (element instanceof StateArc){
+        if (element["start"] == state_circle_obj || element["end"] == state_circle_obj){
+          this.children.splice(this.children.indexOf(element), 1);
+        }
+      }
+    }
+  }
+
+  amendDiagramNames(state_circle_obj){
+    console.log(state_circle_obj);
+    console.log(this.children);
+    if (state_circle_obj.isFinal){ // if you delete the last state, you're good
+      // TODO maybe notify the user they've deleted their final state, should add a new state as final to test
+      return;
+    } else if (state_circle_obj.isStart){ // if you delete the first state, just decrement every other state by 1
+      //notify user they need to redeclare a new start state
+      this.children.forEach((element) => {
+        if (element instanceof StateCircle){
+          element.stateName = element.stateName.replace(/\d+/g, function(match) {
+            return parseInt(match) - 1;});
+        }
+      });
+    } else { // if you delete a middle state, all the states following it get decremented
+      var delStateNum = state_circle_obj.stateName.match(/\d+/);
+      this.children.forEach((element) => {
+        if (element instanceof StateCircle){
+          if (element.stateName.match(/\d+/) > delStateNum){
+            element.stateName = element.stateName.replace(/\d+/g, function(match) {
+              return parseInt(match) - 1;});
+          }
+        }
+      });
+
+
+    }
+    console.log(this.children);
+
+  }
+
+
+  addStateCircle(state_circle_obj) {
+    this.states.push(state_circle_obj);
+    this.children.push(state_circle_obj);
+  }
+
+
+>>>>>>> Dan
   /**
    * createStart - Set the initial state with and arrow
    *

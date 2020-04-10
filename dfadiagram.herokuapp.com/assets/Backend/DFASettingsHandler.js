@@ -82,9 +82,6 @@ $(document).ready(function () {
     subesh.map(DFATuples);
     drawer.createDiagram();
     redraw();
-
-
-
   });
 
 
