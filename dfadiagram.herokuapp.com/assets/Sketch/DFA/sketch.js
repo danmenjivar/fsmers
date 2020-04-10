@@ -17,7 +17,7 @@ function setup() {
   graphicsItem.item.push(drawer);
   // canvas.mouseClicked(() => {
 
-  // }); //so only the canvas triggers, going to have to rewrite it like this
+  // }); //TODO: so only the canvas triggers, going to have to rewrite it like this
   let txt = createDiv(
     "To add a state to your diagram, double click anywhere</b>"
   );
@@ -42,17 +42,17 @@ function drawNewStateBox(x, y) {
 var clicked = false,
   clickTimeout = 300;
 
-function mouseClicked() {
-  if (!clicked) {
+function mouseClicked() { //click listener, runs whenever a mouse is clicked anywhere
+  if (!clicked) {  // flag to track how many times they have clicked, false means first time
     clicked = true;
-    setTimeout(function () {
+    setTimeout(function () { // wait to see if they click again
       if (clicked) {
         console.log("single click");
         clicked = false;
         //single ClickStuff
       }
     }, clickTimeout);
-  } else {
+  } else { // true means second time
     clicked = false;
     console.log("double click");
     //double click Stuff
