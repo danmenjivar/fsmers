@@ -10,14 +10,18 @@ let img;
 function preload() {
   img = loadImage("assets/tcan2.jpg");
 }
-
+let canvas;
 function setup() {
-  let canvas = createCanvas(2000, 900);
+  canvas = createCanvas(2000, 900);
   canvas.parent("parent");
   graphicsItem.item.push(drawer);
-  // canvas.mouseClicked(() => {
 
-  // }); //TODO: so only the canvas triggers, going to have to rewrite it like this
+  const cnv = document.querySelector('#parent'); // Making sure double click only on canvas
+  console.log(cnv);
+  cnv.addEventListener('dblclick', function (e) {
+    drawNewStateBox(mouseX, mouseY);
+  });
+
   let txt = createDiv(
     "To add a state to your diagram, double click anywhere</b>"
   );
@@ -25,6 +29,7 @@ function setup() {
   txt.position(50, 500);
   noLoop();
 }
+// end of setup
 
 function draw() {
   // put drawing code here
@@ -39,26 +44,28 @@ function drawNewStateBox(x, y) {
   redraw();
 }
 
-var clicked = false,
-  clickTimeout = 300;
 
-function mouseClicked() { //click listener, runs whenever a mouse is clicked anywhere
-  if (!clicked) {  // flag to track how many times they have clicked, false means first time
-    clicked = true;
-    setTimeout(function () { // wait to see if they click again
-      if (clicked) {
-        console.log("single click");
-        clicked = false;
-        //single ClickStuff
-      }
-    }, clickTimeout);
-  } else { // true means second time
-    clicked = false;
-    console.log("double click");
-    //double click Stuff
-    drawNewStateBox(mouseX, mouseY);
-  }
-}
+// var clicked = false,
+//   clickTimeout = 300;
+
+// function mouseClicked() { //click listener, runs whenever a mouse is clicked anywhere
+//   if (!clicked) {  // flag to track how many times they have clicked, false means first time
+//     clicked = true;
+//     setTimeout(function () { // wait to see if they click again
+//       if (clicked) {
+//         console.log("single click");
+//         clicked = false;
+//         //single ClickStuff
+//       }
+//     }, clickTimeout);
+//   } else { // true means second time
+//     clicked = false;
+//     console.log("double click");
+//     //double click Stuff
+//     drawNewStateBox(mouseX, mouseY);
+//   }
+// }
+
 
 // Dan: this function is really only useful for debugging, it can't do much else.
 //Only uncomment this function and the console.log marked useful to print out
@@ -110,6 +117,31 @@ function touchMoved(e) {
   }
   // if (selectObject) // wtf, I don't think this does anything
   //   return false;
+}
+
+// shift click stuff
+ var shift = false;
+
+ document.onkeydown = function(e) {
+  var key = crossBrowserKey(e);
+  if (key == 16){
+    shift = true;
+    console.log(shift);
+  }
+}
+document.onkeyup = function(e){
+  var key = crossBrowserKey(e);
+
+  if(key == 16){
+    shift = false;
+    console.log(shift);
+  }
+}
+
+function crossBrowserKey(e){
+  e = e || window.event;
+  console.log(e.keyCode);
+  return e.which || e.keyCode;
 }
 
 function touchEnded() {
