@@ -116,3 +116,7 @@ $(document).ready(function () {
   }
 
 });
+// based on the number of state circles, draw the transition table
+// extract the state circles into DFATuples
+// make a function that selects a state to be initial,tests to see if that state is valid
+// make a function that makes a state be a final state, tests to see if selection is valid

@@ -1,6 +1,11 @@
 # Finite State Machine Learning Tool  
 [Finite State Machines](https://brilliant.org/wiki/finite-state-machines/) (FSMs) are a staple in computer science theory. Every CS student encounters DFAs or NFAs throughout their CS degree. This is a tool designed for students & educators to aid in the understanding of automata.  
 
+## Todo
+- [] Grey out the dfa tester when dfa is not ready to be tested
+- [] change the settings builder, also ensure clear all respects the changes made
+- [] transition shift clicking 
+
 ## Master Plan
 ![Image of master plan](masterplan.jpeg)
 
