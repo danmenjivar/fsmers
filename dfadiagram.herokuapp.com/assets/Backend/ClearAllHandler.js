@@ -5,14 +5,14 @@ $(document).ready(function() {
         redraw();
 
         DFATuples.state = [];
-        subesh.state = [];
+        sysDFA.state = [];
         DFATuples.initial = [];
-        subesh.initial = [];
+        sysDFA.initial = [];
         DFATuples.alphabet = [];
-        subesh.alphabet = [];
+        sysDFA.alphabet = [];
         DFATuples.final = [];
-        subesh.final = [];
+        sysDFA.final = [];
         DFATuples.transition = {};
-        subesh.transition = {};
+        sysDFA.transition = {};
     });
 });

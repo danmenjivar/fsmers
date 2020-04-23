@@ -4,7 +4,7 @@ var zMin = 0.01;
 var zMax = 9.0;
 var sensitivity = 0.0005;
 let canZoom = true;
-let drawer = new DFADrawer();
+let drawer = new DFADrawer(sysDFA); // which at the start is the initialDFA defined in DFA
 let img;
 
 function preload() {

@@ -34,7 +34,7 @@ class DFA {
 }
 
 // Initial Sample DFA
-let DFATuples = {
+let initialDFA = {
   state: ["q0","q1","q2",'q3'],
   alphabet : ['0','1'],
   final : ['q3'],
@@ -59,4 +59,4 @@ let DFATuples = {
   }
 }
 
-let subesh = new DFA(DFATuples);
+let sysDFA = new DFA(initialDFA);

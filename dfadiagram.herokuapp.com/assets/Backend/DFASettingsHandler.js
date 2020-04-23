@@ -5,12 +5,11 @@ $(document).ready(function () {
   });
 
   function makeModal() {
-    let drawerHash = drawer.deconstructToDFA(); //retrieve from drawer its contents
-    
-    // translate the drawerHash values into each settings' individual field
-    $('#alphabet').val(drawerHash.alphabet.join(','));
-    $('#initial').val(drawerHash.initial.join(','));
-    $('#final').val(drawerHash.final.join(','));
+    console.log(sysDFA);
+    drawer.updateSysDFA();
+    $('#alphabet').val(sysDFA.alphabet.join(','));
+    $('#initial').val(sysDFA.initial.join(','));
+    $('#final').val(sysDFA.final.join(','));
 
     // build the transitions table for easy editing
     $('#transitionsTable thead').html(`
@@ -21,7 +20,7 @@ $(document).ready(function () {
     $('#transitionsTable tbody').html(""); // without this, we get doubles
     //table
     let inputCheck = true;
-    let transitions = drawerHash.transitions;
+    let transitions = sysDFA.transition;
     for (let state in transitions) {
       $('#transitionsTable tbody ').append(`<tr><th>${state}</th></tr>`);
       for (let transition in transitions[state]) {
@@ -75,15 +74,13 @@ $(document).ready(function () {
       $('#navCollapseBut').trigger('click');
 
     });
-    makeModal();
-
-    subesh.map(DFATuples);
-    drawer.createDiagram();
+    // sysDFA.map(DFATuples);
+    // drawer.createDiagram();
     redraw();
   });
 
 
-  //touch action
+  //touch action // this code shouldn't work anymore since you can only add states outside, this is just to edit transitions
   $('#state,#alphabet').focusout(function () {
     let key = $(this).data('name');
     if (DFATuples[key].join(",") !== $(this).val()) {

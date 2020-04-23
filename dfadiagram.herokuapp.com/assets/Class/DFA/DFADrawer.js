@@ -8,7 +8,7 @@
  * @member this.states - Array of StateCircle
  * @member this.links - Array of StateArcs
  * @member this.children - childrens
- * @author Subesh Bhandari
+ * @author sysDFA Bhandari
  * @version 0.1
  */
 class DFADrawer {
@@ -32,32 +32,29 @@ class DFADrawer {
     }
   }
 
-  deconstructToDFA(){
-    let dfa = {
-      alphabet : ['0','1'],
-      final : ['q3'],
-      initial : ['q1'],
-      transitions : {
-        q0 : {
-          0 : 'q1',
-          1 : 'q0'
-        },
-        q1 : {
-          0 : 'q2',
-          1 : 'q0'
-        },
-        q2 : {
-          0 : 'q3',
-          1 : 'q0'
-        },
-        q3 : {
-          0 : 'q3',
-          1 : 'q3'
+  updateSysDFA(){
+    //take the drawer and make a dfa object
+    // update the states & transitions that have been added/removed
+    let states = [];
+    let transitions = {};
+    for(let state of this.states){
+      states.push(state.stateName);
+      transitions[state.stateName] = {}; 
+    }
+    //for each transition
+    this.children.forEach((element) => {
+      if (element instanceof StateArc){
+        for(let i = 0; i < element.text.length; i++){
+          transitions[element.start.stateName][element.text[i]] = [element.end.stateName][0];
         }
       }
-    }
+    });
+    sysDFA.states = states;
+    sysDFA.transition = transitions;
+  }
 
-    return dfa;
+  editDrawing(){
+
   }
 
 
@@ -84,7 +81,7 @@ class DFADrawer {
       //Third - createLink (transitions)
       this.createLink();
     } else {
-      throw ("Subesh");
+      throw ("sysDFA");
     }
   }
 
@@ -176,8 +173,10 @@ class DFADrawer {
 
 
   addStateCircle(state_circle_obj) {
+    let nameAdded = state_circle_obj.stateName;
     this.states.push(state_circle_obj);
     this.children.push(state_circle_obj);
+    sysDFA.state.push(nameAdded);
   }
 
 

@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   $('#inputButtonModal').on('click', function(){ // refresh the alphabet when the user clicks to open the dialog box
     let alphaprnt = document.getElementById("alphabet-remind"); // this is used in the test
-    alphaprnt.innerHTML = `${subesh.alphabet.join(',')}`; //builder to remind the user of valid input
+    alphaprnt.innerHTML = `${sysDFA.alphabet.join(',')}`; //builder to remind the user of valid input
   });
 
   $('#batchCheck').on('click', function () {
@@ -63,7 +63,7 @@ function clearResultsTable() {
 
 function preChecker(strings) {
   let badStrings = [];
-  let alphaRegex = new RegExp(`[^${subesh.alphabet.join("")}]+`);
+  let alphaRegex = new RegExp(`[^${sysDFA.alphabet.join("")}]+`);
 
   for (let i = 0; i < strings.length; i++) {
     if (alphaRegex.test(strings[i])) {
