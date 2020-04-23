@@ -32,6 +32,34 @@ class DFADrawer {
     }
   }
 
+  deconstructToDFA(){
+    let dfa = {
+      alphabet : ['0','1'],
+      final : ['q3'],
+      initial : ['q1'],
+      transitions : {
+        q0 : {
+          0 : 'q1',
+          1 : 'q0'
+        },
+        q1 : {
+          0 : 'q2',
+          1 : 'q0'
+        },
+        q2 : {
+          0 : 'q3',
+          1 : 'q0'
+        },
+        q3 : {
+          0 : 'q3',
+          1 : 'q3'
+        }
+      }
+    }
+
+    return dfa;
+  }
+
 
   /**
    * createDiagram - make a diagramatic view of the DFA tuples
