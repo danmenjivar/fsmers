@@ -5,38 +5,36 @@ $(document).ready(function () {
   });
 
   function makeModal() {
-    //state
-    $('#state').val(DFATuples.state.join(','));
-    //initial
-    $('#initial').val(DFATuples.initial.join(','));
-    //final
-    $('#final').val(DFATuples.final.join(','));
-    //alphabet
-    $('#alphabet').val(DFATuples.alphabet.join(','));
+    let drawerHash = drawer.deconstructToDFA(); //retrieve from drawer its contents
+    
+    // translate the drawerHash values into each settings' individual field
+    $('#alphabet').val(drawerHash.alphabet.join(','));
+    $('#initial').val(drawerHash.initial.join(','));
+    $('#final').val(drawerHash.final.join(','));
 
-    $('#transitionsTable tbody').html("");
+    // build the transitions table for easy editing
     $('#transitionsTable thead').html(`
     <tr>
       <th>Q\&Sigma;</th>
     </tr>
-    `);
+    `); // this builds the row headers
+    $('#transitionsTable tbody').html(""); // without this, we get doubles
     //table
-    let inputCheck = 1;
-    let transition = DFATuples.transition;
-    for (let state in transition) {
+    let inputCheck = true;
+    let transitions = drawerHash.transitions;
+    for (let state in transitions) {
       $('#transitionsTable tbody ').append(`<tr><th>${state}</th></tr>`);
-      for (let input in transition[state]) {
-        if (inputCheck)
-          $('#transitionsTable thead tr').append(`<th>${input}</th>`);
-        $('#transitionsTable tbody tr').last().append(`<td><input type="text" value = "${transition[state][input]}" class="form-control col-10"></td>`);
+      for (let transition in transitions[state]) {
+        if (inputCheck) // this adds the column headers
+          $('#transitionsTable thead tr').append(`<th>${transition}</th>`);
+        $('#transitionsTable tbody tr').last().append(`<td><input type="text" value = "${transitions[state][transition]}" class="form-control col-10"></td>`);
       }
-      inputCheck = 0;
+      inputCheck = false;
     }
   }
-  makeModal();
 
   $('#save').on('click', function () {
-    $('#modal-1').modal('hide');
+    $('#settingsButtonModal').modal('hide');
     DFATuples.state = $('#state').val().split(',');
     DFATuples.initial = $('#initial').val().split(',', 1);
     DFATuples.final = $('#final').val().split(',');
