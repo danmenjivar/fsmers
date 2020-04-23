@@ -4,7 +4,7 @@ var zMin = 0.01;
 var zMax = 9.0;
 var sensitivity = 0.0005;
 let canZoom = true;
-let drawer = new DFADrawer(subesh);
+let drawer = new DFADrawer();
 let img;
 
 function preload() {
