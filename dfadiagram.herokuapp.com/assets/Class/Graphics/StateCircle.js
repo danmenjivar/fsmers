@@ -115,4 +115,14 @@ class StateCircle {
     this.isStart = true;
   }
 
+  toggleFinal() {
+    if (this.isFinal) {
+      this.isFinal = false;
+    } else {
+      this.isFinal = true;
+    }
+  }
+
+
+
 }

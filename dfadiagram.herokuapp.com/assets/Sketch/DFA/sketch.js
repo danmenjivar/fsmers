@@ -4,7 +4,7 @@ var zMin = 0.01;
 var zMax = 9.0;
 var sensitivity = 0.0005;
 let canZoom = true;
-let drawer = new DFADrawer(subesh);
+let drawer = new DFADrawer(sysDFA); // which at the start is the initialDFA defined in DFA
 let img;
 
 function preload() {
@@ -17,13 +17,19 @@ function setup() {
   graphicsItem.item.push(drawer);
 
   const cnv = document.querySelector('#parent'); // Making sure double click only on canvas
-  console.log(cnv);
   cnv.addEventListener('dblclick', function (e) {
-    drawNewStateBox(mouseX, mouseY);
+    if (!e.ctrlKey){ // don't do anything if holding control key
+      if(!drawer.doubleClickedState(mouseX, mouseY)){
+        drawNewStateBox(mouseX, mouseY);
+      }
+    }
   });
 
   let txt = createDiv(
-    "To add a state to your diagram, double click anywhere</b>"
+    `<b>Instructions</b><br>
+    To add a state to your diagram, double click anywhere.<br>
+    To set a state as an accept state, double click it.<br>
+    To set the starting state, Cntrl+Click it.`
   );
   txt.id("curStr");
   txt.position(50, 500);
@@ -44,33 +50,10 @@ function drawNewStateBox(x, y) {
   redraw();
 }
 
-
-// var clicked = false,
-//   clickTimeout = 300;
-
-// function mouseClicked() { //click listener, runs whenever a mouse is clicked anywhere
-//   if (!clicked) {  // flag to track how many times they have clicked, false means first time
-//     clicked = true;
-//     setTimeout(function () { // wait to see if they click again
-//       if (clicked) {
-//         console.log("single click");
-//         clicked = false;
-//         //single ClickStuff
-//       }
-//     }, clickTimeout);
-//   } else { // true means second time
-//     clicked = false;
-//     console.log("double click");
-//     //double click Stuff
-//     drawNewStateBox(mouseX, mouseY);
-//   }
-// }
-
-
 // Dan: this function is really only useful for debugging, it can't do much else.
 //Only uncomment this function and the console.log marked useful to print out
 // when a click is first registered, left the code in case it does something else, but doubt it
-function touchStarted() {
+function touchStarted(event) {
   // if (touches.length) { //Dan: this if will never be true, so not sure why this is even here
   //   console.log(touches);
   //   touchCache.push({
@@ -79,6 +62,9 @@ function touchStarted() {
   //   });
   //   console.log(touchCache);
   // }
+  if (event.ctrlKey){
+    drawer.cntrClickedState(mouseX, mouseY);
+  }
   // console.log(mouseX + " " + mouseY); // USEFUL to see where a touch is first initiated
   // console.log(mouseX * zoom + " " + mouseY * zoom); // not really useful, but tells you the coordinates if they zoomed in
   // console.log(mouseX / zoom + " " + mouseY / zoom); // not really useful, tells you coordinates if they zoomed out, zooming doesn't involve this func at all
@@ -130,7 +116,7 @@ function touchMoved(e) {
   }
 }
 document.onkeyup = function(e){
-  var key = crossBrowserKey(e);
+  // var key = crossBrowserKey(e);
 
   if(key == 16){
     shift = false;
@@ -140,7 +126,7 @@ document.onkeyup = function(e){
 
 function crossBrowserKey(e){
   e = e || window.event;
-  console.log(e.keyCode);
+  // console.log(e.keyCode);
   return e.which || e.keyCode;
 }
 
@@ -187,8 +173,7 @@ let graphicsItem = {
     let allModalsAreClosed = !$("#inputModal").is(":visible") &&
       !$("#settingsButtonModal").is(":visible");
 
-    if (!allModalsAreClosed) {
-      //disable dragging elements on the canvas if a dialog box (modal) is open
+    if (!allModalsAreClosed) {//disable dragging elements on the canvas if a dialog box (modal) is open
       return false;
     }
 
