@@ -2,8 +2,7 @@
 [Finite State Machines](https://brilliant.org/wiki/finite-state-machines/) (FSMs) are a staple in computer science theory. Every CS student encounters DFAs or NFAs throughout their CS degree. This is a tool designed for students & educators to aid in the understanding of automata.  
 
 ## Todo
-- [] Grey out the dfa tester when dfa is not ready to be tested
-- [] change the settings builder, also ensure clear all respects the changes made
+- [] Make a check so that if error happens, settings dialog box doesn't close
 - [] transition shift clicking 
 
 ## Master Plan
