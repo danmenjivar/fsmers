@@ -9,7 +9,6 @@ $(document).ready(function () {
     drawer.updateSysDFA();
     $('#alphabet').val(sysDFA.alphabet.join(','));
     $('#initial').val(sysDFA.initial.join(','));
-    $('#final').val(sysDFA.final.join(','));
 
     // build the transitions table for easy editing
     $('#transitionsTable thead').html(`
@@ -36,24 +35,9 @@ $(document).ready(function () {
     $('#settingsButtonModal').modal('hide');
     DFATuples.state = $('#state').val().split(',');
     DFATuples.initial = $('#initial').val().split(',', 1);
-    DFATuples.final = $('#final').val().split(',');
     DFATuples.alphabet = $('#alphabet').val().split(',');
 
     let start = DFATuples.state.find(item => item == DFATuples.initial);
-    let final = DFATuples.final.every((final) => {
-      let check = DFATuples.state.find((item) => {
-        return item == final;
-      });
-      console.log(check);
-      if (check)
-        return true;
-      return false;
-    });
-    console.log('FINAL --' + final);
-    if (!(start && final)) {
-      alert('Please check that final and initial state lie in the state input');
-      return;
-    }
 
     DFATuples.transition = {};
     let transition = DFATuples.transition;
@@ -114,4 +98,3 @@ $(document).ready(function () {
 // based on the number of state circles, draw the transition table
 // extract the state circles into DFATuples
 // make a function that selects a state to be initial,tests to see if that state is valid
-// make a function that makes a state be a final state, tests to see if selection is valid

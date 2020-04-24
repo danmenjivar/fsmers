@@ -60,8 +60,9 @@ class DFAChecker {
       }
       this.start(); //this start triggers the animation according to the interval
     } catch (e) { //throws an error if there are no symbols in the given alphabet sets
-      console.log('Invalid Symbol(s) Error');
-      var alertMsg = "Warning: The input string \'" + string +"\' contains symbols not in the alphabet."
+      var alertMsg = "Error: It seems your DFA isn't ready to be tested. ";
+      alertMsg += "Make sure you've declared a starting state, at least one accept state, "; 
+      alertMsg += "and there are no missing transitions.";
       alert(alertMsg);
       return "REJECTED";
     }

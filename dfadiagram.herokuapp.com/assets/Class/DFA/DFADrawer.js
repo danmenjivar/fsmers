@@ -120,7 +120,6 @@ class DFADrawer {
     });
   }
 
-  //TODO: rename states 
   deleteStateCircle(state_circle_obj){
     this.states.splice(this.states.indexOf(state_circle_obj), 1);
     this.children.splice(this.children.indexOf(state_circle_obj), 1);
@@ -189,6 +188,29 @@ class DFADrawer {
     }
     redraw();
     return doubleClicked;
+  }
+
+  cntrClickedState(mouseX, mouseY){
+    let cntrClicked = false;
+    for (let i = 0; i < this.states.length && !cntrClicked; i++){
+      if (dist(mouseX, mouseY, this.states[i].center.x, this.states[i].center.y) < this.states[i].diameter){
+        if (!this.states[i].isStart){
+          // Make the current start no longer the start, and make this state the start
+          this.amendStartState();
+          this.states[i].setStart();
+        }
+      }
+    }
+    redraw();
+  }
+
+  amendStartState(){
+    let ogStart = this.states.find(function(state) {
+      return state.isStart;
+    });
+    if (ogStart){
+      ogStart.isStart = false;
+    }
   }
 
 
