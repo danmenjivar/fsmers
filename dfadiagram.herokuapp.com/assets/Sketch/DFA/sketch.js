@@ -19,7 +19,9 @@ function setup() {
   const cnv = document.querySelector('#parent'); // Making sure double click only on canvas
   console.log(cnv);
   cnv.addEventListener('dblclick', function (e) {
-    drawNewStateBox(mouseX, mouseY);
+    if(!drawer.doubleClickedState(mouseX, mouseY)){
+      drawNewStateBox(mouseX, mouseY);
+    }
   });
 
   let txt = createDiv(
@@ -187,8 +189,7 @@ let graphicsItem = {
     let allModalsAreClosed = !$("#inputModal").is(":visible") &&
       !$("#settingsButtonModal").is(":visible");
 
-    if (!allModalsAreClosed) {
-      //disable dragging elements on the canvas if a dialog box (modal) is open
+    if (!allModalsAreClosed) {//disable dragging elements on the canvas if a dialog box (modal) is open
       return false;
     }
 

@@ -179,6 +179,18 @@ class DFADrawer {
     sysDFA.state.push(nameAdded);
   }
 
+  doubleClickedState(mouseX, mouseY){
+    let doubleClicked = false;
+    for (let i = 0; i < this.states.length && !doubleClicked; i++){
+      if (dist(mouseX, mouseY, this.states[i].center.x, this.states[i].center.y) < this.states[i].diameter){
+        this.states[i].toggleFinal();
+        doubleClicked = true;
+      }
+    }
+    redraw();
+    return doubleClicked;
+  }
+
 
   /**
    * createStart - Set the initial state with and arrow
