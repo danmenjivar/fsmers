@@ -51,7 +51,6 @@ $(document).ready(function () {
       });
       $('#navCollapseBut').trigger('click');
     });
-    console.log(sysDFA);
     let crash = drawer.updateDrawing();
     if (crash){
       sysDFA.alphabet = alphaBackup;
