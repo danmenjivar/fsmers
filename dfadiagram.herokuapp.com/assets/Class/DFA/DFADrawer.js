@@ -66,7 +66,11 @@ class DFADrawer {
   }
 
   //takes the current sysDFA transitions and edits the current ones
-  updateDrawing(){    
+  updateDrawing(){
+   let backup = [this.states.map((x) => x), this.children.map((x) => x)];
+   let dfabackup = {};
+   Object.assign(this.dfa, dfabackup);
+
     for(let i = 0; i < this.states.length; i++){ // for every state
       // remove it's linked transitions
       this.states[i].link.to = [];
@@ -84,9 +88,17 @@ class DFADrawer {
 
     // make new links
     this.dfa = sysDFA;
-    this.createLink();
+    let crashed = this.createLink(); // TODO: if this method crashes, return to normal as if nothing happened
+    if (crashed){
+      this.states = backup[0].map((x)=>x);
+      this.children = backup[1].map((x)=>x);
+      Object.assign(dfabackup, this.dfa);
+      alert('Error: there seems to be missing data, please check your settings.');
+      return true;
+    }
 
     redraw();
+    return false;
   }
 
 
@@ -356,8 +368,9 @@ class DFADrawer {
           // console.log(`${from.stateName} -- ${input} -- > ${to.stateName}`);
         }
       }
+      return false;
     } catch (e) {
-      alert('Error: there seems to be missing data, please check your settings.');
+      return true;
     }
   }
   draw() {}

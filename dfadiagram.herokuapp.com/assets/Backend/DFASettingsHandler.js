@@ -31,6 +31,7 @@ $(document).ready(function () {
   }
 
   $('#save').on('click', function () {
+    let alphaBackup = sysDFA.alphabet.map((x) => x);
     $('#settingsButtonModal').modal('hide');
     sysDFA.alphabet = removeDuplicates($('#alphabet').val().split(',')); // ensure no duplicates
     sysDFA.transition = {};
@@ -51,7 +52,10 @@ $(document).ready(function () {
       $('#navCollapseBut').trigger('click');
     });
     console.log(sysDFA);
-    drawer.updateDrawing();
+    let crash = drawer.updateDrawing();
+    if (crash){
+      sysDFA.alphabet = alphaBackup;
+    }
   });
 
 
