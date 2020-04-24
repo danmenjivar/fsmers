@@ -6,7 +6,7 @@ $(document).ready(function () {
 
   function makeModal() {
     console.log(sysDFA);
-    drawer.updateSysDFA();
+    drawer.updateSysDFA(); // fetch latest edits made to canvas
     $('#alphabet').val(sysDFA.alphabet.join(','));
     $('#initial').val(sysDFA.initial.join(','));
 
@@ -33,14 +33,9 @@ $(document).ready(function () {
 
   $('#save').on('click', function () {
     $('#settingsButtonModal').modal('hide');
-    DFATuples.state = $('#state').val().split(',');
-    DFATuples.initial = $('#initial').val().split(',', 1);
-    DFATuples.alphabet = $('#alphabet').val().split(',');
-
-    let start = DFATuples.state.find(item => item == DFATuples.initial);
-
-    DFATuples.transition = {};
-    let transition = DFATuples.transition;
+    sysDFA.alphabet = removeDuplicates($('#alphabet').val().split(',')); // ensure no duplicates
+    sysDFA.transition = {};
+    let transition = sysDFA.transition;
     //transition
     $('#transitionsTable tbody').find('tr').each(function () {
       let state = $(this).children().eq(0).text();
@@ -53,27 +48,30 @@ $(document).ready(function () {
 
           transition[state][input] = state2;
         }
-
       });
       $('#navCollapseBut').trigger('click');
-
     });
-    // sysDFA.map(DFATuples);
-    // drawer.createDiagram();
-    redraw();
+    console.log(sysDFA);
+    drawer.updateDrawing();
   });
 
 
-  //touch action // this code shouldn't work anymore since you can only add states outside, this is just to edit transitions
-  $('#state,#alphabet').focusout(function () {
+  //touch action
+  $('#alphabet').focusout(function () {
     let key = $(this).data('name');
-    if (DFATuples[key].join(",") !== $(this).val()) {
+    if (sysDFA[key].join(",") !== $(this).val()) {
       changeTable();
     }
   });
 
+  function removeDuplicates(array) {
+    return array.filter((a, b) => array.indexOf(a) === b)
+  };
+
   function changeTable() {
-    let state = $('#state').val().split(',');
+    let transitions = sysDFA.transition;
+    let state = sysDFA.state;
+    console.log(sysDFA);
     let alphabet = $('#alphabet').val().split(',');
     $('#transitionsTable tbody').html("");
     $('#transitionsTable thead').html(`
@@ -82,19 +80,21 @@ $(document).ready(function () {
         </tr>
         `);
     let inputCheck = 1;
+    let oldTransition;
     for (let i = 0; i < state.length; i++) {
       $('#transitionsTable tbody ').append(`<tr><th>${state[i]}</th></tr>`)
       for (let j = 0; j < alphabet.length; j++) {
         if (inputCheck)
           $('#transitionsTable thead tr').append(`<th>${alphabet[j]}</th>`);
-        $('#transitionsTable tbody tr').last().append(`<td><input type="text" class="form-control col-10"></td>`);
-
+        oldTransition = transitions[state[i]][alphabet[j]]; //look up old value
+        if(oldTransition){// if there is then keep it
+          $('#transitionsTable tbody tr').last().append(`<td><input type="text" value = "${oldTransition}" class="form-control col-10"></td>`);
+        } else { // remove it
+          $('#transitionsTable tbody tr').last().append(`<td><input type="text" class="form-control col-10"></td>`);
+        }
       }
       inputCheck = 0;
     }
   }
 
 });
-// based on the number of state circles, draw the transition table
-// extract the state circles into DFATuples
-// make a function that selects a state to be initial,tests to see if that state is valid

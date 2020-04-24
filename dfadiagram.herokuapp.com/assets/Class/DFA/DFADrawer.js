@@ -49,7 +49,7 @@ class DFADrawer {
         }
       }
     });
-    sysDFA.states = states;
+    sysDFA.state = states;
     this.fixTransitions(transitions);
     sysDFA.transition = transitions;
   }
@@ -66,8 +66,8 @@ class DFADrawer {
   }
 
 
-  editDrawing(){
-
+  updateDrawing(){
+    
   }
 
 
