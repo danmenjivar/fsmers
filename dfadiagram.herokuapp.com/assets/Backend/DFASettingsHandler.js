@@ -58,10 +58,7 @@ $(document).ready(function () {
 
   //touch action
   $('#alphabet').focusout(function () {
-    let key = $(this).data('name');
-    if (sysDFA[key].join(",") !== $(this).val()) {
-      changeTable();
-    }
+    changeTable();
   });
 
   function removeDuplicates(array) {

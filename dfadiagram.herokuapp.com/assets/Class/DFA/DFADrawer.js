@@ -65,9 +65,8 @@ class DFADrawer {
     }
   }
 
-
   updateDrawing(){
-    
+
   }
 
 
@@ -102,6 +101,10 @@ class DFADrawer {
     this.states = [];
     this.links = [];
     this.children = [];
+    sysDFA.state = [];
+    sysDFA.initial = [];
+    sysDFA.final = [];
+    sysDFA.transition = {};
   }
 
   /**
@@ -153,8 +156,8 @@ class DFADrawer {
   }
 
   amendDiagramNames(state_circle_obj){
-    console.log(state_circle_obj);
-    console.log(this.children);
+    // console.log(state_circle_obj);
+    // console.log(this.children);
     if (state_circle_obj.isFinal){ // if you delete the last state, you're good
       // TODO maybe notify the user they've deleted their final state, should add a new state as final to test
       return;
@@ -179,7 +182,7 @@ class DFADrawer {
 
 
     }
-    console.log(this.children);
+    // console.log(this.children);
 
   }
 
