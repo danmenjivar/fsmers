@@ -88,7 +88,7 @@ class DFADrawer {
 
     // make new links
     this.dfa = sysDFA;
-    let crashed = this.createLink(); // TODO: if this method crashes, return to normal as if nothing happened
+    let crashed = this.createLink();
     if (crashed){
       this.states = backup[0].map((x)=>x);
       this.children = backup[1].map((x)=>x);

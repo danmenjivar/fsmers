@@ -12,7 +12,7 @@ We came into this project without much web development experience. So fret not, 
 
 Okay, our project can be largely broken up into 2 parts:
 1. Drawing aspect (Canvas)
-    - sketch.js: is how the html and the canvas are linked, all handlers run here
+    - sketch.js: is how the html and the canvas are linked, all event handlers run here
     - DFADrawer: this is what actually happens on screen. It is made up of StateCircle & StateArc objects
         - StateCircle: defines a state and how it connects to another state. In it are the coordinates for drawing this state
         - StateArc: defines the transitions from what state you start and to what state you end at
@@ -22,4 +22,4 @@ Okay, our project can be largely broken up into 2 parts:
         - Upon creation of the dialog box, the handler asks DFADrawer for what changes have occurred and updates the dialog box
         - Upon submission of the dialog, Handler informs DFADrawer of any transitions that have changed and updates the sysDFA alphabet
 2. Simulating Aspect
-    -BatchTestingHandler
+    - BatchTestingHandler
