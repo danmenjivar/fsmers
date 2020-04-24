@@ -94,6 +94,11 @@ class DFADrawer {
       posX += 300;
     });
   }
+  //TODO: this
+  addTransition(from, to, alpha){
+    
+    
+  }
 
   //TODO: rename states 
   deleteStateCircle(state_circle_obj){
