@@ -32,7 +32,6 @@ $(document).ready(function () {
 
   $('#save').on('click', function () {
     let alphaBackup = sysDFA.alphabet.map((x) => x);
-    $('#settingsButtonModal').modal('hide');
     sysDFA.alphabet = removeDuplicates($('#alphabet').val().split(',')); // ensure no duplicates
     sysDFA.transition = {};
     let transition = sysDFA.transition;
@@ -42,10 +41,10 @@ $(document).ready(function () {
       transition[state] = {};
       $(this).children().each(function (i) {
         if (i != 0) {
-
+          
           let state2 = $(this).children().val();
           let input = $('#transitionsTable thead tr').children().eq(i).text();
-
+          
           transition[state][input] = state2;
         }
       });
@@ -54,6 +53,8 @@ $(document).ready(function () {
     let crash = drawer.updateDrawing();
     if (crash){
       sysDFA.alphabet = alphaBackup;
+    } else {
+      $('#settingsButtonModal').modal('hide');
     }
   });
 
