@@ -50,8 +50,21 @@ class DFADrawer {
       }
     });
     sysDFA.states = states;
+    this.fixTransitions(transitions);
     sysDFA.transition = transitions;
   }
+
+  fixTransitions(transition_dict){
+    for(let transition in transition_dict){
+      if(Object.keys(transition_dict[transition]).length == 0){
+        // we must pad it with empty
+        for(let alpha in sysDFA.alphabet){
+          transition_dict[transition][alpha] = "";
+        }
+      }
+    }
+  }
+
 
   editDrawing(){
 
@@ -222,7 +235,7 @@ class DFADrawer {
   createStart() {
     //initial state (initial array length only 1)
     let initial = this.dfa.initial[0];
-    console.log("createStart() " + this.dfa.initial);
+    // console.log("createStart() " + this.dfa.initial);
     //list of StateCircles
     let states = this.states;
 
