@@ -5,7 +5,6 @@ $(document).ready(function () {
   });
 
   function makeModal() {
-    console.log(sysDFA);
     drawer.updateSysDFA(); // fetch latest edits made to canvas
     $('#alphabet').val(sysDFA.alphabet.join(','));
     $('#initial').val(sysDFA.initial.join(','));
@@ -68,7 +67,6 @@ $(document).ready(function () {
   function changeTable() {
     let transitions = sysDFA.transition;
     let state = sysDFA.state;
-    console.log(sysDFA);
     let alphabet = $('#alphabet').val().split(',');
     $('#transitionsTable tbody').html("");
     $('#transitionsTable thead').html(`

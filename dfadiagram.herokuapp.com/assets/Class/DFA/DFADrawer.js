@@ -65,8 +65,28 @@ class DFADrawer {
     }
   }
 
-  updateDrawing(){
+  //takes the current sysDFA transitions and edits the current ones
+  updateDrawing(){    
+    for(let i = 0; i < this.states.length; i++){ // for every state
+      // remove it's linked transitions
+      this.states[i].link.to = [];
+      this.states[i].link.from = [];
+    }
 
+    // remove all state arcs
+    let element;
+    for (var i = this.children.length - 1; i >= 0; i--){
+      element = this.children[i];
+      if (element instanceof StateArc){
+          this.children.splice(this.children.indexOf(element), 1);
+      }
+    }
+
+    // make new links
+    this.dfa = sysDFA;
+    this.createLink();
+
+    redraw();
   }
 
 
@@ -337,11 +357,7 @@ class DFADrawer {
         }
       }
     } catch (e) {
-      alert('There seems to be an Error in the input.\n Please fill in the inputs properly!');
-      // commented these stuff out, not sure why everything gets removed if error
-      // this.states = [];
-      // this.links = [];
-      // this.children = [];
+      alert('Error: there seems to be missing data, please check your settings.');
     }
   }
   draw() {}
