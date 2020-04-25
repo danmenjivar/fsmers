@@ -128,6 +128,39 @@ class DFADrawer {
       throw ("sysDFA");
     }
   }
+    //TODO: inputting stuff in transition
+  addTransition(fromState, toState, symbol){ 
+    console.log(this.children);
+    console.log(this.states);
+    let states = this.states;
+    let from, to;
+    for (let curState of states){ //Getting the right states
+      if (curState.stateName === fromState){
+        from = curState;
+      }
+      else if(curState.stateName === toState){
+        to = curState;
+      }
+    }
+    //console.log(from, to);
+
+    // for(let sym in from.link.to){
+    //   if(sym == symbol){ //If right transition symbol to edit
+    //     console.log(from.link.to[sym]);
+    //     from.link.to[sym].state = to;
+    //   }
+    // }
+    // console.log(to.link.from);
+    // for(let i in to.link.from){
+    //   if (to.link.from[i].state.stateName === fromState){ //If existing transition
+    //     console.log(to.link.from[i]);
+    //     to.link.from[i].input.pop(); //TODO, for the mean time: out with old, in with new
+    //     to.link.from[i].input.push(symbol);
+    //   }  
+    // }
+    //this.createLink();
+    //console.log(this.children);
+  }
 
   clearCanvas() {
     this.states = [];
@@ -166,11 +199,6 @@ class DFADrawer {
       //Incrementing the posX  by 300 so that they are 300 pixel away
       posX += 300;
     });
-  }
-  //TODO: this
-  addTransition(from, to, alpha){
-    
-    
   }
 
   deleteStateCircle(state_circle_obj){
@@ -317,9 +345,6 @@ class DFADrawer {
     });
 
   }
-
-
-
 
   /**
    * createLink - Creates a link among the StateCircle with the help of DFA.transition (this.dfa.transition)
