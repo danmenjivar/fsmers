@@ -2,6 +2,7 @@
 ## Building & Designing DFA instructions
 - To **add a state**, double click anywhere on the canvas
 - To set a state as an **accept state**, double click it
+    - Double clicking it again, will toggle it's accept status off
 - To set a state as the **starting state**, control+click it 
 - To **add a transition** between states, shift-click from the starting state and drag to the ending state
 - To **move a state**, click and drag a state across the canvas
@@ -28,6 +29,13 @@
 3. In the new pop-up window, enter the strings you'd like to test separated by a comma
     - note: you may enter 0 or many strings
 4. Select how fast the simulation should run from state to state
-    - Lower, faster (left)
-    - Higher, slower (right)
-4. Click **Begin Test** and watch the magic happen
+    - Lower value, faster (left)
+    - Higher value, slower (right)
+4. Click **Begin Test** to start the visual simulation
+    - If an error triggers:
+        - Ensure you've declared a starting state 
+        - Ensure all characters in your testing string(s) are part of the alphabet
+            - Note: spaces count as characters
+            - To alter your alphabet to include more characters, click on **DFA Settings** from the main window
+        - Ensure you've declared transitions between all your states
+            - Note: NFA's aren't fully supported, it's best to ensure your diagram is a DFA
