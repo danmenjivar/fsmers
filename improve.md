@@ -24,8 +24,11 @@ We recommend you use [Visual Studio Code](https://code.visualstudio.com/) for th
 This project can be broken up into 2 major parts: the drawer & the simulator, although some overlap between the two do occur.
 1. The Drawing Part
     - sketch.js: is how the html and the canvas are linked, all event handlers for the canvas like dragging a state are handled from here, the canvas is initialized here
-    - **DFADrawer**
-        - 
+    - *DFADrawer*
+        - Serves 2 purposes:
+            1. Draws the initial DFA we show on startup
+            2. Edits the DFA as users interact with canvas
+                - whenever sketch.js triggers a handler it calls helper methods in Drawer that edit the states & transitions
     - Graphics folder
         - contains further abstracted classes to draw the objects on the canvas
         - Drawer uses these to define what a DFA looks like
@@ -36,9 +39,13 @@ This project can be broken up into 2 major parts: the drawer & the simulator, al
             - StateArc gets further abstracted in curves
         - GraphicsItem is a container that sketch.js uses to handle the dragging and redrawing of states
 2. Simulating Aspect
-    - **DFAChecker**
-        - 
-
+    - *DFAChecker*: Does the string testing
+        - To initialize a Checker object you pass a DFADrawer object
+        - To run a simulation, you call it's method check() & pass a string to test it with
+            - Because js is async & single threaded, we made this function async, meaning js will wait for check() to finish before executing any other code. Because of this we pass a resolve, and without it check() crashes handling multiple strings
+        - Once a string is passed, Checker builds out a graph for it to execute and then animates the drawing and appends the result to the correct column in the table
+            - Note: the CSS has reversed columns & rows to make this easier
+            - Animation is possible thanks to setInterval()
 3. Everything Else
     - Addons: these are the dependencies of the libraries that make the application run
         - p5.min.js is another dependency but is stored outside
@@ -61,6 +68,9 @@ This project can be broken up into 2 major parts: the drawer & the simulator, al
         - HTML & CSS: define the web page look & structure
         - tcan jpegs
             - These images are the hitbox for deleting states
+
+## TL;DR
+We can draw DFAs on the canvas using click and drag and other mouse operations, edit them slightly with settings and test 1 or many strings with animations to show us how the strings are being interpreted.
 
 ## TODO
 The following is a list of features we didn't have the time for but would further improve this project
