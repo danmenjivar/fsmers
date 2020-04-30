@@ -61,16 +61,16 @@ This project can be broken up into 2 major parts: the drawer & the simulator, al
 
 ## TODO
 The following is a list of features we didn't have the time for but would further improve this project
-- [] Export your drawing to jpeg or png 
+- [ ] Export your drawing to jpeg or png 
     - Relatively easy since p5.js supports this
-- [] Export your FSM design to JSON 
+- [ ] Export your FSM design to JSON 
     - the code in drawer already packs the drawing into a Javascript object
-- [] Import JSON FSM design to App 
+- [ ] Import JSON FSM design to App 
     - unpacking and parsing the JSON is supported, this is how we load the - example FSM at the beginning
-- [] NFA's 
+- [ ] NFA's 
     - we don't support the whole set of NFA's because javascript is single threaded, to do simultaneous multi-threaded simulations, you'd need to handle the testing server-side
-- [] Undo/Redo 
+- [ ] Undo/Redo 
     - we discussed  this, it's not too hard, you'd pack into a JSON the state of drawer during every change and push it on the stack, undo pops from the stack, any change after an undo clears the stack, biggest problem was limited time for us
-- [] Save progress on to your computer
+- [ ] Save progress on to your computer
     - right now: when you move away from the page everything loads back as it was at the very beginning
 
