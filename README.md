@@ -1,8 +1,8 @@
-# [FSM Learning Tool](https://danielmenjivar.cikeys.com)
+# [FSM Learning Tool](https://fsmlearningtool.netlify.app)
 
 by [Daniel Menjivar](https://danmenjivar.com) & Kyle Guieb - *Class of 2020*
 
-[DFA Learning Tool](linkhereplease) helps you design, draw, and test Deterministic Finite Automatons (DFA). [Finite State Machines](https://brilliant.org/wiki/finite-state-machines/) are a staple in computer science theory. This tool is designed to help you, students & educators alike, explore and conceptualize DFA's from the comfort of your web browser using click-and-drag actions. Once you're done designing your DFA, head on over to the testing environment, where entire batches of strings can quickly be simulated on your design. We encourage you to tinker with your designs and explore the power of regular languages that finite state machines provide. 
+[FSM Learning Tool](/https://danielmenjivar.cikeys.com) helps you design, draw, and test Deterministic Finite Automatons (DFA). [Finite State Machines](https://brilliant.org/wiki/finite-state-machines/) are a staple in computer science theory. This tool is designed to help you, students & educators alike, explore and conceptualize DFA's from the comfort of your web browser using click-and-drag actions. Once you're done designing your DFA, head on over to the testing environment, where entire batches of strings can quickly be simulated on your design. We encourage you to tinker with your designs and explore the power of regular languages that finite state machines provide. 
 
 ## License
 You are free to copy, modify, and distribute DFA Learning Tool with attribution under the terms of the MIT license.
@@ -17,7 +17,7 @@ To best experience DFA Learning Tool, you need:
     - Safari
 
 ## Installation & General Instruction
-- Visit [link goes here]() with your browser to get started building & testing DFA's  
+- Click [here](https://fsmlearningtool.netlify.app) to get started building & testing DFA's  
 For further instructions see [General Instructions Guide](/HOWTO.md)
 - Alternatively, you may clone this repository and host it locally on your machine
 
