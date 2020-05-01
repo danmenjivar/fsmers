@@ -11,6 +11,7 @@
  * @author sysDFA Bhandari
  * @version 0.1
  */
+let shiftFrom, shiftTo;
 class DFADrawer {
 
   /**
@@ -130,14 +131,20 @@ class DFADrawer {
   }
     //TODO: inputting stuff in transition
   addTransition(fromState, toState, symbol){ 
-    console.log(this.children);
-    console.log(this.states);
-    console.log(this.transition);
     let states = this.states;
     let from, to;
+    let sameFlag = false;
+    if (fromState === toState){
+      sameFlag = true;
+    }
     for (let curState of states){ //Getting the right states
       if (curState.stateName === fromState){
         from = curState;
+        if (sameFlag){ //if it's a transition on itself, to and from are the same.
+          to = curState;
+          sameFlag = false;
+          break;
+        }
       }
       else if(curState.stateName === toState){
         to = curState;
@@ -272,9 +279,22 @@ class DFADrawer {
 
   shiftClickedState(mouseX, mouseY){
     let shiftClicked = false;
+    
+    
     for (let i = 0; i < this.states.length && !shiftClicked; i++){
       if (dist(mouseX, mouseY, this.states[i].center.x, this.states[i].center.y) < this.states[i].diameter){
         //open dialog box
+        if (shiftFrom == undefined){
+          shiftFrom = this.states[i].stateName;
+        }
+        else{
+          shiftTo = this.states[i].stateName;
+          
+          //$("#addTransModal").modal('show');
+          this.addTransition(shiftFrom, shiftTo, 0);
+          shiftFrom = undefined; //resets states
+          shiftTo = undefined;
+        }
       }
     }
   }

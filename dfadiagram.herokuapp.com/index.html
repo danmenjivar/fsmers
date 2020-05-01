@@ -22,10 +22,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <button class="btn  btn-outline-primary" data-toggle="modal" data-target="#settingsButtonModal"
+          <button type="button" class ="btn btn btn-outline-secondary " data-toggle="modal" data-target="#TransModal"id="TransModalBut">Transition</button>
+          <button class="btn  btn-outline-primary btn-margin-left" data-toggle="modal" data-target="#settingsButtonModal"
             id="modalBut">DFA Settings</button>
           <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>
-          <button type="button" class ="btn btn btn-outline-secondary btn-margin-left" data-toggle="modal" data-target="#TransModal"id="TransModalBut">Transition</button>
+          <button type="button" class="btn btn btn-outline-warning btn-margin-left" id="addTransition">addTransition</button>
+          
         </ul>
       </div>
     </nav>
@@ -179,6 +181,38 @@
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal" id="TransCommit">Commit</button>
+        </div>
+        </div>
+      </div> 
+    </div> 
+  </div> 
+
+  <!-- Modal for addTransitions-->
+  <div class="modal fade" id="addTransModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Transitions</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div>
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class ="form-group row">
+              <label for="dfaAlphaReminder" class="col-3">Alphabet:</label>
+              <p id="alpha-remind"></p>
+            </div>
+            <h6>Please choose the two states to connect.</h6>
+            <div class="form-group row">
+              <label for="addTransSymbol" class="col-3">Transition Symbol: </label>
+              <input type="text" data-name="addTransSymbol" id="addTransSymbol" class="form-control col-9">
+            </div>
+          </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="addTransCommit">Commit</button>
         </div>
         </div>
       </div> 
