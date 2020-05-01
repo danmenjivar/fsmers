@@ -132,6 +132,7 @@ class DFADrawer {
   addTransition(fromState, toState, symbol){ 
     console.log(this.children);
     console.log(this.states);
+    console.log(this.transition);
     let states = this.states;
     let from, to;
     for (let curState of states){ //Getting the right states
@@ -142,24 +143,8 @@ class DFADrawer {
         to = curState;
       }
     }
-    //console.log(from, to);
-
-    // for(let sym in from.link.to){
-    //   if(sym == symbol){ //If right transition symbol to edit
-    //     console.log(from.link.to[sym]);
-    //     from.link.to[sym].state = to;
-    //   }
-    // }
-    // console.log(to.link.from);
-    // for(let i in to.link.from){
-    //   if (to.link.from[i].state.stateName === fromState){ //If existing transition
-    //     console.log(to.link.from[i]);
-    //     to.link.from[i].input.pop(); //TODO, for the mean time: out with old, in with new
-    //     to.link.from[i].input.push(symbol);
-    //   }  
-    // }
-    //this.createLink();
-    //console.log(this.children);
+    this.dfa.transition[from.stateName][symbol] = to.stateName;
+    this.updateDrawing();
   }
 
   clearCanvas() {
@@ -283,6 +268,15 @@ class DFADrawer {
       }
     }
     redraw();
+  }
+
+  shiftClickedState(mouseX, mouseY){
+    let shiftClicked = false;
+    for (let i = 0; i < this.states.length && !shiftClicked; i++){
+      if (dist(mouseX, mouseY, this.states[i].center.x, this.states[i].center.y) < this.states[i].diameter){
+        //open dialog box
+      }
+    }
   }
 
   amendStartState(){

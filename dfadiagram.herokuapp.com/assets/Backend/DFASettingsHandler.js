@@ -44,7 +44,7 @@ $(document).ready(function () {
           
           let state2 = $(this).children().val();
           let input = $('#transitionsTable thead tr').children().eq(i).text();
-          
+          console.log(transition);
           transition[state][input] = state2;
         }
       });

@@ -65,6 +65,9 @@ function touchStarted(event) {
   if (event.ctrlKey){
     drawer.cntrClickedState(mouseX, mouseY);
   }
+  if (event.shiftKey){
+    drawer.shiftClickedState(mouseX, mouseY);
+  }
   // console.log(mouseX + " " + mouseY); // USEFUL to see where a touch is first initiated
   // console.log(mouseX * zoom + " " + mouseY * zoom); // not really useful, but tells you the coordinates if they zoomed in
   // console.log(mouseX / zoom + " " + mouseY / zoom); // not really useful, tells you coordinates if they zoomed out, zooming doesn't involve this func at all
@@ -105,30 +108,30 @@ function touchMoved(e) {
   //   return false;
 }
 
-// shift click stuff
- var shift = false;
+// // shift click stuff
+//  var shift = false;
 
- document.onkeydown = function(e) {
-  var key = crossBrowserKey(e);
-  if (key == 16){
-    shift = true;
-    console.log(shift);
-  }
-}
-document.onkeyup = function(e){
-  // var key = crossBrowserKey(e);
+//  document.onkeydown = function(e) {
+//   var key = crossBrowserKey(e);
+//   if (key == 16){
+//     shift = true;
+//     console.log(shift);
+//   }
+// }
+// document.onkeyup = function(e){
+//   // var key = crossBrowserKey(e);
 
-  if(key == 16){
-    shift = false;
-    console.log(shift);
-  }
-}
+//   if(key == 16){
+//     shift = false;
+//     console.log(shift);
+//   }
+// }
 
-function crossBrowserKey(e){
-  e = e || window.event;
-  // console.log(e.keyCode);
-  return e.which || e.keyCode;
-}
+// function crossBrowserKey(e){
+//   e = e || window.event;
+//   // console.log(e.keyCode);
+//   return e.which || e.keyCode;
+// }
 
 function touchEnded() {
   // User let's go of let mouse button
