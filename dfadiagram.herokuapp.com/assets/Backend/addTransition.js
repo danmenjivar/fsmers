@@ -15,15 +15,11 @@ $(document).ready(function() {
         let symbol = $('#addTransSymbol').val();
         if(!sysDFA.alphabet.includes(symbol)){
             drawer.shiftReset();
-            console.log('Not in alphabet');
-            $('#addTransSymbol').val('');
-
+            alert('Symbol not in alphabet');
         }
         else{
-            drawer.symbolSetter(symbol);
-            $('#addTransSymbol').val('');
-            
+            drawer.symbolSetter(symbol);            
         }
-
+        $('#addTransSymbol').val('');
     });
 });
