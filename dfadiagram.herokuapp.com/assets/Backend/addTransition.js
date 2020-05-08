@@ -12,12 +12,15 @@ $(document).ready(function() {
 
     $('#addTransCommit').on('click', function() {
         let symbol = $('#addTransSymbol').val();
-        if (symbol == ""){
+        if(!sysDFA.alphabet.includes(symbol)){
             drawer.shiftReset();
-            console.log("Empty");
+            console.log('Not in alphabet');
+
         }
         else{
+
             drawer.symbolSetter(symbol);
+            
         }
 
     });
