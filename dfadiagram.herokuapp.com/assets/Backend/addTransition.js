@@ -8,6 +8,7 @@ $(document).ready(function() {
 
     $('#addTransModal').on('hidden.bs.modal' ,function(){
         drawer.shiftReset();
+        $('#addTransSymbol').val('');
       });
 
     $('#addTransCommit').on('click', function() {
@@ -15,11 +16,12 @@ $(document).ready(function() {
         if(!sysDFA.alphabet.includes(symbol)){
             drawer.shiftReset();
             console.log('Not in alphabet');
+            $('#addTransSymbol').val('');
 
         }
         else{
-
             drawer.symbolSetter(symbol);
+            $('#addTransSymbol').val('');
             
         }
 
