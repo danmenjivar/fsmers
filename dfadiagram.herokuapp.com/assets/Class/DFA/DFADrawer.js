@@ -11,7 +11,7 @@
  * @author sysDFA Bhandari
  * @version 0.1
  */
-let shiftFrom, shiftTo;
+let shiftFrom, shiftTo, shiftSymbol;
 class DFADrawer {
 
   /**
@@ -290,13 +290,18 @@ class DFADrawer {
         else{
           shiftTo = this.states[i].stateName;
           
-          //$("#addTransModal").modal('show');
-          this.addTransition(shiftFrom, shiftTo, 0);
-          shiftFrom = undefined; //resets states
-          shiftTo = undefined;
+          $("#addTransModal").modal('show');
+
         }
       }
     }
+  }
+  symbolSetter(symbol){
+    shiftSymbol = 1;
+    this.addTransition(shiftFrom, shiftTo, shiftSymbol);
+    shiftFrom = undefined; //resets states
+    shiftTo = undefined;
+    shiftSymbol = undefined;
   }
 
   amendStartState(){

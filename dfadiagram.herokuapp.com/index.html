@@ -22,12 +22,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <button type="button" class ="btn btn btn-outline-secondary " data-toggle="modal" data-target="#TransModal"id="TransModalBut">Transition</button>
           <button class="btn  btn-outline-primary btn-margin-left" data-toggle="modal" data-target="#settingsButtonModal"
             id="modalBut">FSM Settings</button>
-          <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>
-          <button type="button" class="btn btn btn-outline-warning btn-margin-left" id="addTransition">addTransition</button>
-          
+          <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>          
         </ul>
       </div>
     </nav>
@@ -147,46 +144,6 @@
     </div> 
   </div> 
 
-  <!-- Modal for Transition-->>
-  <div class="modal fade" id="TransModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Transitions</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-        </div>
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class ="form-group row">
-              <label for="dfaAlphaReminder" class="col-3">Alphabet:</label>
-              <p id="alpha-remind"></p>
-            </div>
-            <h6>Please choose the two states to connect.</h6>
-            <div class="form-group row">
-              <label for="fromState" class="col-3">From State: </label>
-              <input type="text" data-name="fromState" id="fromState" class="form-control col-9">
-            </div>
-            <div class="form-group row">
-              <label for="toState" class="col-3">To State: </label>
-              <input type="text" data-name="toState" id="toState" class="form-control col-9">
-            </div>
-            <div class="form-group row">
-              <label for="TransSymbol" class="col-3">Transition Symbol: </label>
-              <input type="text" data-name="TransSymbol" id="TransSymbol" class="form-control col-9">
-            </div>
-          </div>
-          </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="TransCommit">Commit</button>
-        </div>
-        </div>
-      </div> 
-    </div> 
-  </div> 
-
   <!-- Modal for addTransitions-->
   <div class="modal fade" id="addTransModal">
     <div class="modal-dialog" role="document">
@@ -250,6 +207,6 @@
   <script src="assets/Backend/DFASettingsHandler.js"></script>
   <script src="assets/Backend/ClearAllHandler.js"></script>
   <script src="assets/Backend/BatchTestingHandler.js"></script>
-  <script src="assets/Backend/TransitionHandler.js"></script>
+  <script src="assets/Backend/addTransition.js"></script>
 
 </html>
