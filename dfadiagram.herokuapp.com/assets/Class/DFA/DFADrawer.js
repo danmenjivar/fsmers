@@ -292,14 +292,21 @@ class DFADrawer {
           
           $("#addTransModal").modal('show');
 
+
         }
       }
     }
   }
   symbolSetter(symbol){
-    shiftSymbol = 1;
+    shiftSymbol = symbol;
     this.addTransition(shiftFrom, shiftTo, shiftSymbol);
     shiftFrom = undefined; //resets states
+    shiftTo = undefined;
+    shiftSymbol = undefined;
+  }
+
+  shiftReset(){
+    shiftFrom = undefined; //resets states if blank transition symbol error
     shiftTo = undefined;
     shiftSymbol = undefined;
   }
