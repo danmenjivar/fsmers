@@ -4,7 +4,7 @@
 - To set a state as an **accept state**, double click it
     - Double clicking it again, will toggle it's accept status off
 - To set a state as the **starting state**, control+click it 
-- To **add a transition** between states, shift-click from the starting state and drag to the ending state
+- To **add a transition** between states, shift-click two states to add a transition between them
 - To **move a state**, click and drag a state across the canvas
 - To **edit the valid alphabet** or **edit a transition** click on DFA Settings on the menu bar
     - *You may need to expand the hamburger menu*
