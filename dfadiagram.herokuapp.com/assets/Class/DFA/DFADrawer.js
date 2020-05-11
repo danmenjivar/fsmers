@@ -202,6 +202,7 @@ class DFADrawer {
     this.children.splice(this.children.indexOf(state_circle_obj), 1);
     this.amendDiagramTransitions(state_circle_obj);
     this.amendDiagramNames(state_circle_obj);
+    this.updateSysDFA();
   }
 
   amendDiagramTransitions(state_circle_obj) {
