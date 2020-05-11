@@ -29,7 +29,8 @@ function setup() {
     `<b>Instructions</b><br>
     To add a state to your diagram, double click anywhere.<br>
     To set a state as an accept state, double click it.<br>
-    To set the starting state, Cntrl+Click it.`
+    To set the starting state, Cntrl+Click it.<br>
+    To add a transition between states, Shift+Click two states in the corresponding order.`
   );
   txt.id("curStr");
   txt.position(50, 500);
