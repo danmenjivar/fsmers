@@ -1,27 +1,28 @@
 # General Instructions Guide
-## Building & Designing DFA instructions
+## Building & Designing FSM instructions
 - To **add a state**, double click anywhere on the canvas
 - To set a state as an **accept state**, double click it
     - Double clicking it again, will toggle it's accept status off
 - To set a state as the **starting state**, control+click it 
 - To **add a transition** between states, shift-click two states to add a transition between them
 - To **move a state**, click and drag a state across the canvas
-- To **edit the valid alphabet** or **edit a transition** click on DFA Settings on the menu bar
+- To **edit the valid alphabet** or **edit a transition** click on FSM Settings on the menu bar
     - *You may need to expand the hamburger menu*
     - Click on the blue **Save Changes** to save your changes or cancel out
         - If you receive an error after you clicked **Save Changes**:
-            - ensure there are no empty entries in your transitions, this is a [DFA](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) after all 
+            - ensure there are no empty entries in your transitions when constructing a [DFA](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)
+            - note: FSM Learning Tool support some NFA's, but for best results construct a DFA
         
 - To clear your canvas, click **Clear All** on the menu bar
     - *Once more, you may need to expand the hamburger menu*
-## Running Your DFA
+## Running Your FSM
 1. Ensure that you have declared:
     - 1 starting state
     - at least 1 accept state
         - note: the system will allow you to run simulations without declaring any accept states, but your test will reject all your inputted strings
     - all transitions
-        - note: DFA's require transitions on all characters in the alphabet set
-2. Click the green **Build Test** on the DFA Testing Environment
+        - note: DFA's require transitions on all characters in the alphabet set, NFA's are not entirely supported due to Javascript limitations but we decided to allow NFA experimentation
+2. Click the green **Build Test** on the FSM Testing Environment
     - Depending on your window size, this is either:
         - Directly below your canvas
         - Directly yo the right of your canvas

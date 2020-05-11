@@ -22,9 +22,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <button class="btn  btn-outline-primary" data-toggle="modal" data-target="#settingsButtonModal"
-            id="modalBut">DFA Settings</button>
-          <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>
+          <button class="btn  btn-outline-primary btn-margin-left" data-toggle="modal" data-target="#settingsButtonModal"
+            id="modalBut">FSM Settings</button>
+          <button type="button" class="btn btn btn-outline-danger btn-margin-left" id="clearButton">Clear All</button>          
         </ul>
       </div>
     </nav>
@@ -38,10 +38,10 @@
           </div>
         </div>
         <div class="col"> <!-- This is where the testing environment (the table) goes -->
-          <h2 style="text-align: center; margin-top: 10px; margin-bottom: 5px;">DFA Testing Environment</h2>
+          <h2 style="text-align: center; margin-top: 10px; margin-bottom: 5px;">FSM Testing Environment</h2>
           <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;"><button class="btn btn-success" type="button" data-toggle="modal"
             data-target="#inputModal" id="inputButtonModal">Build Test</button></div>
-          <p id=tstTime>Click the <b>Build Test</b> button above to test your DFA, your results will populate the table below.</p>
+          <p id=tstTime>Click the <b>Build Test</b> button above to test your FSM, your results will populate the table below.</p>
           <table id="tableResults" class="invertColandRows">
             <thead>
               <tr>
@@ -70,7 +70,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">DFA</h4>
+          <h4 class="modal-title">FSM</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
@@ -108,7 +108,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">DFA Test Builder</h4>
+          <h4 class="modal-title">FSM Test Builder</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
@@ -124,7 +124,7 @@
             <div class="form-group row">
               <label for="dfaInput" class="col-3">Input:</label>
               <textarea class="form-control col-9" id="dfabatchInput" rows="3"
-                placeholder="Enter 1 or more string(s) separated by commas to run on your DFA"></textarea>
+                placeholder="Enter 1 or more string(s) separated by commas to run on your FSM"></textarea>
             </div>
             <div class="form-group row">
               <label for="dfaBatchInterval" class="col-3" data-toggle="tooltip"
@@ -139,6 +139,38 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-success" id="batchCheck">Begin Test</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div> 
+    </div> 
+  </div> 
+
+  <!-- Modal for addTransitions-->
+  <div class="modal fade" id="addTransModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Transitions</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div>
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class ="form-group row">
+              <label for="dfaAlphaRemind" class="col-3">Alphabet:</label>
+              <p id="theAlphabet-remind"></p>
+            </div>
+            <h6>Please choose the two states to connect.</h6>
+            <div class="form-group row">
+              <label for="addTransSymbol" class="col-3">Transition Symbol: </label>
+              <input type="text" data-name="addTransSymbol" id="addTransSymbol" class="form-control col-9">
+            </div>
+          </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="addTransCommit">Commit</button>
+        </div>
         </div>
       </div> 
     </div> 
@@ -175,5 +207,6 @@
   <script src="assets/Backend/DFASettingsHandler.js"></script>
   <script src="assets/Backend/ClearAllHandler.js"></script>
   <script src="assets/Backend/BatchTestingHandler.js"></script>
+  <script src="assets/Backend/addTransition.js"></script>
 
 </html>

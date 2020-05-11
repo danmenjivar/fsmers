@@ -11,6 +11,7 @@
  * @author sysDFA Bhandari
  * @version 0.1
  */
+let shiftFrom, shiftTo, shiftSymbol;
 class DFADrawer {
 
   /**
@@ -127,6 +128,30 @@ class DFADrawer {
     } else {
       throw ("sysDFA");
     }
+  }
+    //TODO: inputting stuff in transition
+  addTransition(fromState, toState, symbol){ 
+    let states = this.states;
+    let from, to;
+    let sameFlag = false;
+    if (fromState === toState){
+      sameFlag = true;
+    }
+    for (let curState of states){ //Getting the right states
+      if (curState.stateName === fromState){
+        from = curState;
+        if (sameFlag){ //if it's a transition on itself, to and from are the same.
+          to = curState;
+          sameFlag = false;
+          break;
+        }
+      }
+      else if(curState.stateName === toState){
+        to = curState;
+      }
+    }
+    this.dfa.transition[from.stateName][symbol] = to.stateName;
+    this.updateDrawing();
   }
 
   clearCanvas() {
@@ -252,6 +277,40 @@ class DFADrawer {
     redraw();
   }
 
+  shiftClickedState(mouseX, mouseY){
+    let shiftClicked = false;
+    
+    
+    for (let i = 0; i < this.states.length && !shiftClicked; i++){
+      if (dist(mouseX, mouseY, this.states[i].center.x, this.states[i].center.y) < this.states[i].diameter){
+        //open dialog box
+        if (shiftFrom == undefined){
+          shiftFrom = this.states[i].stateName;
+        }
+        else{
+          shiftTo = this.states[i].stateName;
+          
+          $("#addTransModal").modal('show');
+
+
+        }
+      }
+    }
+  }
+  symbolSetter(symbol){
+    shiftSymbol = symbol;
+    this.addTransition(shiftFrom, shiftTo, shiftSymbol);
+    shiftFrom = undefined; //resets states
+    shiftTo = undefined;
+    shiftSymbol = undefined;
+  }
+
+  shiftReset(){
+    shiftFrom = undefined; //resets states if blank transition symbol error
+    shiftTo = undefined;
+    shiftSymbol = undefined;
+  }
+
   amendStartState(){
     let ogStart = this.states.find(function(state) {
       return state.isStart;
@@ -312,9 +371,6 @@ class DFADrawer {
     });
 
   }
-
-
-
 
   /**
    * createLink - Creates a link among the StateCircle with the help of DFA.transition (this.dfa.transition)
