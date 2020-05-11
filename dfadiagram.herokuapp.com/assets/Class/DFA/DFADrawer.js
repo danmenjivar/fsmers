@@ -150,6 +150,10 @@ class DFADrawer {
         to = curState;
       }
     }
+    console.log(this.dfa)
+    if (!this.dfa.transition[from.stateName]){ // clear all deleted the transitions
+      this.dfa.transition[from.stateName] = {}
+    } 
     this.dfa.transition[from.stateName][symbol] = to.stateName;
     this.updateDrawing();
   }
