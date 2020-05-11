@@ -66,13 +66,13 @@ class DFADrawer {
     }
   }
 
-  //takes the current sysDFA transitions and edits the current ones
+  // takes the current sysDFA transitions and edits the canvas
   updateDrawing(){
    let backup = [this.states.map((x) => x), this.children.map((x) => x)];
    let dfabackup = {};
    Object.assign(this.dfa, dfabackup);
-
-    for(let i = 0; i < this.states.length; i++){ // for every state
+   
+   for(let i = 0; i < this.states.length; i++){ // for every state
       // remove it's linked transitions
       this.states[i].link.to = [];
       this.states[i].link.from = [];
@@ -131,6 +131,7 @@ class DFADrawer {
   }
     //TODO: inputting stuff in transition
   addTransition(fromState, toState, symbol){ 
+    this.updateThisDFA()
     let states = this.states;
     let from, to;
     let sameFlag = false;
@@ -150,12 +151,31 @@ class DFADrawer {
         to = curState;
       }
     }
-    console.log(this.dfa)
     if (!this.dfa.transition[from.stateName]){ // clear all deleted the transitions
       this.dfa.transition[from.stateName] = {}
     } 
     this.dfa.transition[from.stateName][symbol] = to.stateName;
     this.updateDrawing();
+    console.log(this.dfa)
+  }
+
+  updateThisDFA(){
+    let states = [];
+    let transitions = {};
+    for(let state of this.states){
+      states.push(state.stateName);
+      transitions[state.stateName] = {}; 
+    }
+    //for each transition
+    this.children.forEach((element) => {
+      if (element instanceof StateArc){
+        for(let i = 0; i < element.text.length; i++){
+          transitions[element.start.stateName][element.text[i]] = [element.end.stateName][0];
+        }
+      }
+    });
+    this.dfa.state = states;
+    this.dfa.transition = transitions;
   }
 
   clearCanvas() {
@@ -202,7 +222,6 @@ class DFADrawer {
     this.children.splice(this.children.indexOf(state_circle_obj), 1);
     this.amendDiagramTransitions(state_circle_obj);
     this.amendDiagramNames(state_circle_obj);
-    this.updateSysDFA();
   }
 
   amendDiagramTransitions(state_circle_obj) {
@@ -245,7 +264,6 @@ class DFADrawer {
 
     }
     // console.log(this.children);
-
   }
 
 
@@ -426,7 +444,7 @@ class DFADrawer {
             });
             this.children.unshift(link);
           }
-          // console.log(`${from.stateName} -- ${input} -- > ${to.stateName}`);
+          console.log(`${from.stateName} -- ${input} -- > ${to.stateName}`);
         }
       }
       return false;
